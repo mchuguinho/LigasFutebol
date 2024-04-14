@@ -1,0 +1,23 @@
+* {
+    font-family: 'Roboto';
+}
+
+/*LOGIN PAGE*/
+#intro {
+    background-image: url("/img/loginBackground.jpg");
+    height: 100vh;
+}
+
+/*NAVBAR*/
+#logo, #user {
+    width: 15%;
+    height: 15%;
+}
+
+#collapsibleNavbar {
+    justify-content: right;
+}
+
+#navbar {
+    text-align: right;
+}
