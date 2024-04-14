@@ -12,8 +12,17 @@ document.getElementById("login-form").addEventListener("submit", function(event)
         // Verifica se os dados recebidos do formulário correspondem aos do ficheiro JSON
         var user = data.users.find(u => u.email === email && u.password === password);
         if (user) {
-            alert("Login efetuado com sucesso!");
-            window.location.href = "admin.html";
+            //Criação de um Toast
+            Toastify({
+                text: "Utilizador logado com sucesso!",
+                duration: 3000,
+                close: true,
+                gravity: "top",
+                backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+                callback: function() {
+                    window.location.href = "index.html";
+                }
+            }).showToast();
         } else {
             alert("Email ou password inválida. Tente outra vez!");
         }
