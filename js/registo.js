@@ -1,13 +1,14 @@
 document.getElementById("registo-form").addEventListener("submit", function(event) {
     event.preventDefault(); // Prevent the default form submission
 
-    // Get the entered username and password
+    // vou buscar os valores
     var email = document.getElementById("email").value;
     var password = document.getElementById("password").value;
     var passwordC = document.getElementById("passwordC").value;
     var nome = document.getElementById("nome").value;
     var apelido = document.getElementById("apelido").value;
 
+    //verifico se as passes estão iguais
         if(password != passwordC){
 
             alert("As palavras passes são diferentes!!")
@@ -20,6 +21,7 @@ document.getElementById("registo-form").addEventListener("submit", function(even
             fetch("js/users.json")
             .then(response => response.json())
             .then(data => {
+
                 // verificar se já existe algum utilizador
                 var existeAlgum = data.users.find(u => u.email === email);
                 
@@ -30,26 +32,19 @@ document.getElementById("registo-form").addEventListener("submit", function(even
                     window.location.href="./login.html";
                 } else {
 
-                    var counterId= 1;
-                    var achouID = false;
+                    // cria variavel com dados do json
+                    var usersL = data.users;
 
-
-                    
-                       for(let i= 1; i<100; i++){ 
-                        
-                            if(data.users.find(u=> u.id === counterId)){
-                                console.log(data.users.find(u=> u.id === counterId) + " que passa");
-                                counterId++;
-                                console.log(counterId + " ; " )
-                            }
-                        }
-                        
+                    //verifica a quantidade de users e adiciona mais 1 para criar o id superior
+                    var counterId= usersL.length + 1;
+     
+                    //crio o user
                     var user = { email: email, password: password, nome: nome,apelido: apelido, id: counterId};
-                    console.log(" ole : " + counterId);
-                    // adicionar user
+                    console.log(user);
+                    // adiciono user
                     data.users.push(user);
 
-                    // Write the updated JSON data back to the file
+                    // Não sei o que é  e o pq n tá a dar
                     fetch("js/users.json", {
                         method: 'PUT',
                         headers: {
@@ -60,7 +55,7 @@ document.getElementById("registo-form").addEventListener("submit", function(even
 
                     .then(() => {
                         alert("Registado com Sucesso!");
-                        //window.location.href = "login.html";
+                        window.location.href = "login.html";
                     })
 
                     .catch(error => {
