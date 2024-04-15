@@ -8,13 +8,6 @@ document.getElementById("registo-form").addEventListener("submit", function(even
     var nome = document.getElementById("nome").value;
     var apelido = document.getElementById("apelido").value;
 
-
-    if(email === "" || password === "" || passwordC === "" || nome === "" || apelido === ""){
-
-        alert("Faltam campos serem preenchidos!! ")
-
-    }else{
-
         if(password != passwordC){
 
             alert("As palavras passes são diferentes!!")
@@ -29,27 +22,30 @@ document.getElementById("registo-form").addEventListener("submit", function(even
             .then(data => {
                 // verificar se já existe algum utilizador
                 var existeAlgum = data.users.find(u => u.email === email);
+                
+
                 if (existeAlgum) {
                     alert("Já existe um utilizador com esse email! Tente dar login!");
+                    
                     window.location.href="./login.html";
                 } else {
 
                     var counterId= 1;
                     var achouID = false;
 
-                    do{
+
+                    
+                       for(let i= 1; i<100; i++){ 
                         
-                        if(data.users.find(u=> u.id === counterId)){
-                            counterId++;
+                            if(data.users.find(u=> u.id === counterId)){
+                                console.log(data.users.find(u=> u.id === counterId) + " que passa");
+                                counterId++;
+                                console.log(counterId + " ; " )
+                            }
                         }
-
-                        achouID=true;
-
-
-                    }while( achouID === false){}
-
+                        
                     var user = { email: email, password: password, nome: nome,apelido: apelido, id: counterId};
-
+                    console.log(" ole : " + counterId);
                     // adicionar user
                     data.users.push(user);
 
@@ -64,7 +60,7 @@ document.getElementById("registo-form").addEventListener("submit", function(even
 
                     .then(() => {
                         alert("Registado com Sucesso!");
-                        window.location.href = "login.html";
+                        //window.location.href = "login.html";
                     })
 
                     .catch(error => {
@@ -73,12 +69,6 @@ document.getElementById("registo-form").addEventListener("submit", function(even
                     });
                 }
             })  
-    
-        }
-    
-
-
-
     }
     
     });
