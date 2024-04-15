@@ -31,3 +31,18 @@
     padding-top: 10px;
     text-align: center;
 }
+
+.card-title {
+    text-align: center;
+    font-weight: bold;
+}
+
+.card-text {
+    text-align: justify;
+}
+
+.btn-card {
+    text-align: center !important; 
+    margin: 0 auto;
+    display: flow !important;
+}
