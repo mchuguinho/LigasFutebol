@@ -1,23 +1,30 @@
 document.getElementById("login-form").addEventListener("submit", function(event) {
     event.preventDefault(); // Prevent the default form submission
 
-    // Get the entered username and password
+    // Recebe o email e password do formulário
     var email = document.getElementById("email").value;
     var password = document.getElementById("password").value;
 
-    // Load the JSON file containing user credentials
+    // Carrega o ficheiro JSON com os dados de utilizadores
     fetch("js/users.json")
     .then(response => response.json())
     .then(data => {
-        // Check if the entered email and password match any user in the JSON file
+        // Verifica se os dados recebidos do formulário correspondem aos do ficheiro JSON
         var user = data.users.find(u => u.email === email && u.password === password);
         if (user) {
-            alert("Login successful!");
-            window.location.href = "admin.html";
-            // You can redirect the user to another page after successful login if needed
-            // window.location.href = "dashboard.html";
+            //Criação de um Toast
+            Toastify({
+                text: "Utilizador logado com sucesso!",
+                duration: 3000,
+                close: true,
+                gravity: "top",
+                backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+                callback: function() {
+                    window.location.href = "index.html";
+                }
+            }).showToast();
         } else {
-            alert("Invalid username or password. Please try again.");
+            alert("Email ou password inválida. Tente outra vez!");
         }
     })
     .catch(error => {

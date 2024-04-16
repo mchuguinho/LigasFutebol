@@ -9,6 +9,10 @@
 }
 
 /*NAVBAR*/
+#navbar {
+    height: 1% !important;
+}
+
 #logo, #user {
     width: 15%;
     height: 15%;
@@ -18,6 +22,36 @@
     justify-content: right;
 }
 
-#navbar {
+#dropdown {
     text-align: right;
+}
+
+/*INDEX PAGE*/
+#header {
+    padding-top: 10px;
+    text-align: center;
+}
+
+.card-title {
+    text-align: center;
+    font-weight: bold;
+}
+
+.card-text {
+    text-align: justify;
+}
+
+.btn-card {
+    text-align: center !important; 
+    margin: 0 auto;
+    display: flow !important;
+}
+
+.col-md-3 {
+    text-align: -webkit-center;
+}
+
+.card {
+    margin-top: 20px;
+    width: 90%;
 }
