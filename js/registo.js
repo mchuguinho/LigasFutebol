@@ -44,7 +44,7 @@ document.getElementById("registo-form").addEventListener("submit", function(even
                     // adiciono user
                     data.users.push(user);
 
-                    // Não sei o que é  e o pq n tá a dar
+                    // supostamente devia estar a funcionar
                     fetch("js/users.json", {
                         method: 'PUT',
                         headers: {
