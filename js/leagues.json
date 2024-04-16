@@ -14,13 +14,13 @@
           {
             "name": "Liverpool FC",
             "city": "Liverpool",
-            "image": "img/premierleague.jpg",
+            "image": "img/clubs/Liverpool.jpg",
             "foundation": "1892"
           },
           {
             "name": "Chelsea FC",
             "city": "London",
-            "image": "img/premierleague.jpg",
+            "image": "img/clubs/Chelsea_FC.png",
             "foundation": "1905"
           }
         ]
@@ -32,7 +32,7 @@
         "teams": [
           {
             "name": "Sporting CP",
-            "city": "Lisboa",
+            "city": "Lisbon",
             "image": "img/clubs/Sporting.jpg",
             "foundation": "1906"
           },
@@ -44,33 +44,33 @@
           },
           {
             "name": "SL Benfica",
-            "city": "Lisboa",
+            "city": "Lisbon",
             "image": "img/clubs/SL_Benfica.png",
             "foundation": "1904"
           }
         ]
       },
       {
-        "name": "La Liga",
+        "name": "LaLiga",
         "country": "Spain",
         "image": "img/leagues/laliga.png",
         "teams": [
           {
             "name": "Real Madrid",
             "city": "Madrid",
-            "image": "img/premierleague.jpg",
+            "image": "img/clubs/Real_Madrid_CF.png",
             "foundation": "1902"
           },
           {
             "name": "FC Barcelona",
             "city": "Barcelona",
-            "image": "img/premierleague.jpg",
+            "image": "img/clubs/FCBarcelona.png",
             "foundation": "1899"
           },
           {
             "name": "Atletico Madrid",
             "city": "Madrid",
-            "image": "img/premierleague.jpg",
+            "image": "img/clubs/Atletico_Madrid.png",
             "foundation": "1903"
           }
         ]
@@ -83,19 +83,19 @@
           {
             "name": "Bayern Munich",
             "city": "Munich",
-            "image": "img/premierleague.jpg",
+            "image": "img/clubs/FCBayernMunchen.png",
             "foundation": "1900"
           },
           {
             "name": "Borussia Dortmund",
             "city": "Dortmund",
-            "image": "img/premierleague.jpg",
+            "image": "img/clubs/Borussia_Dortmund.png",
             "foundation": "1909"
           },
           {
             "name": "RB Leipzig",
             "city": "Leipzig",
-            "image": "img/premierleague.jpg",
+            "image": "img/clubs/RB_Leipzig.png",
             "foundation": "2009"
           }
         ]
