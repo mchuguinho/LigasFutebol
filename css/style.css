@@ -46,3 +46,12 @@
     margin: 0 auto;
     display: flow !important;
 }
+
+.col-md-3 {
+    text-align: -webkit-center;
+}
+
+.card {
+    margin-top: 20px;
+    width: 90%;
+}
