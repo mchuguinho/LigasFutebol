@@ -46,3 +46,6 @@
     margin: 0 auto;
     display: flow !important;
 }
+.navbar-nav > li {
+    margin-right: 10px; /* Adiciona espaçamento entre os itens do menu */
+}
