@@ -69,7 +69,7 @@
               <div class="card-body">
                 <h3 class="card-title">${league.name}</h3>
                 <p class="card-text">Clique no botão abaixo para ver os clubes que estão nesta liga!</p>
-                <button class="btn btn-primary btn-card" onclick="showTeams('${league.name}')">Ver clubes</button>
+                <a class="btn btn-primary btn-card" onclick="showTeams('${league.name}')" href="clubes.html" role="button" >Ver clubes</a>
               </div>
             </div>
           </div>
@@ -79,6 +79,14 @@
       });
     })
     .catch(error => console.error('Error loading JSON:', error));
+
+
+    function showTeams(nome){
+
+      const nomeLiga = nome;
+      localStorage.setItem("liga",nomeLiga);
+
+    }
     </script>
 
     <script
