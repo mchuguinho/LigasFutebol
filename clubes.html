@@ -47,38 +47,67 @@
         </div>
       </div>
     </nav>
-    <h1 class="h1" id="header">Bem-vindo à Ligas de Futebol</h1>
+    <h1 class="h1" id="header"></h1>
     <div class="container">
-      <div class="row" id="leagues">
+      <div class="row" id="clubs"></div>
+    </div>
+    <div
+      id="modalInfo"
+      tabindex="-1"
+      role="dialog"
+      aria-hidden="true"
+      class="modal fade"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content text-center">
+          <div class="modal-header">
+            <h5 id="nomeClube" class="modal-title"></h5>
+          </div>
+          <div class="modal-body">Este é o body</div>
+          <div class="modal-footer">
+            <button type="button" data-dismiss="modal" class="btn btn-danger">
+              Fechar
+            </button>
+          </div>
+        </div>
       </div>
     </div>
 
     <script>
+      document.getElementById("header").innerHTML = localStorage.getItem("liga")
+        ? `Clubes da <b>${localStorage.getItem("liga")}</b>`
+        : "Sem liga selecionada";
       // Load JSON data from leagues.json
-  fetch('js/leagues.json')
-    .then(response => response.json())
-    .then(data => {
-      const leaguesContainer = document.getElementById('leagues');
-      // Generate HTML for league cards
-      data.leagues.forEach(league => {
-        // Create league card HTML
-        const leagueCardHTML = `
+      fetch("js/leagues.json")
+        .then((response) => response.json())
+        .then((data) => {
+          const clubsContainer = document.getElementById("clubs");
+
+          // Generate HTML for league cards
+          data.leagues
+            .find((league) => league.name === localStorage.getItem("liga"))
+            ?.teams?.forEach((team) => {
+              // Create league card HTML
+              const clubData = JSON.stringify(team);
+              console.log(team);
+              console.log(clubData);
+              const teamCardHTML = `
           <div class="col-md-3">
             <div class="card">
-              <img src="${league.image}" class="card-img-top" alt="...">
+              <img src="${team.image}" class="card-img-top" alt="${team.name}">
               <div class="card-body">
-                <h3 class="card-title">${league.name}</h3>
-                <p class="card-text">Clique no botão abaixo para ver os clubes que estão nesta liga!</p>
-                <button class="btn btn-primary btn-card" onclick="showTeams('${league.name}')">Ver clubes</button>
+                <h3 class="card-title">${team.name}</h3>
+                <p class="card-text">Clique no botão abaixo para ver mais detalhes sobre este clube!</p>
+                <button class="btn btn-primary btn-card" data-club='${clubData}' data-toggle="modal" data-target="#modalInfo">Ver mais detalhes</button>
               </div>
             </div>
           </div>
         `;
-        // Append league card HTML to container
-        leaguesContainer.innerHTML += leagueCardHTML;
-      });
-    })
-    .catch(error => console.error('Error loading JSON:', error));
+              // Append league card HTML to container
+              clubsContainer.innerHTML += teamCardHTML;
+            });
+        })
+        .catch((error) => console.error("Error loading JSON:", error));
     </script>
 
     <script
@@ -96,5 +125,26 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"
     ></script>
+    <script>
+      $("#modalInfo").on("show.bs.modal", function (event) {
+        const button = $(event.relatedTarget);
+        const club = button.data("club");
+
+        const modal = $(this);
+        modal.find(".modal-title").text(club.name);
+
+        const modalBody = modal.find(".modal-body")[0]; // Get the raw DOM element
+
+        modalBody.innerHTML = ""; // Clear previous content
+
+        const clubImage = `<img src="${club.image}" class="img-fluid" alt="${club.name}">`;
+        const foundationText = `<div><b>Data de Fundação:</b> ${club.foundation}</div>`;
+        const cityText = `<p><strong>Cidade:</strong> ${club.city}</p>`;
+
+        modalBody.innerHTML += clubImage;
+        modalBody.innerHTML += foundationText;
+        modalBody.innerHTML += cityText;
+      });
+    </script>
   </body>
 </html>

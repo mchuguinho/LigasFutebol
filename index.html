@@ -49,23 +49,22 @@
     </nav>
     <h1 class="h1" id="header">Bem-vindo à Ligas de Futebol</h1>
     <div class="container">
-      <div class="row" id="leagues">
-      </div>
+      <div class="row" id="leagues"></div>
     </div>
 
     <script>
       // Load JSON data from leagues.json
-  fetch('js/leagues.json')
-    .then(response => response.json())
-    .then(data => {
-      const leaguesContainer = document.getElementById('leagues');
-      // Generate HTML for league cards
-      data.leagues.forEach(league => {
-        // Create league card HTML
-        const leagueCardHTML = `
+      fetch("js/leagues.json")
+        .then((response) => response.json())
+        .then((data) => {
+          const leaguesContainer = document.getElementById("leagues");
+          // Generate HTML for league cards
+          data.leagues.forEach((league) => {
+            // Create league card HTML
+            const leagueCardHTML = `
           <div class="col-md-3">
             <div class="card">
-              <img src="${league.image}" class="card-img-top" alt="...">
+              <img src="${league.image}" class="card-img-top" alt="${league.name}">
               <div class="card-body">
                 <h3 class="card-title">${league.name}</h3>
                 <p class="card-text">Clique no botão abaixo para ver os clubes que estão nesta liga!</p>
@@ -74,19 +73,17 @@
             </div>
           </div>
         `;
-        // Append league card HTML to container
-        leaguesContainer.innerHTML += leagueCardHTML;
-      });
-    })
-    .catch(error => console.error('Error loading JSON:', error));
+            // Append league card HTML to container
+            leaguesContainer.innerHTML += leagueCardHTML;
+          });
+        })
+        .catch((error) => console.error("Error loading JSON:", error));
 
-
-    function showTeams(nome){
-
-      const nomeLiga = nome;
-      localStorage.setItem("liga",nomeLiga);
-
-    }
+      function showTeams(nome) {
+        const nomeLiga = nome;
+        localStorage.setItem("liga", "");
+        localStorage.setItem("liga", nomeLiga);
+      }
     </script>
 
     <script
