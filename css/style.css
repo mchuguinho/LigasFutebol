@@ -46,6 +46,17 @@
     margin: 0 auto;
     display: flow !important;
 }
+
+/*admin PAGE*/
+
 .navbar-nav > li {
-    margin-right: 10px; /* Adiciona espaçamento entre os itens do menu */
+    margin-right: 10px; 
+}
+
+#logocircular{
+    width: 15%;
+    height: 20%;
+    border-radius: 50%;
+    border: 2px solid darkblue;
+    
 }
