@@ -16,6 +16,11 @@
 
 }
 
+.redonda{
+
+    border-radius: 1rem;
+}
+
 .fade {
 
     background-color: rgba(0, 0, 0, 0.6);
