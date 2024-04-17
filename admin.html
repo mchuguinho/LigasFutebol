@@ -23,13 +23,13 @@
             <ul class="navbar-nav mr-auto">
 
                 <li class="nav-item pr-2">
-                    <a class="btn btn-outline-light" href="#" role="button">Ligas</a>
+                    <a class="btn btn-outline-light" href="#ligas" role="button">Ligas</a>
                 </li>
                 <li class="nav-item">
-                    <a class="btn btn-outline-light" href="#" role="button">Clubes</a>
+                    <a class="btn btn-outline-light" href="#clubes" role="button">Clubes</a>
                 </li>
                 <li class="nav-item">
-                    <a class="btn btn-outline-light" href="#" role="button">Users</a>
+                    <a class="btn btn-outline-light" href="#users" role="button">Users</a>
                 </li>
 
             </ul>
@@ -43,10 +43,340 @@
 
         </div>
     </nav>
+   <br>
+   <br>
+   <br>
+
+     <div id="ligas" class="container">
+        <div class="d-flex bd-highlight mb-3">
+          <div class="me-auto p-2 bd-highlight"><h2>Ligas</div>
+          <div class="p-2 bd-highlight">
+          
+          </div>
+        </div>
+        
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col" colspan="5">#</th>
+                <th scope="col" colspan="5">Logo da Liga</th>
+                <th scope="col" colspan="5">Nome da Liga</th>
+                <th scope="col" colspan="5">Ação</th>
+              </tr>
+            </thead>
+            <tbody id="mytable">
+              <tr>
+                <th scope="row" colspan="5">1</th>
+                <th scope="col" colspan="2"><img src="img/leagues/premierleague.jpg" id="logocircular"/></th>
+                <th scope="col" colspan="5">Premier League</th>
+                <th scope="col" colspan="5">
+                    <button type="button" class="btn btn-outline-secondary" onclick="showUserCreateBox()">Editar</button>
+                    <button type="button" class="btn btn-outline-danger" onclick="showAlertEliminado()">Eliminar</button>
+                </th>
+  
+              </tr>
+            </tbody>
+            <tbody id="mytable">
+                <tr>
+                  <th scope="row" colspan="5">2</th>
+                  <th scope="col" colspan="5"><img src="img/leagues/Liga_Portugal.png" id="logocircular"/></th>
+                  <th scope="col" colspan="5">Liga Portugal</th>
+                  <th scope="col" colspan="5">
+                    <button type="button" class="btn btn-outline-secondary" onclick="showUserCreateBox()">Editar</button>
+                    <button type="button" class="btn btn-outline-danger" onclick="showAlertEliminado()">Eliminar</button>
+                  </th>
+    
+                </tr>
+              </tbody>
+              <tbody id="mytable">
+                <tr>
+                  <th scope="row" colspan="5">3</th>
+                  <th scope="col" colspan="5"><img src="img/leagues/LaLiga.png" id="logocircular"/></th>
+                  <th scope="col" colspan="5">LaLiga</th>
+                  <th scope="col" colspan="5">
+                    <button type="button" class="btn btn-outline-secondary" onclick="showUserCreateBox()">Editar</button>
+                    <button type="button" class="btn btn-outline-danger" onclick="showAlertEliminado()">Eliminar</button>
+                  </th>
+    
+                </tr>
+              </tbody>
+              <tbody id="mytable">
+                <tr>
+                  <th scope="row" colspan="5">4</th>
+                  <th scope="col" colspan="5"><img src="img/leagues/Bundesliga.png" id="logocircular"/></th>
+                  <th scope="col" colspan="5">Bundesliga</th>
+                  <th scope="col" colspan="5">
+                    <button type="button" class="btn btn-outline-secondary" onclick="showUserCreateBox()">Editar</button>
+                    <button type="button" class="btn btn-outline-danger" onclick="showAlertEliminado()">Eliminar</button>
+                </th>
+    
+                </tr>
+              </tbody>
+          </table>
+        </div>
+      </div>
+      
+      <div id="clubes" class="container">
+        <div class="d-flex bd-highlight mb-3">
+          <div class="me-auto p-2 bd-highlight"><h2>Clubes</div>
+          <div class="p-2 bd-highlight">
+          
+          </div>
+        </div>
+        
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col" colspan="5">#</th>
+                <th scope="col" colspan="5">Logo do Clube</th>
+                <th scope="col" colspan="5">Nome do Clube</th>
+                <!--<th scope="col" colspan="5">Nome de Liga Afiliada</th>-->
+                <th scope="col" colspan="5">Ação</th>
+              </tr>
+              
+            </thead>
+
+        <!---Clubes da Premier League-->
+
+            <tbody id="mytable">
+              <tr>
+                <th scope="row" colspan="5">1</th>
+                <th scope="col" colspan="2"><img src="img/clubs/Manchester_United_FC.png" id="logocircular"/></th>
+                <th scope="col" colspan="5">Manchester United</th>
+                <!-- <th scope="col" colspan="5">Premier League</th> -->
+                <th scope="col" colspan="5">
+                    <button type="button" class="btn btn-outline-secondary" onclick="showUserCreateBox()">Editar</button>
+                    <button type="button" class="btn btn-outline-danger" onclick="showAlertEliminado()">Eliminar</button>
+                </th>
+              </tr>
+            </tbody>
 
 
+            <tbody id="mytable">
+                <tr>
+                  <th scope="row" colspan="5">2</th>
+                  <th scope="col" colspan="2"><img src="img/clubs/Liverpool.jpg" id="logocircular"/></th>
+                  <th scope="col" colspan="5">Liverpool FC</th>
+                <!-- <th scope="col" colspan="5">Premier League</th> -->
+                  <th scope="col" colspan="5">
+                      <button type="button" class="btn btn-outline-secondary" onclick="showUserCreateBox()">Editar</button>
+                      <button type="button" class="btn btn-outline-danger" onclick="showAlertEliminado()">Eliminar</button>
+                    </th>
+                </tr>
+              </tbody>
+            <tbody id="mytable">
+                <tr>
+                  <th scope="row" colspan="5">3</th>
+                  <th scope="col" colspan="5"><img src="img/clubs/Chelsea_FC.png" id="logocircular"/></th>
+                  <th scope="col" colspan="5">Chelsea FC</th>
+                <!-- <th scope="col" colspan="5">Premier League</th> --> 
+                  <th scope="col" colspan="5">
+                    <button type="button" class="btn btn-outline-secondary" onclick="showUserCreateBox()">Editar</button>
+                    <button type="button" class="btn btn-outline-danger" onclick="showAlertEliminado()">Eliminar</button>
+                  </th>
+    
+                </tr>
+              </tbody>
+
+            <!---Clubes da Liga Portugal-->
+
+              <tbody id="mytable">
+                <tr>
+                  <th scope="row" colspan="5">4</th>
+                  <th scope="col" colspan="5"><img src="img/clubs/Sporting.jpg" id="logocircular"/></th>
+                  <th scope="col" colspan="5">Sporting CP</th>
+                <!-- <th scope="col" colspan="5">Liga Portugal</th> --> 
+                  <th scope="col" colspan="5">
+                    <button type="button" class="btn btn-outline-secondary" onclick="showUserCreateBox()">Editar</button>
+                    <button type="button" class="btn btn-outline-danger" onclick="showAlertEliminado()">Eliminar</button>
+                  </th>
+    
+                </tr>
+              </tbody>
+
+              <tbody id="mytable">
+                <tr>
+                  <th scope="row" colspan="5">5</th>
+                  <th scope="col" colspan="5"><img src="img/clubs/FC_Porto.png" id="logocircular"/></th>
+                  <th scope="col" colspan="5">FC Porto</th>
+                <!-- <th scope="col" colspan="5">Liga Portugal</th> --> 
+                  <th scope="col" colspan="5">
+                    <button type="button" class="btn btn-outline-secondary" onclick="showUserCreateBox()">Editar</button>
+                    <button type="button" class="btn btn-outline-danger" onclick="showAlertEliminado()">Eliminar</button>
+                </th>
+                </tr>
+              </tbody>
+
+              <tbody id="mytable">
+                <tr>
+                  <th scope="row" colspan="5">6</th>
+                  <th scope="col" colspan="5"><img src="img/clubs/SL_Benfica.png" id="logocircular"/></th>
+                  <th scope="col" colspan="5">SL Benfica</th>
+                <!-- <th scope="col" colspan="5">Liga Portugal</th> -->  
+                  <th scope="col" colspan="5">
+                    <button type="button" class="btn btn-outline-secondary" onclick="showUserCreateBox()">Editar</button>
+                    <button type="button" class="btn btn-outline-danger" onclick="showAlertEliminado()">Eliminar</button>
+                </th>
+                </tr>
+              </tbody>
+
+             <!---Clubes da La Liga-->
+             
+             <tbody id="mytable">
+                <tr>
+                  <th scope="row" colspan="5">7</th>
+                  <th scope="col" colspan="5"><img src="img/clubs/Real_Madrid_CF.png" id="logocircular"/></th>
+                  <th scope="col" colspan="5">Real Madrid</th>
+                <!-- <th scope="col" colspan="5">LaLiga</th> -->  
+                  <th scope="col" colspan="5">
+                    <button type="button" class="btn btn-outline-secondary" onclick="showUserCreateBox()">Editar</button>
+                    <button type="button" class="btn btn-outline-danger" onclick="showAlertEliminado()">Eliminar</button>
+                  </th>
+    
+                </tr>
+              </tbody>
+
+              <tbody id="mytable">
+                <tr>
+                  <th scope="row" colspan="5">8</th>
+                  <th scope="col" colspan="5"><img src="img/clubs/FCBarcelona.png" id="logocircular"/></th>
+                  <th scope="col" colspan="5">FC Barcelona</th>
+                <!-- <th scope="col" colspan="5">LaLiga</th> -->  
+                  <th scope="col" colspan="5">
+                    <button type="button" class="btn btn-outline-secondary" onclick="showUserCreateBox()">Editar</button>
+                    <button type="button" class="btn btn-outline-danger" onclick="showAlertEliminado()">Eliminar</button>
+                </th>
+                </tr>
+              </tbody>
+
+              <tbody id="mytable">
+                <tr>
+                  <th scope="row" colspan="5">9</th>
+                  <th scope="col" colspan="5"><img src="img/clubs/Atletico_Madrid.png" id="logocircular"/></th>
+                  <th scope="col" colspan="5">Atlético Madrid</th>
+                <!-- <th scope="col" colspan="5">LaLiga</th> -->  
+                  <th scope="col" colspan="5">
+                    <button type="button" class="btn btn-outline-secondary" onclick="showUserCreateBox()">Editar</button>
+                    <button type="button" class="btn btn-outline-danger" onclick="showAlertEliminado()">Eliminar</button>
+                </th>
+                </tr>
+              </tbody>
 
 
-</body>
+            <!---Clubes da Bundesliga-->
+             
+            <tbody id="mytable">
+                <tr>
+                  <th scope="row" colspan="5">10</th>
+                  <th scope="col" colspan="5"><img src="img/clubs/FC_BayernMunchen.png" id="logocircular"/></th>
+                  <th scope="col" colspan="5">Bayern Munich</th>
+                <!-- <th scope="col" colspan="5">Bundesliga</th> -->  
+                <th scope="col" colspan="5">
+                    <button type="button" class="btn btn-outline-secondary" onclick="showUserCreateBox()">Editar</button>
+                    <button type="button" class="btn btn-outline-danger" onclick="showAlertEliminado()">Eliminar</button>
+                  </th>
+    
+                </tr>
+              </tbody>
+
+              <tbody id="mytable">
+                <tr>
+                  <th scope="row" colspan="5">11</th>
+                  <th scope="col" colspan="5"><img src="img/clubs/Borussia_Dortmund.png" id="logocircular"/></th>
+                  <th scope="col" colspan="5">Borussia Dortmund</th>
+                <!-- <th scope="col" colspan="5">Bundesliga</th> -->  
+                  <th scope="col" colspan="5">
+                    <button type="button" class="btn btn-outline-secondary" onclick="showUserCreateBox()">Editar</button>
+                    <button type="button" class="btn btn-outline-danger" onclick="showAlertEliminado()">Eliminar</button>
+                </th>
+                </tr>
+              </tbody>
+
+              <tbody id="mytable">
+                <tr>
+                  <th scope="row" colspan="5">12</th>
+                  <th scope="col" colspan="5"><img src="img/clubs/RB_Leipzig.png" id="logocircular"/></th>
+                  <th scope="col" colspan="5">RB Leipzig</th>
+                <!-- <th scope="col" colspan="5">Bundesliga</th> -->  
+                  <th scope="col" colspan="5">
+                    <button type="button" class="btn btn-outline-secondary" onclick="showUserCreateBox()">Editar</button>
+                    <button type="button" class="btn btn-outline-danger" onclick="showAlertEliminado()">Eliminar</button>
+                </th>
+                </tr>
+              </tbody>
+
+            
+
+          </table>
+        </div>
+      </div>
+
+
+      <div id="users" class="container">
+        <div class="d-flex bd-highlight mb-3">
+          <div class="me-auto p-2 bd-highlight"><h2>Users</div>
+          <div class="p-2 bd-highlight">
+          
+          </div>
+        </div>
+        
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col" colspan="5">#</th>
+                <th scope="col" colspan="5">Avatar</th>
+                <th scope="col" colspan="5">Nome</th>
+                <th scope="col" colspan="5">Email</th>
+                <th scope="col" colspan="5">Ação</th>
+
+              </tr>
+            </thead>
+            <tbody id="mytable">
+              <tr>
+                <th scope="row" colspan="5">1</th>
+                <th scope="col" colspan="2"><img src="img/avatar.png" id="logocircular"/></th>
+                <th scope="col" colspan="5">Diogo Pinto</th>
+                <th scope="col" colspan="5">d.pinto@ipvc.pt</th>
+                <th scope="col" colspan="5">
+                    <button type="button" class="btn btn-outline-secondary" onclick="showUserCreateBox()">Editar</button>
+                    <button type="button" class="btn btn-outline-danger" onclick="showAlertEliminado()">Eliminar</button>
+                </th>
+  
+              </tr>
+            </tbody>
+            <tbody id="mytable">
+                <tr>
+                  <th scope="row" colspan="5">2</th>
+                  <th scope="col" colspan="5"><img src="img/avatar.png" id="logocircular"/></th>
+                  <th scope="col" colspan="5">Hugo Diniz</th>
+                  <th scope="col" colspan="5">hugodiniz@ipvc.pt</th>
+                  <th scope="col" colspan="5">
+                    <button type="button" class="btn btn-outline-secondary" onclick="showUserCreateBox()">Editar</button>
+                    <button type="button" class="btn btn-outline-danger" onclick="showAlertEliminado()">Eliminar</button>
+                  </th>
+    
+                </tr>
+              </tbody>
+              <tbody id="mytable">
+                <tr>
+                  <th scope="row" colspan="5">3</th>
+                  <th scope="col" colspan="5"><img src="img/avatar.png" id="logocircular"/></th>
+                  <th scope="col" colspan="5">Paulo Novo</th>
+                  <th scope="col" colspan="5">joao.novo@ipvc.pt</th>
+                  <th scope="col" colspan="5">
+                    <button type="button" class="btn btn-outline-secondary" onclick="showUserCreateBox()">Editar</button>
+                    <button type="button" class="btn btn-outline-danger" onclick="showAlertEliminado()">Eliminar</button>
+                  </th>
+    
+                </tr>
+              </tbody>
+          </table>
+        </div>
+      </div>
+      <script src="js/admin.js"></script>
+    </body>
 
 </html>

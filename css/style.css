@@ -69,6 +69,20 @@
     display: flow !important;
 }
 
+/*admin PAGE*/
+
+.navbar-nav > li {
+    margin-right: 10px; 
+}
+
+#logocircular{
+    width: 15%;
+    height: 20%;
+    border-radius: 50%;
+    border: 2px solid darkblue;
+    
+}
+
 .col-md-3 {
     text-align: -webkit-center;
 }
