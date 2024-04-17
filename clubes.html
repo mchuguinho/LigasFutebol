@@ -1,98 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ligas de futebol</title>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="css/style.css" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  </head>
 
-  <body>
-    <nav class="navbar navbar-expand-sm navbar-info bg-dark">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#"
-          ><img src="img/logo.png" id="logo"
-        /></a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#collapsibleNavbar"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="collapsibleNavbar">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" href="#">Perfil</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="admin.html">Dashboard</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="login.html">Login</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <a href="index.html"><img src="img/backarrow.png" id="backarrow"/></a>
-    <h1 class="h1" id="header"></h1>
-    <div class="container">
-      <div class="row" id="clubs"></div>
-    </div>
-    <div
-      id="modalInfo"
-      tabindex="-1"
-      role="dialog"
-      aria-hidden="true"
-      class="modal fade"
-    >
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content text-center">
-          <div class="modal-header">
-            <h5 id="nomeClube" class="modal-title"></h5>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ligas de futebol</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+
+  <div class="intro">
+    <div class="maskBlack">
+
+      <nav class="navbar navbar-expand-sm navbar-info bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/index.html"><img src="img/logo.png" id="logo" /></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="#">Perfil</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="admin.html">Dashboard</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Logout</a>
+              </li>
+            </ul>
           </div>
-          <div class="modal-body">Este é o body</div>
-          <div class="modal-footer">
-            <button type="button" data-dismiss="modal" class="btn btn-danger">
-              Fechar
-            </button>
+        </div>
+      </nav>
+      <h1 class="h1" id="header"></h1>
+      <div class="container">
+        <div class="row" id="clubs"></div>
+      </div>
+      <div id="modalInfo" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content text-center">
+            <div class="modal-header">
+              <h5 id="nomeClube" class="modal-title"></h5>
+            </div>
+            <div class="modal-body">Este é o body</div>
+            <div class="modal-footer">
+              <button type="button" data-dismiss="modal" class="btn btn-danger">
+                Fechar
+              </button>
+            </div>
           </div>
         </div>
       </div>
+
+
     </div>
 
-    <script>
-      document.getElementById("header").innerHTML = localStorage.getItem("liga")
-        ? `Clubes da <b>${localStorage.getItem("liga")}</b>`
-        : "Sem liga selecionada";
-      // Load JSON data from leagues.json
-      fetch("js/leagues.json")
-        .then((response) => response.json())
-        .then((data) => {
-          const clubsContainer = document.getElementById("clubs");
+  </div>
 
-          // Generate HTML for league cards
-          data.leagues
-            .find((league) => league.name === localStorage.getItem("liga"))
-            ?.teams?.forEach((team) => {
-              // Create league card HTML
-              const clubData = JSON.stringify(team);
-              console.log(team);
-              console.log(clubData);
-              const teamCardHTML = `
+
+  <script>
+    document.getElementById("header").innerHTML = localStorage.getItem("liga")
+      ? `Clubes da <b>${localStorage.getItem("liga")}</b>`
+      : "Sem liga selecionada";
+    // Load JSON data from leagues.json
+    fetch("js/leagues.json")
+      .then((response) => response.json())
+      .then((data) => {
+        const clubsContainer = document.getElementById("clubs");
+
+        // Generate HTML for league cards
+        data.leagues
+          .find((league) => league.name === localStorage.getItem("liga"))
+          ?.teams?.forEach((team) => {
+            // Create league card HTML
+            const clubData = JSON.stringify(team);
+            console.log(team);
+            console.log(clubData);
+            const teamCardHTML = `
           <div class="col-md-3">
             <div class="card">
               <img src="${team.image}" class="card-img-top" alt="${team.name}">
@@ -104,48 +94,43 @@
             </div>
           </div>
         `;
-              // Append league card HTML to container
-              clubsContainer.innerHTML += teamCardHTML;
-            });
-        })
-        .catch((error) => console.error("Error loading JSON:", error));
-    </script>
+            // Append league card HTML to container
+            clubsContainer.innerHTML += teamCardHTML;
+          });
+      })
+      .catch((error) => console.error("Error loading JSON:", error));
+  </script>
 
-    <script
-      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
-      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
-      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-      crossorigin="anonymous"
-    ></script>
-    <script>
-      $("#modalInfo").on("show.bs.modal", function (event) {
-        const button = $(event.relatedTarget);
-        const club = button.data("club");
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script>
+    $("#modalInfo").on("show.bs.modal", function (event) {
+      const button = $(event.relatedTarget);
+      const club = button.data("club");
 
-        const modal = $(this);
-        modal.find(".modal-title").text(club.name);
+      const modal = $(this);
+      modal.find(".modal-title").text(club.name);
 
-        const modalBody = modal.find(".modal-body")[0]; // Get the raw DOM element
+      const modalBody = modal.find(".modal-body")[0]; // Get the raw DOM element
 
-        modalBody.innerHTML = ""; // Clear previous content
+      modalBody.innerHTML = ""; // Clear previous content
 
-        const clubImage = `<img src="${club.image}" class="img-fluid" alt="${club.name}">`;
-        const foundationText = `<div><b>Data de Fundação:</b> ${club.foundation}</div>`;
-        const cityText = `<p><strong>Cidade:</strong> ${club.city}</p>`;
+      const clubImage = `<img src="${club.image}" class="img-fluid" alt="${club.name}">`;
+      const foundationText = `<div><b>Data de Fundação:</b> ${club.foundation}</div>`;
+      const cityText = `<p><strong>Cidade:</strong> ${club.city}</p>`;
 
-        modalBody.innerHTML += clubImage;
-        modalBody.innerHTML += foundationText;
-        modalBody.innerHTML += cityText;
-      });
-    </script>
-  </body>
+      modalBody.innerHTML += clubImage;
+      modalBody.innerHTML += foundationText;
+      modalBody.innerHTML += cityText;
+    });
+  </script>
+</body>
+
 </html>
