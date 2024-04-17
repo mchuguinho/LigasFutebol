@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="css/style.css" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="jquery/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -89,7 +90,7 @@
               <div class="card-body">
                 <h3 class="card-title">${team.name}</h3>
                 <p class="card-text">Clique no botão abaixo para ver mais detalhes sobre este clube!</p>
-                <button class="btn btn-dark btn-card" data-club='${clubData}' data-toggle="modal" data-target="#modalInfo">Ver mais detalhes</button>
+                <button class="btn btn-dark btn-card" data-club='${clubData}' onclick='requestMeteoApi("${team.city}")' data-toggle="modal" data-target="#modalInfo">Ver mais detalhes</button>
               </div>
             </div>
           </div>
@@ -101,9 +102,6 @@
       .catch((error) => console.error("Error loading JSON:", error));
   </script>
 
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
     crossorigin="anonymous"></script>
@@ -111,6 +109,7 @@
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
   <script>
+
     $("#modalInfo").on("show.bs.modal", function (event) {
       const button = $(event.relatedTarget);
       const club = button.data("club");
@@ -125,11 +124,38 @@
       const clubImage = `<img src="${club.image}" class="img-fluid" alt="${club.name}">`;
       const foundationText = `<div><b>Data de Fundação:</b> ${club.foundation}</div>`;
       const cityText = `<p><strong>Cidade:</strong> ${club.city}</p>`;
+      const temp = `<div id="meteoContainer"></div>`
 
       modalBody.innerHTML += clubImage;
       modalBody.innerHTML += foundationText;
       modalBody.innerHTML += cityText;
+      modalBody.innerHTML += temp;
     });
+
+
+  </script>
+  <script>
+
+function requestMeteoApi(nome) {
+    const cityValue = nome;
+
+    $.ajax({
+        url: 'https://api.openweathermap.org/data/2.5/weather',
+        data: {
+            q: cityValue,
+            appid: '09d5c10574177367ef50322886321bb9',
+            units: 'metric',
+            lang: 'EN'
+        },
+        method: 'GET',
+        success: function (response) {
+            console.log(response);
+            const temperature = response.main.temp;
+            $('#meteoContainer').html('A temperatura em ' + cityValue + ' é de: ' + temperature + " graus Celcius!!");
+        }
+    });
+}
+
   </script>
 </body>
 
