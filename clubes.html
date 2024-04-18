@@ -90,7 +90,7 @@
               <div class="card-body">
                 <h3 class="card-title">${team.name}</h3>
                 <p class="card-text">Clique no botão abaixo para ver mais detalhes sobre este clube!</p>
-                <button class="btn btn-dark btn-card" data-club='${clubData}' onclick='requestMeteoApi("${team.city}")' data-toggle="modal" data-target="#modalInfo">Ver mais detalhes</button>
+                <button class="btn btn-dark btn-card" data-club='${clubData}' onclick='requestMeteoApi("${team.city}");requestFlickrApi("${team.name}")' data-toggle="modal" data-target="#modalInfo">Ver mais detalhes</button>
               </div>
             </div>
           </div>
@@ -121,7 +121,7 @@
 
       modalBody.innerHTML = ""; // Clear previous content
 
-      const clubImage = `<img src="${club.image}" class="img-fluid" alt="${club.name}">`;
+      const clubImage = `<div id="photosContainer"></div>`;
       const foundationText = `<div><b>Data de Fundação:</b> ${club.foundation}</div>`;
       const cityText = `<p><strong>Cidade:</strong> ${club.city}</p>`;
       const temp = `<div id="meteoContainer"></div>`
@@ -154,6 +154,46 @@ function requestMeteoApi(nome) {
             $('#meteoContainer').html('A temperatura em ' + cityValue + ' é de: ' + temperature + " ºC e " + ((temperature*1.8)+32) + " ºF !!");
         }
     });
+}
+
+  </script>
+
+  <script>
+
+function requestFlickrApi(nome) {
+
+  const nomeC = nome;
+
+    const requestOptions = {
+        method: "GET", // *GET, POST, PUT, DELETE, etc.
+    }
+
+    const requestBody = {
+        method: 'flickr.photos.search',
+        api_key: 'acb0d07ce4123dfe53f12727f137b9a1',
+        extras: 'url_l',
+        per_page: 1,
+        text: nomeC,
+        format: 'json',
+        nojsoncallback: 1
+    }
+
+    const urlParams = new URLSearchParams(requestBody).toString();
+
+    fetch('https://www.flickr.com/services/rest/?' + urlParams, requestOptions)
+        .then((result) => result.json())
+        .then((response) => {
+
+            console.log(response);
+            const divContainer = document.getElementById('photosContainer');
+            divContainer.innerHTML= '';
+
+            const photos = response.photos.photo;
+            photos.forEach((photo) => {
+                divContainer.innerHTML = divContainer.innerHTML + '<img src="' + photo.url_l + '" class="img-fluid">'
+            })
+    });
+
 }
 
   </script>
