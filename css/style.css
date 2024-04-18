@@ -4,7 +4,7 @@
 
 /*LOGIN PAGE*/
 .intro {
-    background-image: url("/img/loginBackground.jpg");
+    background-image: url("../img/loginBackground.jpg");
     height: 100vh;
 
 }

@@ -18,7 +18,7 @@ document.getElementById("registo-form").addEventListener("submit", function(even
             
     
             // Load the JSON file containing existing user data (if any)
-            fetch("js/users.json")
+            fetch("../js/users.json")
             .then(response => response.json())
             .then(data => {
 
