@@ -70,7 +70,7 @@
       ? `Clubes da <b>${localStorage.getItem("liga")}</b>`
       : "Sem liga selecionada";
     // Load JSON data from leagues.json
-    fetch("js/leagues.json")
+    fetch("../js/leagues.json")
       .then((response) => response.json())
       .then((data) => {
         const clubsContainer = document.getElementById("clubs");
@@ -151,7 +151,7 @@ function requestMeteoApi(nome) {
         success: function (response) {
             console.log(response);
             const temperature = response.main.temp;
-            $('#meteoContainer').html('A temperatura em ' + cityValue + ' é de: ' + temperature + " graus Celcius!!");
+            $('#meteoContainer').html('A temperatura em ' + cityValue + ' é de: ' + temperature + " ºC e " + ((temperature*1.8)+32) + " ºF !!");
         }
     });
 }
