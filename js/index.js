@@ -1,3 +1,6 @@
+//Limpa os dados do LocalStorage para não causar problemas quando voltar atrás
+localStorage.clear();
+
 // Load JSON data from leagues.json
 fetch("js/leagues.json")
   .then((response) => response.json())
@@ -26,6 +29,6 @@ fetch("js/leagues.json")
 
 function showTeams(nome) {
   const nomeLiga = nome;
-  localStorage.setItem("liga", "");
+  
   localStorage.setItem("liga", nomeLiga);
 }
