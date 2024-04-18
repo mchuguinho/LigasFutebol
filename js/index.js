@@ -1,12 +1,12 @@
 // Load JSON data from leagues.json
 fetch("js/leagues.json")
-    .then((response) => response.json())
-    .then((data) => {
-        const leaguesContainer = document.getElementById("leagues");
-        // Generate HTML for league cards
-        data.leagues.forEach((league) => {
-            // Create league card HTML
-            const leagueCardHTML = `
+  .then((response) => response.json())
+  .then((data) => {
+    const leaguesContainer = document.getElementById("leagues");
+    // Generate HTML for league cards
+    data.leagues.forEach((league) => {
+      // Create league card HTML
+      const leagueCardHTML = `
           <div class="col-md-3">
             <div class="card">
               <img src="${league.image}" class="card-img-top" alt="${league.name}">
@@ -18,14 +18,14 @@ fetch("js/leagues.json")
             </div>
           </div>
         `;
-            // Append league card HTML to container
-            leaguesContainer.innerHTML += leagueCardHTML;
-        });
-    })
-    .catch((error) => console.error("Error loading JSON:", error));
+      // Append league card HTML to container
+      leaguesContainer.innerHTML += leagueCardHTML;
+    });
+  })
+  .catch((error) => console.error("Error loading JSON:", error));
 
 function showTeams(nome) {
-    const nomeLiga = nome;
-    localStorage.setItem("liga", "");
-    localStorage.setItem("liga", nomeLiga);
+  const nomeLiga = nome;
+  localStorage.setItem("liga", "");
+  localStorage.setItem("liga", nomeLiga);
 }

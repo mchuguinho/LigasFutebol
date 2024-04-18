@@ -16,7 +16,7 @@
 
 }
 
-.redonda{
+.redonda {
 
     border-radius: 1rem;
 }
@@ -71,16 +71,16 @@
 
 /*admin PAGE*/
 
-.navbar-nav > li {
-    margin-right: 10px; 
+.navbar-nav>li {
+    margin-right: 10px;
 }
 
-#logocircular{
+#logocircular {
     width: 15%;
     height: 20%;
     border-radius: 50%;
     border: 2px solid darkblue;
-    
+
 }
 
 .col-md-3 {
