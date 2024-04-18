@@ -33,29 +33,29 @@ fetch("js/leagues.json")
   })
   .catch((error) => console.error("Error loading JSON:", error));
 
-$("#modalInfo").on("show.bs.modal", function (event) {
-  const button = $(event.relatedTarget);
-  const club = button.data("club");
+  $("#modalInfo").on("show.bs.modal", function (event) {
+    const button = $(event.relatedTarget);
+    const club = button.data("club");
 
-  const modal = $(this);
-  modal.find(".modal-title").text(club.name);
+    const modal = $(this);
+    modal.find(".modal-title").text(club.name);
 
-  const modalBody = modal.find(".modal-body")[0]; // Get the raw DOM element
+    const modalBody = modal.find(".modal-body")[0]; // Get the raw DOM element
 
-  modalBody.innerHTML = ""; // Clear previous content
+    modalBody.innerHTML = ""; // Clear previous content
 
-  const clubImage = `<div id="photosContainer"></div>`;
-  const notmyguilt = `<p><b>Imagem Gerada pelo API através do nome do Clube</b></p>`;
-  const foundationText = `<div><b>Data de Fundação:</b> ${club.foundation}</div>`;
-  const cityText = `<p><strong>Cidade:</strong> ${club.city}</p>`;
-  const temp = `<div id="meteoContainer"></div>`
+    const clubImage = `<div id="photosContainer"></div>`;
+    const notmyguilt = `<p><b>Imagem Gerada pelo API através do nome do Clube</b></p>`;
+    const foundationText = `<div><b>Data de Fundação:</b> ${club.foundation}</div>`;
+    const cityText = `<p><strong>Cidade:</strong> ${club.city}</p>`;
+    const temp = `<div id="meteoContainer"></div>`
 
-  modalBody.innerHTML += notmyguilt;
-  modalBody.innerHTML += clubImage;
-  modalBody.innerHTML += foundationText;
-  modalBody.innerHTML += cityText;
-  modalBody.innerHTML += temp;
-});
+    modalBody.innerHTML += notmyguilt;
+    modalBody.innerHTML += clubImage;
+    modalBody.innerHTML += foundationText;
+    modalBody.innerHTML += cityText;
+    modalBody.innerHTML += temp;
+  });
 
 
 function requestMeteoApi(nome) {
@@ -75,12 +75,12 @@ function requestMeteoApi(nome) {
       const temperature = response.main.temp;
       $("#meteoContainer").html(
         "A temperatura em " +
-        cityValue +
-        " é de: " +
-        temperature +
-        " ºC e " +
-        (temperature * 1.8 + 32) +
-        " ºF !!"
+          cityValue +
+          " é de: " +
+          temperature +
+          " ºC e " +
+          (temperature * 1.8 + 32) +
+          " ºF !!"
       );
     },
   });
