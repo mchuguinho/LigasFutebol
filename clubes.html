@@ -122,10 +122,12 @@
       modalBody.innerHTML = ""; // Clear previous content
 
       const clubImage = `<div id="photosContainer"></div>`;
+      const notmyguilt = `<p><b>Imagem Gerada pelo API através do nome do Clube</b></p>`;
       const foundationText = `<div><b>Data de Fundação:</b> ${club.foundation}</div>`;
       const cityText = `<p><strong>Cidade:</strong> ${club.city}</p>`;
       const temp = `<div id="meteoContainer"></div>`
 
+      modalBody.innerHTML += notmyguilt;
       modalBody.innerHTML += clubImage;
       modalBody.innerHTML += foundationText;
       modalBody.innerHTML += cityText;
@@ -163,6 +165,8 @@ function requestMeteoApi(nome) {
 function requestFlickrApi(nome) {
 
   const nomeC = nome;
+
+  console.log(nomeC);
 
     const requestOptions = {
         method: "GET", // *GET, POST, PUT, DELETE, etc.
