@@ -24,7 +24,13 @@ document.getElementById("login-form").addEventListener("submit", function(event)
                 }
             }).showToast();
         } else {
-            alert("Email ou password inválida. Tente outra vez!");
+            Toastify({
+                text: "Dados incorretos ou inexistentes, tente outra vez!",
+                duration: 3000,
+                close: true,
+                gravity: "top",
+                backgroundColor: "linear-gradient(to right, #ff0000, #ff0000)"
+            }).showToast();
         }
     })
     .catch(error => {
