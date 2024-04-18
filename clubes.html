@@ -70,7 +70,7 @@
       ? `Clubes da <b>${localStorage.getItem("liga")}</b>`
       : "Sem liga selecionada";
     // Load JSON data from leagues.json
-    fetch("../js/leagues.json")
+    fetch("js/leagues.json")
       .then((response) => response.json())
       .then((data) => {
         const clubsContainer = document.getElementById("clubs");
