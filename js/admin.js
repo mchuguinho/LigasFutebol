@@ -110,4 +110,5 @@ function showAlertEliminado() {
     gravity: "top",
     backgroundColor: "linear-gradient(to right, #ff0000, #ff0000)",
   }).showToast();
+  
 }
