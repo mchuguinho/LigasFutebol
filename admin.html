@@ -2,387 +2,242 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ligas de futebol</title>
-
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  <script src="jquery/jquery-3.6.0.min.js"></script>
+  
 </head>
 
 <body>
+  <div class="intro">
+    <div class="maskBlack">
 
-  <nav class="navbar navbar-expand-sm bg-info navbar-info bg-dark ">
+        <nav class="navbar navbar-expand-sm bg-info navbar-info bg-dark ">
 
-    <div class="container-fluid">
+            <div class="container-fluid">
+        
+              <h4 class="text-white">DASHBOARD</h4>
+        
+              <ul class="navbar-nav mr-auto">
+        
+                <li class="nav-item pr-2">
 
-      <h4 class="text-white">DASHBOARD</h4>
+                    <button type="button" class="btn btn-primary">Ligas</button>
 
-      <ul class="navbar-nav mr-auto">
+                </li>
+                <li class="nav-item">
+                  <a class="btn btn-outline-light" href="#clubes" role="button">Clubes</a>
+                </li>
+                <li class="nav-item">
+                  <a class="btn btn-outline-light" href="#users" role="button">Users</a>
+                </li>
+        
+              </ul>
+        
+              <ul class="navbar-nav">
+        
+                <li class="nav-item">
+                  <a class="btn btn-outline-light" href="index.html" role="button">Sair</a>
+        
+              </ul>
+        
+            </div>
+          </nav>
 
-        <li class="nav-item pr-2">
-          <a class="btn btn-outline-light" href="#ligas" role="button">Ligas</a>
-        </li>
-        <li class="nav-item">
-          <a class="btn btn-outline-light" href="#clubes" role="button">Clubes</a>
-        </li>
-        <li class="nav-item">
-          <a class="btn btn-outline-light" href="#users" role="button">Users</a>
-        </li>
+      <div class="container">
 
-      </ul>
+      
+        <div class="card">
+          <div class="card-body">
 
-      <ul class="navbar-nav">
+            <h3 class="card-title">Gerir Ligas</h3>
+           
+            <table class="table table-striped align-middle">
+              <thead>
+                <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">Logo</th>
+                  <th scope="col">Nome da Liga</th>
+                  <th scope="col">Editar Liga</th>
+                  <th scope="col">Editar Clubs da Liga</th>
+                  <th scope="col">Eliminar</th>
+                </tr>
+              </thead>
+              <tbody id="leagues">
+            </tbody>
+            </table>
 
-        <li class="nav-item">
-          <a class="btn btn-outline-light" href="index.html" role="button">Sair</a>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
 
-      </ul>
+            <h3 class="card-title">Gerir Users</h3>
+           
+            <table class="table table-striped align-middle">
+              <thead>
+                <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">Nome</th>
+                  <th scope="col">Apelido</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Password</th>
+                  <th scope="col">Editar</th>
+                  <th scope="col">Eliminar</th>
+                </tr>
+              </thead>
+              <tbody id="userAdmin">
+            </tbody>
+            </table>
 
-    </div>
-  </nav>
-  <br>
-  <br>
-  <br>
+          </div>
+        </div>
 
-  <div id="ligas" class="container">
-    <div class="d-flex bd-highlight mb-3">
-      <div class="me-auto p-2 bd-highlight">
-        <h2>Ligas
+    
+</div>  
+<!-- MODAL LIGAS-->
+      <div class="modal fade modal-dialog-scrollable" id="modalLiga" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal Liga</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            
+              <table class="table table-striped align-middle table-responsive table-sm">
+                <thead>
+                  <tr>
+                    <th scope="col"><input type="nome" class="form-control" id="idUser" placeholder="Nome"></th>
+                    <th scope="col"><input type="nome" class="form-control" id="idUser" placeholder="Logo (??)"></th>
+                  </tr>
+                </thead>
+                <tbody id="mLiga">
+              </tbody>
+              </table>
+
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalV2">Save changes</button>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="p-2 bd-highlight">
+
+<!-- MODAL VARIOS Clubes-->
+      <div class="modal fade" id="modalClub" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal Clubes</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+
+            <div class="modal-body">
+              
+              <table class="table table-striped align-middle table-responsive table-sm">
+                <thead>
+                  <tr>
+                    <th scope="col">Logo</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Cidade</th>
+                    <th scope="col">Fundação</th>
+                    <th scope="col">Editar</th>
+                    <th scope="col">Eliminar</th>
+                  </tr>
+                </thead>
+                <tbody id="mClub">
+              </tbody>
+              </table>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+<!-- MODAL Users-->
+<div class="modal fade" id="modalUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal User</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+
+      <div class="modal-body">
+        
+        <table class="table table-striped align-middle table-responsive table-sm">
+          <thead>
+            <tr>
+              <th scope="col"><input type="nome" class="form-control" id="idUser" placeholder="Nome"></th>
+              <th scope="col"><input type="nome" class="form-control" id="idUser" placeholder="Apelido"></th>
+              <th scope="col"><input type="nome" class="form-control" id="idUser" placeholder="Email"></th>
+              <th scope="col"><input type="nome" class="form-control" id="idUser" placeholder="Password"></th>
+
+            </tr>
+          </thead>
+          <tbody id="mUser">
+        </tbody>
+        </table>
 
       </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
     </div>
-
-    <div class="table-responsive">
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col" colspan="5">#</th>
-            <th scope="col" colspan="5">Logo da Liga</th>
-            <th scope="col" colspan="5">Nome da Liga</th>
-            <th scope="col" colspan="5">Ação</th>
-          </tr>
-        </thead>
-        <tbody id="mytable">
-          <tr>
-            <th scope="row" colspan="5">1</th>
-            <th scope="col" colspan="2"><img src="img/leagues/premierleague.jpg" id="logocircular" /></th>
-            <th scope="col" colspan="5">Premier League</th>
-            <th scope="col" colspan="5">
-              <button type="button" class="btn btn-outline-secondary" onclick="showUserCreateBox()">Editar</button>
-              <button type="button" class="btn btn-outline-danger" onclick="showAlertEliminado()">Eliminar</button>
-            </th>
-
-          </tr>
+  </div>
+</div>
+<!-- MODAL CLUBE SOLO-->
+<div class="modal fade modal-dialog-scrollable" id="modalClubSolo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal Liga</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      
+        <table class="table table-striped align-middle table-responsive table-sm">
+          <thead>
+            <tr>
+              <th scope="col"><input type="nome" class="form-control" id="idUser" placeholder="Logo (??)"></th>
+              <th scope="col"><input type="nome" class="form-control" id="idUser" placeholder="Nome"></th>
+              <th scope="col"><input type="nome" class="form-control" id="idUser" placeholder="Cidade"></th>
+              <th scope="col"><input type="nome" class="form-control" id="idUser" placeholder="Fundação"></th>
+            </tr>
+          </thead>
+          <tbody id="mClubSolo">
         </tbody>
-        <tbody id="mytable">
-          <tr>
-            <th scope="row" colspan="5">2</th>
-            <th scope="col" colspan="5"><img src="img/leagues/Liga_Portugal.png" id="logocircular" /></th>
-            <th scope="col" colspan="5">Liga Portugal</th>
-            <th scope="col" colspan="5">
-              <button type="button" class="btn btn-outline-secondary" onclick="showUserCreateBox()">Editar</button>
-              <button type="button" class="btn btn-outline-danger" onclick="showAlertEliminado()">Eliminar</button>
-            </th>
+        </table>
 
-          </tr>
-        </tbody>
-        <tbody id="mytable">
-          <tr>
-            <th scope="row" colspan="5">3</th>
-            <th scope="col" colspan="5"><img src="img/leagues/LaLiga.png" id="logocircular" /></th>
-            <th scope="col" colspan="5">LaLiga</th>
-            <th scope="col" colspan="5">
-              <button type="button" class="btn btn-outline-secondary" onclick="showUserCreateBox()">Editar</button>
-              <button type="button" class="btn btn-outline-danger" onclick="showAlertEliminado()">Eliminar</button>
-            </th>
 
-          </tr>
-        </tbody>
-        <tbody id="mytable">
-          <tr>
-            <th scope="row" colspan="5">4</th>
-            <th scope="col" colspan="5"><img src="img/leagues/Bundesliga.png" id="logocircular" /></th>
-            <th scope="col" colspan="5">Bundesliga</th>
-            <th scope="col" colspan="5">
-              <button type="button" class="btn btn-outline-secondary" onclick="showUserCreateBox()">Editar</button>
-              <button type="button" class="btn btn-outline-danger" onclick="showAlertEliminado()">Eliminar</button>
-            </th>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalV2">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-          </tr>
-        </tbody>
-      </table>
     </div>
   </div>
 
-  <div id="clubes" class="container">
-    <div class="d-flex bd-highlight mb-3">
-      <div class="me-auto p-2 bd-highlight">
-        <h2>Clubes
-      </div>
-      <div class="p-2 bd-highlight">
-
-      </div>
-    </div>
-
-    <div class="table-responsive">
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col" colspan="5">#</th>
-            <th scope="col" colspan="5">Logo do Clube</th>
-            <th scope="col" colspan="5">Nome do Clube</th>
-            <!--<th scope="col" colspan="5">Nome de Liga Afiliada</th>-->
-            <th scope="col" colspan="5">Ação</th>
-          </tr>
-
-        </thead>
-
-        <!---Clubes da Premier League-->
-
-        <tbody id="mytable">
-          <tr>
-            <th scope="row" colspan="5">1</th>
-            <th scope="col" colspan="2"><img src="img/clubs/Manchester_United_FC.png" id="logocircular" /></th>
-            <th scope="col" colspan="5">Manchester United</th>
-            <!-- <th scope="col" colspan="5">Premier League</th> -->
-            <th scope="col" colspan="5">
-              <button type="button" class="btn btn-outline-secondary" onclick="showUserCreateBox()">Editar</button>
-              <button type="button" class="btn btn-outline-danger" onclick="showAlertEliminado()">Eliminar</button>
-            </th>
-          </tr>
-        </tbody>
-
-
-        <tbody id="mytable">
-          <tr>
-            <th scope="row" colspan="5">2</th>
-            <th scope="col" colspan="2"><img src="img/clubs/Liverpool.jpg" id="logocircular" /></th>
-            <th scope="col" colspan="5">Liverpool FC</th>
-            <!-- <th scope="col" colspan="5">Premier League</th> -->
-            <th scope="col" colspan="5">
-              <button type="button" class="btn btn-outline-secondary" onclick="showUserCreateBox()">Editar</button>
-              <button type="button" class="btn btn-outline-danger" onclick="showAlertEliminado()">Eliminar</button>
-            </th>
-          </tr>
-        </tbody>
-        <tbody id="mytable">
-          <tr>
-            <th scope="row" colspan="5">3</th>
-            <th scope="col" colspan="5"><img src="img/clubs/Chelsea_FC.png" id="logocircular" /></th>
-            <th scope="col" colspan="5">Chelsea FC</th>
-            <!-- <th scope="col" colspan="5">Premier League</th> -->
-            <th scope="col" colspan="5">
-              <button type="button" class="btn btn-outline-secondary" onclick="showUserCreateBox()">Editar</button>
-              <button type="button" class="btn btn-outline-danger" onclick="showAlertEliminado()">Eliminar</button>
-            </th>
-
-          </tr>
-        </tbody>
-
-        <!---Clubes da Liga Portugal-->
-
-        <tbody id="mytable">
-          <tr>
-            <th scope="row" colspan="5">4</th>
-            <th scope="col" colspan="5"><img src="img/clubs/Sporting.jpg" id="logocircular" /></th>
-            <th scope="col" colspan="5">Sporting CP</th>
-            <!-- <th scope="col" colspan="5">Liga Portugal</th> -->
-            <th scope="col" colspan="5">
-              <button type="button" class="btn btn-outline-secondary" onclick="showUserCreateBox()">Editar</button>
-              <button type="button" class="btn btn-outline-danger" onclick="showAlertEliminado()">Eliminar</button>
-            </th>
-
-          </tr>
-        </tbody>
-
-        <tbody id="mytable">
-          <tr>
-            <th scope="row" colspan="5">5</th>
-            <th scope="col" colspan="5"><img src="img/clubs/FC_Porto.png" id="logocircular" /></th>
-            <th scope="col" colspan="5">FC Porto</th>
-            <!-- <th scope="col" colspan="5">Liga Portugal</th> -->
-            <th scope="col" colspan="5">
-              <button type="button" class="btn btn-outline-secondary" onclick="showUserCreateBox()">Editar</button>
-              <button type="button" class="btn btn-outline-danger" onclick="showAlertEliminado()">Eliminar</button>
-            </th>
-          </tr>
-        </tbody>
-
-        <tbody id="mytable">
-          <tr>
-            <th scope="row" colspan="5">6</th>
-            <th scope="col" colspan="5"><img src="img/clubs/SL_Benfica.png" id="logocircular" /></th>
-            <th scope="col" colspan="5">SL Benfica</th>
-            <!-- <th scope="col" colspan="5">Liga Portugal</th> -->
-            <th scope="col" colspan="5">
-              <button type="button" class="btn btn-outline-secondary" onclick="showUserCreateBox()">Editar</button>
-              <button type="button" class="btn btn-outline-danger" onclick="showAlertEliminado()">Eliminar</button>
-            </th>
-          </tr>
-        </tbody>
-
-        <!---Clubes da La Liga-->
-
-        <tbody id="mytable">
-          <tr>
-            <th scope="row" colspan="5">7</th>
-            <th scope="col" colspan="5"><img src="img/clubs/Real_Madrid_CF.png" id="logocircular" /></th>
-            <th scope="col" colspan="5">Real Madrid</th>
-            <!-- <th scope="col" colspan="5">LaLiga</th> -->
-            <th scope="col" colspan="5">
-              <button type="button" class="btn btn-outline-secondary" onclick="showUserCreateBox()">Editar</button>
-              <button type="button" class="btn btn-outline-danger" onclick="showAlertEliminado()">Eliminar</button>
-            </th>
-
-          </tr>
-        </tbody>
-
-        <tbody id="mytable">
-          <tr>
-            <th scope="row" colspan="5">8</th>
-            <th scope="col" colspan="5"><img src="img/clubs/FCBarcelona.png" id="logocircular" /></th>
-            <th scope="col" colspan="5">FC Barcelona</th>
-            <!-- <th scope="col" colspan="5">LaLiga</th> -->
-            <th scope="col" colspan="5">
-              <button type="button" class="btn btn-outline-secondary" onclick="showUserCreateBox()">Editar</button>
-              <button type="button" class="btn btn-outline-danger" onclick="showAlertEliminado()">Eliminar</button>
-            </th>
-          </tr>
-        </tbody>
-
-        <tbody id="mytable">
-          <tr>
-            <th scope="row" colspan="5">9</th>
-            <th scope="col" colspan="5"><img src="img/clubs/Atletico_Madrid.png" id="logocircular" /></th>
-            <th scope="col" colspan="5">Atlético Madrid</th>
-            <!-- <th scope="col" colspan="5">LaLiga</th> -->
-            <th scope="col" colspan="5">
-              <button type="button" class="btn btn-outline-secondary" onclick="showUserCreateBox()">Editar</button>
-              <button type="button" class="btn btn-outline-danger" onclick="showAlertEliminado()">Eliminar</button>
-            </th>
-          </tr>
-        </tbody>
-
-
-        <!---Clubes da Bundesliga-->
-
-        <tbody id="mytable">
-          <tr>
-            <th scope="row" colspan="5">10</th>
-            <th scope="col" colspan="5"><img src="img/clubs/FCBayernMunchen.png" id="logocircular" /></th>
-            <th scope="col" colspan="5">Bayern Munich</th>
-            <!-- <th scope="col" colspan="5">Bundesliga</th> -->
-            <th scope="col" colspan="5">
-              <button type="button" class="btn btn-outline-secondary" onclick="showUserCreateBox()">Editar</button>
-              <button type="button" class="btn btn-outline-danger" onclick="showAlertEliminado()">Eliminar</button>
-            </th>
-
-          </tr>
-        </tbody>
-
-        <tbody id="mytable">
-          <tr>
-            <th scope="row" colspan="5">11</th>
-            <th scope="col" colspan="5"><img src="img/clubs/Borussia_Dortmund.png" id="logocircular" /></th>
-            <th scope="col" colspan="5">Borussia Dortmund</th>
-            <!-- <th scope="col" colspan="5">Bundesliga</th> -->
-            <th scope="col" colspan="5">
-              <button type="button" class="btn btn-outline-secondary" onclick="showUserCreateBox()">Editar</button>
-              <button type="button" class="btn btn-outline-danger" onclick="showAlertEliminado()">Eliminar</button>
-            </th>
-          </tr>
-        </tbody>
-
-        <tbody id="mytable">
-          <tr>
-            <th scope="row" colspan="5">12</th>
-            <th scope="col" colspan="5"><img src="img/clubs/RB_Leipzig.png" id="logocircular" /></th>
-            <th scope="col" colspan="5">RB Leipzig</th>
-            <!-- <th scope="col" colspan="5">Bundesliga</th> -->
-            <th scope="col" colspan="5">
-              <button type="button" class="btn btn-outline-secondary" onclick="showUserCreateBox()">Editar</button>
-              <button type="button" class="btn btn-outline-danger" onclick="showAlertEliminado()">Eliminar</button>
-            </th>
-          </tr>
-        </tbody>
-
-
-
-      </table>
-    </div>
-  </div>
-
-
-  <div id="users" class="container">
-    <div class="d-flex bd-highlight mb-3">
-      <div class="me-auto p-2 bd-highlight">
-        <h2>Users
-      </div>
-      <div class="p-2 bd-highlight">
-
-      </div>
-    </div>
-
-    <div class="table-responsive">
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col" colspan="5">#</th>
-            <th scope="col" colspan="5">Avatar</th>
-            <th scope="col" colspan="5">Nome</th>
-            <th scope="col" colspan="5">Email</th>
-            <th scope="col" colspan="5">Ação</th>
-
-          </tr>
-        </thead>
-        <tbody id="mytable">
-          <tr>
-            <th scope="row" colspan="5">1</th>
-            <th scope="col" colspan="2"><img src="img/avatar.png" id="logocircular" /></th>
-            <th scope="col" colspan="5">Diogo Pinto</th>
-            <th scope="col" colspan="5">d.pinto@ipvc.pt</th>
-            <th scope="col" colspan="5">
-              <button type="button" class="btn btn-outline-secondary" onclick="showUserCreateBox()">Editar</button>
-              <button type="button" class="btn btn-outline-danger" onclick="showAlertEliminado()">Eliminar</button>
-            </th>
-
-          </tr>
-        </tbody>
-        <tbody id="mytable">
-          <tr>
-            <th scope="row" colspan="5">2</th>
-            <th scope="col" colspan="5"><img src="img/avatar.png" id="logocircular" /></th>
-            <th scope="col" colspan="5">Hugo Diniz</th>
-            <th scope="col" colspan="5">hugodiniz@ipvc.pt</th>
-            <th scope="col" colspan="5">
-              <button type="button" class="btn btn-outline-secondary" onclick="showUserCreateBox()">Editar</button>
-              <button type="button" class="btn btn-outline-danger" onclick="showAlertEliminado()">Eliminar</button>
-            </th>
-
-          </tr>
-        </tbody>
-        <tbody id="mytable">
-          <tr>
-            <th scope="row" colspan="5">3</th>
-            <th scope="col" colspan="5"><img src="img/avatar.png" id="logocircular" /></th>
-            <th scope="col" colspan="5">Paulo Novo</th>
-            <th scope="col" colspan="5">joao.novo@ipvc.pt</th>
-            <th scope="col" colspan="5">
-              <button type="button" class="btn btn-outline-secondary" onclick="showUserCreateBox()">Editar</button>
-              <button type="button" class="btn btn-outline-danger" onclick="showAlertEliminado()">Eliminar</button>
-            </th>
-
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
   <script src="js/admin.js"></script>
+
 </body>
 
 </html>

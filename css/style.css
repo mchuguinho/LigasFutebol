@@ -2,6 +2,13 @@
     font-family: 'Roboto';
 }
 
+#imagemAdmin{
+
+    height: 10%;
+    width: 10%;
+
+}
+
 /*LOGIN PAGE*/
 .intro {
     background-image: url("../img/loginBackground.jpg");
@@ -75,11 +82,9 @@
     margin-right: 10px;
 }
 
-#logocircular {
-    width: 15%;
-    height: 20%;
+.logocircular {
     border-radius: 50%;
-    border: 2px solid darkblue;
+    border: 2px solid black;
 
 }
 
