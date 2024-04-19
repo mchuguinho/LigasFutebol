@@ -103,5 +103,11 @@ exampleModal.addEventListener("hidden.bs.modal", function (event) {
 });
 
 function showAlertEliminado() {
-  alert("Secção selecionada foi eliminada!");
+  Toastify({
+    text: "Dados eliminados com sucesso!",
+    duration: 3000,
+    close: true,
+    gravity: "top",
+    backgroundColor: "linear-gradient(to right, #ff0000, #ff0000)",
+  }).showToast();
 }
