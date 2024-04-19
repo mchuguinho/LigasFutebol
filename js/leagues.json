@@ -4,6 +4,7 @@
       "name": "Premier League",
       "country": "England",
       "image": "img/leagues/premierleague.jpg",
+      "id":1,
       "teams": [
         {
           "name": "Manchester United",
@@ -29,6 +30,7 @@
       "name": "Liga Portugal",
       "country": "Portugal",
       "image": "img/leagues/Liga_Portugal.png",
+      "id":2,
       "teams": [
         {
           "name": "Sporting CP",
@@ -54,6 +56,7 @@
       "name": "LaLiga",
       "country": "Spain",
       "image": "img/leagues/laliga.png",
+      "id":3,
       "teams": [
         {
           "name": "Real Madrid",
@@ -79,6 +82,7 @@
       "name": "Bundesliga",
       "country": "Germany",
       "image": "img/leagues/Bundesliga.png",
+      "id":4,
       "teams": [
         {
           "name": "Bayern Munich",
@@ -97,6 +101,12 @@
           "city": "Leipzig",
           "image": "img/clubs/RB_Leipzig.png",
           "foundation": "2009"
+        },
+        {
+          "name": "Wolfsburgo",
+          "city": "Wolfsburgo",
+          "image": "img/clubs/wolfsburg.png",
+          "foundation": "1945"
         }
       ]
     }
