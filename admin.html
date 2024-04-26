@@ -23,8 +23,16 @@
         
               <h4 class="text-white">DASHBOARD</h4>
         
-              <ul class="navbar-nav">
+              <ul class="navbar-nav mr-auto">
         
+                <li class="nav-item">
+                  <a class="btn btn-outline-light" href="admin.html" role="button">Ligas</a>
+                </li>
+                <li class="nav-item">
+                  <a class="btn btn-outline-light" href="uadmin.html" role="button">Users</a>
+                </li>
+        
+              </ul>
                 <li class="nav-item">
                   <a class="btn btn-outline-light" href="index.html" role="button">Sair</a>
         
@@ -40,48 +48,35 @@
           <div class="card-body">
 
             <h3 class="card-title">Gerir Ligas</h3>
-           
-            <table class="table table-striped align-middle">
+           <div class="table-responsive">
+            <table class="table table-striped align-middle" >
               <thead>
                 <tr>
-                  <th scope="col">Id</th>
-                  <th scope="col">Logo</th>
-                  <th scope="col">Nome da Liga</th>
-                  <th scope="col">Editar Liga</th>
-                  <th scope="col">Editar Clubs da Liga</th>
-                  <th scope="col">Eliminar</th>
+                  <th>Id</th>
+                  <th>Logo</th>
+                  <th>Nome da Liga</th>
+                  <th>Editar Liga</th>
+                  <th>Editar Clubs da Liga</th>
+                  <th>Eliminar</th>
                 </tr>
               </thead>
               <tbody id="leagues">
             </tbody>
+
+            <tfoot>
+              <tr>
+                <td>
+                  <a class="btn btn-dark btn-outline-light "  role="button">Adicionar</a>
+                </td>
+              </tr>
+            </tfoot>
+
+
             </table>
+          </div>
 
           </div>
         </div>
-        <div class="card">
-          <div class="card-body">
-
-            <h3 class="card-title">Gerir Users</h3>
-           
-            <table class="table table-striped align-middle">
-              <thead>
-                <tr>
-                  <th scope="col">Id</th>
-                  <th scope="col">Nome</th>
-                  <th scope="col">Apelido</th>
-                  <th scope="col">Email</th>
-                  <th scope="col">Password</th>
-                  <th scope="col">Editar</th>
-                  <th scope="col">Eliminar</th>
-                </tr>
-              </thead>
-              <tbody id="userAdmin">
-            </tbody>
-            </table>
-
-          </div>
-        </div>
-
     
 </div>  
 <!-- MODAL LIGAS-->
@@ -92,8 +87,8 @@
               <h5 class="modal-title" id="exampleModalLabel">Modal Liga</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-            
+            <div class="modal-body table-responsive">
+
               <table class="table table-striped align-middle table-responsive table-sm">
                 <thead>
                   <tr>
@@ -104,7 +99,6 @@
                 <tbody id="mLiga">
               </tbody>
               </table>
-
 
             </div>
             <div class="modal-footer">
@@ -124,8 +118,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
-
-            <div class="modal-body">
+            <div class="modal-body table-responsive">
               
               <table class="table table-striped align-middle table-responsive table-sm">
                 <thead>
@@ -150,40 +143,7 @@
           </div>
         </div>
       </div>
-<!-- MODAL Users-->
-<div class="modal fade" id="modalUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal User</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
 
-
-      <div class="modal-body">
-        
-        <table class="table table-striped align-middle table-responsive table-sm">
-          <thead>
-            <tr>
-              <th scope="col"><input type="nome" class="form-control" id="idUser" placeholder="Nome"></th>
-              <th scope="col"><input type="nome" class="form-control" id="idUser" placeholder="Apelido"></th>
-              <th scope="col"><input type="nome" class="form-control" id="idUser" placeholder="Email"></th>
-              <th scope="col"><input type="nome" class="form-control" id="idUser" placeholder="Password"></th>
-
-            </tr>
-          </thead>
-          <tbody id="mUser">
-        </tbody>
-        </table>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
 <!-- MODAL CLUBE SOLO-->
 <div class="modal fade modal-dialog-scrollable" id="modalClubSolo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -192,7 +152,7 @@
         <h5 class="modal-title" id="exampleModalLabel">Modal Liga</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body table-responsive">
       
         <table class="table table-striped align-middle table-responsive table-sm">
           <thead>
