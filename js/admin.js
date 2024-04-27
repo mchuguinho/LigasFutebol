@@ -1,4 +1,4 @@
-//----------------------------------------------------------------------------- BUSCAR LIGAS -------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------- METER AS LIGAS NO CARD -------------------------------------------------------------------------------------
 
 fetch("js/leagues.json")
   .then((response) => response.json())
@@ -24,31 +24,7 @@ fetch("js/leagues.json")
     });
   })
   .catch((error) => console.error("Error loading JSON:", error));
-//----------------------------------------------------------------------------- BUSCAR USERS -------------------------------------------------------------------------------------
-fetch("js/users.json")
-  .then((response) => response.json())
-  .then((data) => {
-    // Generate HTML for league cards
-    data.users.forEach((users) => {
-      // Create league card HTML
 
-      const usertabela = `
-        <tr>
-        <th class="align-middle">${users.id}</th>
-        <td class="align-middle">${users.nome}</td>
-        <td class="align-middle">${users.nome}</td>
-        <td class="align-middle">${users.email}</td>
-        <td class="align-middle">${users.password}</td>
-        <td class="align-middle"><button type="button" class="btn btn-primary btn-outline-light" data-bs-toggle="modal" data-bs-target="#modalUser">Editar User</button></td>
-        <td class="align-middle"><a class="btn btn-danger btn-outline-light" onclick="showAlertEliminado()" role="button">Eliminar</a></td>
-        </tr>
-        `;
-
-      // Append league card HTML to container
-      document.getElementById("userAdmin").innerHTML += usertabela;
-    });
-  })
-  .catch((error) => console.error("Error loading JSON:", error));
 
 //----------------------------------------------------------------------------- METER OS CLUBS NA MODAL -------------------------------------------------------------------------------------
 
@@ -62,7 +38,6 @@ exampleModal.addEventListener("show.bs.modal", function (event) {
   // If necessary, you could initiate an AJAX request here
   // and then do the updating in a callback.
   //
-  console.log(recipient);
 
   fetch("js/leagues.json")
     .then((response) => response.json())
@@ -82,8 +57,8 @@ exampleModal.addEventListener("show.bs.modal", function (event) {
         <td class="align-middle">${team.name}</td>
         <td class="align-middle">${team.city}</td>
         <td class="align-middle">${team.foundation}</td>
-        <td class="align-middle"><button type="button" class="btn btn-dark btn-outline-light" data-bs-toggle="modal" data-bs-target="#modalClubSolo" data-bs-whatever="${team.name}">Editar</button></td>
-        <td class="align-middle"><a class="btn btn-dark btn-outline-light" onclick="showAlertEliminado()" role="button">Eliminar</a></td>
+        <td class="align-middle"><button type="button" class="btn btn-primary btn-outline-light" data-bs-toggle="modal" data-bs-target="#modalClubSolo" data-bs-whatever="${team.name}">Editar</button></td>
+        <td class="align-middle"><a class="btn btn-danger btn-outline-light" onclick="showAlertEliminado()" role="button">Eliminar</a></td>
         </tr>
         `;
           document.getElementById("mClub").innerHTML += clubestabela;
@@ -102,6 +77,31 @@ exampleModal.addEventListener("hidden.bs.modal", function (event) {
   document.getElementById("mClub").innerHTML = "";
 });
 
+//--------------------------------------------- MODAL DE EDITAR A CHAMAR O NOME DO CLUBE PARA RECONHECIMENTO (FUTURAS EDIÇÔES AINDA PRECISA SER COMPLETADO) ----------------------------------------------------
+
+
+var exampleModal3 = document.getElementById("modalClubSolo");
+
+exampleModal3.addEventListener("show.bs.modal", function (event) {
+  // Button that triggered the modal
+  var button = event.relatedTarget;
+  // Extract info from data-bs-* attributes
+  var recipient = button.getAttribute("data-bs-whatever");
+  // If necessary, you could initiate an AJAX request here
+  // and then do the updating in a callback.
+  //
+
+  // Update the modal's content.
+  var modalTitle = exampleModal3.querySelector(".modal-title");
+
+  modalTitle.textContent = "Editar Clube: " + recipient;
+});
+
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
 function showAlertEliminado() {
   Toastify({
     text: "Dados eliminados com sucesso!",
@@ -109,6 +109,22 @@ function showAlertEliminado() {
     close: true,
     gravity: "top",
     backgroundColor: "linear-gradient(to right, #ff0000, #ff0000)",
+  }).showToast();
+  
+}
+
+function showAlertGuardado() {
+  Toastify({
+    text: "Dados alterados com sucesso!",
+    duration: 3000,
+    close: true,
+    gravity: "top",
+    backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+
+    callback: function() {
+      window.location.href = "admin.html";
+  }
+
   }).showToast();
   
 }
