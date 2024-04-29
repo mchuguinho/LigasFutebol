@@ -4,8 +4,9 @@
 
 #imagemAdmin{
 
-    max-width: 20%;
+    display: block;
     height: auto;
+    max-width: 20%;
 }
 
 /*LOGIN PAGE*/
