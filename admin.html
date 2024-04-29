@@ -5,51 +5,53 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ligas de futebol</title>
-  
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <link rel="stylesheet" href="css/style.css">
   <script src="jquery/jquery-3.6.0.min.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 </head>
 
 <body>
-  <div class="intro">
-    <div class="maskBlack">
+  <div class="maskBlack">
 
-        <nav class="navbar navbar-expand-sm bg-info navbar-info bg-dark ">
+    <nav class="navbar navbar-expand-sm bg-info navbar-info bg-dark ">
 
-            <div class="container-fluid">
-        
-              <h4 class="text-white">DASHBOARD</h4>
-        
-              <ul class="navbar-nav mr-auto">
-        
-                <li class="nav-item">
-                  <a class="btn btn-outline-light" href="admin.html" role="button">Ligas</a>
-                </li>
-                <li class="nav-item">
-                  <a class="btn btn-outline-light" href="uadmin.html" role="button">Users</a>
-                </li>
-        
-              </ul>
-                <li class="nav-item">
-                  <a class="btn btn-outline-light" href="index.html" role="button">Sair</a>
-        
-              </ul>
-        
-            </div>
-          </nav>
+      <div class="container-fluid">
 
-      <div class="container">
+        <h4 class="text-white">DASHBOARD</h4>
 
-      
-        <div class="card">
-          <div class="card-body">
+        <ul class="navbar-nav mr-auto">
 
-            <h3 class="card-title">Gerir Ligas</h3>
-           <div class="table-responsive">
-            <table class="table table-striped align-middle" >
+          <li class="nav-item">
+            <a class="btn btn-outline-light" href="admin.html" role="button">Ligas</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-outline-light" href="uadmin.html" role="button">Users</a>
+          </li>
+
+        </ul>
+        <li class="nav-item">
+          <a class="btn btn-outline-light" href="index.html" role="button">Sair</a>
+
+          </ul>
+
+      </div>
+    </nav>
+
+    <div class="container">
+
+
+      <div class="card">
+        <div class="card-body">
+
+          <h3 class="card-title">Gerir Ligas</h3>
+          <div class="table-responsive">
+            <table class="table table-striped align-middle">
               <thead>
                 <tr>
                   <th>Id</th>
@@ -61,124 +63,128 @@
                 </tr>
               </thead>
               <tbody id="leagues">
-            </tbody>
+              </tbody>
 
-            <tfoot>
-              <tr>
-                <td>
-                  <a class="btn btn-dark btn-outline-light "  role="button">Adicionar</a>
-                </td>
-              </tr>
-            </tfoot>
+              <tfoot>
+                <tr>
+                  <td>
+                    <a class="btn btn-dark btn-outline-light " role="button">Adicionar</a>
+                  </td>
+                </tr>
+              </tfoot>
 
 
             </table>
           </div>
 
-          </div>
         </div>
-    
-</div>  
+      </div>
 
-<!-- MODAL LIGAS-->
-      <div class="modal fade modal-dialog-scrollable" id="modalLiga" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Modal Liga</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body table-responsive">
+    </div>
 
-              <table class="table table-striped align-middle table-responsive table-sm">
-                <thead>
-                  <tr>
-                    <th scope="col"><input type="nome" class="form-control" id="idUser" placeholder="Nome"></th>
-                    <th scope="col"><input type="nome" class="form-control" id="idUser" placeholder="Logo (??)"></th>
-                  </tr>
-                </thead>
-                <tbody id="mLiga">
+    <!-- MODAL LIGAS-->
+    <div class="modal fade modal-dialog-scrollable" id="modalLiga" tabindex="-1" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal Liga</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body table-responsive">
+
+            <table class="table table-striped align-middle table-responsive table-sm">
+              <thead>
+                <tr>
+                  <th scope="col"><input type="nome" class="form-control" id="idUser" placeholder="Nome"></th>
+                  <th scope="col"><input type="nome" class="form-control" id="idUser" placeholder="Logo (??)"></th>
+                </tr>
+              </thead>
+              <tbody id="mLiga">
               </tbody>
-              </table>
+            </table>
 
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-              <button type="button" class="btn btn-success btn-outline-light" data-bs-toggle="modal" data-bs-target="#modalV2">Guardar Alterações</button>
-            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            <button type="button" class="btn btn-success btn-outline-light" data-bs-toggle="modal"
+              data-bs-target="#modalV2">Guardar Alterações</button>
           </div>
         </div>
-      </div>
-
-<!-------------------------------------------------------------------------------- MODAL VARIOS Clubes -------------------------------------------------------------------------------------------->
-      <div class="modal fade" id="modalClub" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Modal Clubes</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-
-            <div class="modal-body table-responsive">
-              
-              <table class="table table-striped align-middle table-responsive table-sm">
-                <thead>
-                  <tr>
-                    <th scope="col">Logo</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Cidade</th>
-                    <th scope="col">Fundação</th>
-                    <th scope="col">Editar</th>
-                    <th scope="col">Eliminar</th>
-                  </tr>
-                </thead>
-                <tbody id="mClub">
-              </tbody>
-              </table>
-
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-              <button type="button" class="btn btn-primary">Guardar Alterações</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-<!-------------------------------------------------------------------------------- MODAL CLUBE SOLO-------------------------------------------------------------------------------------------->
-<div class="modal fade modal-dialog-scrollable" id="modalClubSolo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal Clube</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body table-responsive">
-      
-        <table class="table table-striped align-middle table-responsive table-sm">
-          <thead>
-            <tr>
-              <th scope="col"><input type="nome" class="form-control" id="idUser" placeholder="Logo (??)"></th>
-              <th scope="col"><input type="nome" class="form-control" id="idUser" placeholder="Nome"></th>
-              <th scope="col"><input type="nome" class="form-control" id="idUser" placeholder="Cidade"></th>
-              <th scope="col"><input type="nome" class="form-control" id="idUser" placeholder="Fundação"></th>
-            </tr>
-          </thead>
-          <tbody id="mClubSolo">
-        </tbody>
-        </table>
-
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalV2">Guardar Alterações</button>
       </div>
     </div>
+
+    <!-------------------------------------------------------------------------------- MODAL VARIOS Clubes -------------------------------------------------------------------------------------------->
+    <div class="modal fade" id="modalClub" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal Clubes</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <div class="modal-body table-responsive">
+
+            <table class="table table-striped align-middle table-responsive table-sm">
+              <thead>
+                <tr>
+                  <th scope="col">Logo</th>
+                  <th scope="col">Nome</th>
+                  <th scope="col">Cidade</th>
+                  <th scope="col">Fundação</th>
+                  <th scope="col">Editar</th>
+                  <th scope="col">Eliminar</th>
+                </tr>
+              </thead>
+              <tbody id="mClub">
+              </tbody>
+            </table>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            <button type="button" class="btn btn-primary">Guardar Alterações</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-------------------------------------------------------------------------------- MODAL CLUBE SOLO-------------------------------------------------------------------------------------------->
+    <div class="modal fade modal-dialog-scrollable" id="modalClubSolo" tabindex="-1" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal Clube</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body table-responsive">
+
+            <table class="table table-striped align-middle table-responsive table-sm">
+              <thead>
+                <tr>
+                  <th scope="col"><input type="nome" class="form-control" id="idUser" placeholder="Logo (??)"></th>
+                  <th scope="col"><input type="nome" class="form-control" id="idUser" placeholder="Nome"></th>
+                  <th scope="col"><input type="nome" class="form-control" id="idUser" placeholder="Cidade"></th>
+                  <th scope="col"><input type="nome" class="form-control" id="idUser" placeholder="Fundação"></th>
+                </tr>
+              </thead>
+              <tbody id="mClubSolo">
+              </tbody>
+            </table>
+
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalV2">Guardar
+              Alterações</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
-</div>
-
-    </div>
   </div>
 
   <script src="js/admin.js"></script>
