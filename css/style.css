@@ -8,7 +8,10 @@ html {
 }
 
 #imagemAdmin{
+
+    display: block;
     height: auto;
+    max-width: 20%;
 }
 
 /*LOGIN PAGE*/

@@ -63,24 +63,18 @@
                 </tr>
               </thead>
               <tbody id="leagues">
-              </tbody>
-
-              <tfoot>
-                <tr>
-                  <td>
-                    <a class="btn btn-dark btn-outline-light " role="button">Adicionar</a>
-                  </td>
-                </tr>
-              </tfoot>
-
+            </tbody>
 
             </table>
           </div>
 
+          </div>
+          <div class="card-footer">
+            <a class="btn btn-dark btn-outline-light "  role="button">Adicionar</a>
+          </div>
         </div>
-      </div>
-
-    </div>
+    
+</div>  
 
     <!-- MODAL LIGAS-->
     <div class="modal fade modal-dialog-scrollable" id="modalLiga" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -104,15 +98,14 @@
               </tbody>
             </table>
 
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-            <button type="button" class="btn btn-success btn-outline-light" data-bs-toggle="modal"
-              data-bs-target="#modalV2">Guardar Alterações</button>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+              <button type="button" class="btn btn-success btn-outline-light" data-bs-toggle="modal" data-bs-target="#modalV2" onclick="showAlertGuardado()">Guardar Alterações</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
     <!-------------------------------------------------------------------------------- MODAL VARIOS Clubes -------------------------------------------------------------------------------------------->
     <div class="modal fade" id="modalClub" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -140,14 +133,14 @@
               </tbody>
             </table>
 
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-            <button type="button" class="btn btn-primary">Guardar Alterações</button>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+              <button type="button" class="btn btn-success" onclick="showAlertGuardado()">Guardar Alterações</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
     <!-------------------------------------------------------------------------------- MODAL CLUBE SOLO-------------------------------------------------------------------------------------------->
     <div class="modal fade modal-dialog-scrollable" id="modalClubSolo" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -174,15 +167,14 @@
             </table>
 
 
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalV2">Guardar
-              Alterações</button>
-          </div>
-        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalV2" onclick="showAlertGuardado()">Guardar Alterações</button>
       </div>
     </div>
+  </div>
+</div>
 
   </div>
   </div>
