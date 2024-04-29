@@ -8,7 +8,7 @@
   
 <h2>🧐 Features</h2>
 
-Here're some of the project's best features:
+Neste projeto tivemos o cuidado em:
 
 *   Responsividade: O website é capaz de se adaptar a diferentes dispositivos e tamanhos de ecrã garantindo uma experiência de utilização consistente em computadores tablets e smartphones.
 *   Listagem de Ligas: O website apresenta uma lista de diversas ligas futebol permitindo aos utilizadores explorar os clubes sobre as várias competições.
@@ -17,7 +17,7 @@ Here're some of the project's best features:
 
   
   
-<h2>💻 Built with</h2>
+<h2>💻 Feito em </h2>
 
 Technologies used in the project:
 
