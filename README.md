@@ -6,20 +6,20 @@
 
   
   
-<h2>🧐 Features</h2>
+<h2>🧐 Funcionalidades</h2>
 
 Neste projeto tivemos o cuidado em:
 
 *   Responsividade: O website é capaz de se adaptar a diferentes dispositivos e tamanhos de ecrã garantindo uma experiência de utilização consistente em computadores tablets e smartphones.
 *   Listagem de Ligas: O website apresenta uma lista de diversas ligas futebol permitindo aos utilizadores explorar os clubes sobre as várias competições.
-*   Detalhes dos Clubes: Para cada liga listada o website disponibiliza informações sobre os clubes como nome localização fundação e até a meteorologia no momento no local. .
-*   Design Intuitivo e Funcional: O website possui uma navegação intuitiva. O design é simples e funcional com um layout limpo organizado e esteticamente agradável priorizando a usabilidade e a fácil compreensão das informações apresentadas
+*   Detalhes dos Clubes: Para cada liga listada o website disponibiliza informações sobre os clubes como nome localização fundação e até a meteorologia no momento no local.
+*   Design Intuitivo e Funcional: O website possui uma navegação intuitiva. O design é simples e funcional com um layout limpo organizado e esteticamente agradável priorizando a usabilidade e a fácil compreensão das informações apresentadas.
 
   
   
 <h2>💻 Feito em </h2>
 
-Technologies used in the project:
+Tecnologias utilizadas no projeto:
 
 *   HTML 5
 *   JavaScript
