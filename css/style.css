@@ -32,6 +32,12 @@ body {
     }
 }
 
+@media screen and (max-width: 767px){
+    .maskBlack {
+        height: auto;
+    }
+}
+
 @media (min-width: 768px) and (max-width:991px){
     #imagemAdmin {
         width: 30%;
@@ -114,7 +120,7 @@ body {
 }
 
 .card {
-    margin-top: 20px;
+    margin: 20px;
     width: 90%;
 }
 
@@ -132,3 +138,9 @@ a.nav-link:hover {
     width: 5%;
     height: 11%;
 }
+
+.nav-item {
+    padding-left: 10px;
+    font-weight: bold;
+}
+
