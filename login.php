@@ -1,3 +1,50 @@
+<?php 
+
+session_start();
+
+	include("connection.php");
+	include("functions.php");
+
+
+	if($_SERVER['REQUEST_METHOD'] == "POST")
+	{
+		//something was posted
+		$user_name = $_POST['user_name'];
+		$password = $_POST['password'];
+
+		if(!empty($user_name) && !empty($password) && !is_numeric($user_name))
+		{
+
+			//read from database
+			$query = "select * from users where user_name = '$user_name' limit 1";
+			$result = mysqli_query($con, $query);
+
+			if($result)
+			{
+				if($result && mysqli_num_rows($result) > 0)
+				{
+
+					$user_data = mysqli_fetch_assoc($result);
+					
+					if($user_data['password'] === $password)
+					{
+
+						$_SESSION['user_id'] = $user_data['user_id'];
+						header("Location: index.php");
+						die;
+					}
+				}
+			}
+			
+			echo "wrong username or password!";
+		}else
+		{
+			echo "wrong username or password!";
+		}
+	}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,7 +84,7 @@
                 <p class="text-white-50 mb-5">Por favor introduza o seu email e palavra-passe</p>
 
                 <div class="form-outline form-white mb-4 form-floating">
-                  <input type="email" class="form-control form-control-lg" id="email" name="email">
+                  <input type="email" class="form-control form-control-lg" id="email" name="user_email">
                   <label for="floatingInput">Email</label>
                 </div>
 
@@ -47,7 +94,7 @@
                 </div>
 
                 <button class="btn btn-outline-light btn-lg mb-4" type="submit">Login</button>
-                <p> Não tens conta? <a href="registo.html" class="text-white-50 fw-bold">Efetua o registo!</a></p>
+                <p> Não tens conta? <a href="registo.php" class="text-white-50 fw-bold">Efetua o registo!</a></p>
 
               </div>
             </div>

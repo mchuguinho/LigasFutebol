@@ -1,3 +1,93 @@
+<?php 
+session_start();
+
+	include("connection.php");
+	include("functions.php");
+
+
+	if($_SERVER['REQUEST_METHOD'] == "POST")
+	{
+		//something was posted
+		$nome = $_POST['nome'];
+    $email = $_POST['email'];
+    $apelido = $_POST['apelido'];
+		$password = $_POST['password'];
+    $passwordC = $_POST['passwordC'];
+/*
+    if(!empty($password) && !is_numeric($passwordC) && !empty($email) && !empty($apelido)){
+    if ( $password != $passwordC && !empty($nome)){
+
+      echo "<script>Toastify({
+        text: 'Passwords diferentes!!',
+        duration: 3000,
+        close: true,
+        gravity: 'top',
+        backgroundColor: 'linear-gradient(to right, #ff0000, #ff0000)'
+    }).showToast();</script>";
+    }else{
+
+      $query = "select * from users where user_name = '$user_name' limit 1";
+			$result = mysqli_query($con, $query);
+
+			if($result)
+			{
+				if($result && mysqli_num_rows($result) > 0)
+				{
+
+					$user_data = mysqli_fetch_assoc($result);
+          echo "<script>Toastify({
+            text: 'Já existe um utilizador com esse email! Tente dar login!',
+            duration: 3000,
+            close: true,
+            gravity: 'top',
+            backgroundColor: 'linear-gradient(to right, #ff0000, #ff0000)'
+        }).showToast();</script>";
+
+
+        }
+      }else
+      {
+
+        //save to database
+        $query = "insert into users (nome,email,password) values ('$nome + $apelido','$password')";
+
+        mysqli_query($con, $query);
+
+        header("Location: ./login.php");
+        die;
+      }
+	  }
+  }
+}*/
+
+//session_write_close();
+
+
+
+
+		if(!empty($password) && !is_numeric($passwordC) && !empty($email) && !empty($apelido))
+		{
+
+			//save to database
+			$user_id = random_num(20);
+			$query = "insert into users (nome,email,password) values ('$nome + $apelido','$password')";
+
+			mysqli_query($con, $query);
+
+			header("Location: login.php");
+			die;
+		}else
+		{
+			echo "Please enter some valid information!";
+		}
+	}
+
+
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,7 +113,7 @@
 
             <div class="card-title d-flex justify-content-center mt-2">
 
-              <a class="btn btn-outline-light col-md-6 mt-md-2 " href="./login.html" role="button">Voltar</a>
+              <a class="btn btn-outline-light col-md-6 mt-md-2 " href="./login.php" role="button">Voltar</a>
 
             </div>
 
@@ -83,7 +173,6 @@
     </div>
   </div>
   </div>
-  <script src="js/registo.js"></script>
 </body>
 
 </html>
