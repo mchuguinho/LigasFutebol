@@ -13,12 +13,11 @@
         if(mysqli_num_rows($result) == 1) {
             $row = mysqli_fetch_assoc($result);
             $_SESSION['user_id'] = $row['id_user'];
-
+            
             header("Location: index.html");
             exit();
         } else {
-            header("location.html");
-
+            header("Location: login.html");
         }
     }
     mysqli_close($con);
