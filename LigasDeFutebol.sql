@@ -47,11 +47,11 @@ VALUES
 (0,'Admin'),
 (1,'Utilizador');
 
-INSERT INTO user
+INSERT INTO user (nome, email, password, foto, tipo)
 VALUES
-(0, "administrador", "administrador", "admin@admin.admin", "admin", "admin.png", 0),
-(1, "hugodiniz", "Hugo Diniz", "hugodinis2001@gmail.com", "hugodiniz", "hugo.png", 0),
-(2, "paulo", "Paulo Novo", "paulonovo@gmail.com", "joaopaulo", "joao.png", 1);
+("administrador", "admin@admin.admin", "admin", "admin.png", 0),
+("Hugo Diniz", "hugodinis2001@gmail.com", "hugodiniz", "hugo.png", 0),
+("Paulo Novo", "paulonovo@gmail.com", "joaopaulo", "joao.png", 1);
 
 INSERT INTO liga
 VALUES

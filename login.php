@@ -47,7 +47,6 @@ session_start();
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -66,7 +65,7 @@ session_start();
   <div class="mask d-flex align-items-center h-100 maskBlack">
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
-        <form class="col-12 col-md-8 col-lg-6 col-xl-5" id="login-form">
+        <form class="col-12 col-md-8 col-lg-6 col-xl-5" id="login-form" action="entrar.php" method="POST">
           <div class="card bg-dark text-white redonda">
 
             <!-- Até aqui, levou algumas alterações, para baixo não é template -->
@@ -105,7 +104,6 @@ session_start();
     </div>
   </div>
   </div>
-  <script src="js/login.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 </body>
 
