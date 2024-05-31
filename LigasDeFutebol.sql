@@ -1,43 +1,48 @@
-
-CREATE DATABASE LigasDeFutebol;
-USE LigasDeFutebol;
+DROP DATABASE IF EXISTS ligasdefutebol;
+CREATE DATABASE ligasdefutebol;
+USE ligasdefutebol;
 
 CREATE TABLE tipo_user (
-    id_tipo INT PRIMARY KEY,
-    descritivo VARCHAR(255)
+    id_tipo INT NOT NULL AUTO_INCREMENT,
+    descritivo VARCHAR(255),
+    PRIMARY KEY(id_tipo)
 );
 
 CREATE TABLE user (
-    id_user INT PRIMARY KEY AUTOINCREMENT,
-
+    id_user INT PRIMARY KEY,
+    username VARCHAR(255),
     nome VARCHAR(255),
     email VARCHAR(255),
     password VARCHAR(255),
     foto VARCHAR(255),
     tipo INT,
+    PRIMARY KEY(id_user), 
     FOREIGN KEY (tipo) REFERENCES tipo_user(id_tipo)
 );
 
 CREATE TABLE liga (
-    id_liga INT PRIMARY KEY,
+    id_liga INT NOT NULL AUTO_INCREMENT,
     nome VARCHAR(255),
     pais VARCHAR(255),
-    logotipo VARCHAR(255)
+    logotipo VARCHAR(255),
+    PRIMARY KEY(id_liga)
 );
 
 CREATE TABLE clubes (
-    id_clube INT PRIMARY KEY,
+    id_clube INT NOT NULL AUTO_INCREMENT,
     liga INT,
     nome VARCHAR(255),
     cidade VARCHAR(255),
     logotipo VARCHAR(255),
+    PRIMARY KEY(id_clube),
     FOREIGN KEY (liga) REFERENCES liga(id_liga)
 );
 
 CREATE TABLE clubes_favoritos (
-    id INT PRIMARY KEY,
+    id INT NOT NULL AUTO_INCREMENT,
     user INT,
     clube INT,
+    PRIMARY KEY(id),
     FOREIGN KEY (user) REFERENCES user(id_user),
     FOREIGN KEY (clube) REFERENCES clubes(id_clube)
 );
@@ -47,11 +52,11 @@ VALUES
 (0,'Admin'),
 (1,'Utilizador');
 
-INSERT INTO user (nome, email, password, foto, tipo)
+INSERT INTO user (id_user, nome, email, password, foto, tipo)
 VALUES
-("administrador", "admin@admin.admin", "admin", "admin.png", 0),
-("Hugo Diniz", "hugodinis2001@gmail.com", "hugodiniz", "hugo.png", 0),
-("Paulo Novo", "paulonovo@gmail.com", "joaopaulo", "joao.png", 1);
+(1, "administrador", "admin@admin.admin", "admin", "admin.png", 0),
+(2, "Hugo Diniz", "hugodinis2001@gmail.com", "hugodiniz", "hugo.png", 0),
+(3, "Paulo Novo", "paulonovo@gmail.com", "joaopaulo", "joao.png", 1);
 
 INSERT INTO liga
 VALUES
