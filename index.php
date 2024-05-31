@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,11 +31,22 @@
             <li class="nav-item">
               <a class="nav-link" href="#">Perfil</a>
             </li>
+            <?php
+            if (isset($_SESSION['tipo'])) {
+              if ($_SESSION['tipo'] == 0) {
+                echo '<li class="nav-item">
+                <a class="nav-link" href="admin.html">Dashboard</a>
+              </li>';
+              }
+            }
+            ?>
             <li class="nav-item">
-              <a class="nav-link" href="admin.html">Dashboard</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="login.html">Login</a>
+              <?php if (isset($_SESSION['user_id'])) {
+                echo '<p class="nav-link">Bem vindo, ' . $_SESSION['username'] . '</p>';
+              } else {
+                echo '<a class="nav-link" href="login.html">Login</a>';
+              }
+              ?>
             </li>
           </ul>
         </div>
