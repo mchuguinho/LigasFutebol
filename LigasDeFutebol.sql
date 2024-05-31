@@ -1,4 +1,3 @@
-DROP DATABASE IF EXISTS ligasdefutebol;
 CREATE DATABASE ligasdefutebol;
 USE ligasdefutebol;
 
@@ -10,11 +9,9 @@ CREATE TABLE tipo_user (
 
 CREATE TABLE user (
     id_user INT NOT NULL AUTO_INCREMENT,
-    username VARCHAR(255),
     nome VARCHAR(255),
     email VARCHAR(255),
     password VARCHAR(255),
-    foto VARCHAR(255),
     tipo INT,
     PRIMARY KEY(id_user), 
     FOREIGN KEY (tipo) REFERENCES tipo_user(id_tipo)
@@ -52,11 +49,11 @@ VALUES
 (0,'Admin'),
 (1,'Utilizador');
 
-INSERT INTO user (id_user, nome, email, password, foto, tipo)
+INSERT INTO user (id_user, nome, email, password, tipo)
 VALUES
-(1, "administrador", "admin@admin.admin", "admin", "admin.png", 0),
-(2, "Hugo Diniz", "hugodinis2001@gmail.com", "hugodiniz", "hugo.png", 0),
-(3, "Paulo Novo", "paulonovo@gmail.com", "joaopaulo", "joao.png", 1);
+(1, "administrador", "admin@admin.admin", "admin", 0),
+(2, "Hugo Diniz", "hugodinis2001@gmail.com", "hugodiniz", 0),
+(3, "Paulo Novo", "paulonovo@gmail.com", "joaopaulo", 1);
 
 INSERT INTO liga
 VALUES
