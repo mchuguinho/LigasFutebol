@@ -1,3 +1,12 @@
+<?php
+  session_start();
+  include ('connection.php');
+
+  $query = "SELECT * FROM liga";
+  $result = mysqli_query($con, $query);
+
+  ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,11 +36,22 @@
             <li class="nav-item">
               <a class="nav-link" href="#">Perfil</a>
             </li>
+            <?php
+            if (isset($_SESSION['tipo'])) {
+              if ($_SESSION['tipo'] == 0) {
+                echo '<li class="nav-item">
+                <a class="nav-link" href="admin.html">Dashboard</a>
+              </li>';
+              }
+            }
+            ?>
             <li class="nav-item">
-              <a class="nav-link" href="admin.html">Dashboard</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="login.html">Login</a>
+              <?php if (isset($_SESSION['user_id'])) {
+                echo '<p class="nav-link">Bem vindo, ' . $_SESSION['username'] . '</p>';
+              } else {
+                echo '<a class="nav-link" href="login.html">Login</a>';
+              }
+              ?>
             </li>
           </ul>
         </div>
@@ -39,13 +59,29 @@
     </nav>
     <h1 class="h1" id="header">Bem-vindo à Ligas de Futebol</h1>
     <div class="container">
-      <div class="row" id="leagues"></div>
+      <div class="row" id="leagues">
+      <?php
+        if (mysqli_num_rows($result) > 0) {
+          while ($row = mysqli_fetch_assoc($result)) {
+            $ligas[] = $row;
+            echo '<div class="col-md-3">';
+            echo '<div class="card">';
+            echo '<img src="img/leagues/' . $row['logotipo'] . '" class="card-img-top" alt="' . $row['nome'] . '">';
+            echo '<div class="card-body">';
+            echo '<h3 class="card-title">' . $row['nome'] . '</h3>';
+            echo '<p class="card-text">Clique no botão abaixo para ver os clubes que estão nesta liga!</p>';
+            echo '<a class="btn btn-dark btn-card" onclick="showTeams(' . $row['nome'] . ')" href="clubes.php?id_liga='.$row['id_liga'].'" role="button" >Ver clubes</a>';
+            echo '</div>';
+            echo '</div>';
+            echo '</div>';
+          }
+        }
+        ?>
+      </div>
+      
     </div>
   </div>
   </div>
-
-  <script src="js/index.js"></script>
-
 </body>
 
 </html>
