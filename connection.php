@@ -1,12 +1,18 @@
 <?php 
     $dbhost = "localhost";
     $dbuser = "root";
-    $dbpass = "root";
+    
+    $dbpass = "";
     $dbname = "ligasdefutebol";
     
-    if(!$con = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname))
-    {
-        
-        die("failed to connect!");
+    $con = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+    
+    if (!$con) {
+        $dbpass = "root";
+        $con = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+    }
+    
+    if (!$con) {
+        die("Failed to connect!");
     }
 ?>
