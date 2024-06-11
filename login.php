@@ -71,7 +71,7 @@ session_start();
             <!-- Até aqui, levou algumas alterações, para baixo não é template -->
 
             <div class="card-title d-flex justify-content-center mt-2">
-              <a class="btn btn-outline-light col-md-6 mt-md-2" href="index.html" role="button">Voltar</a>
+              <a class="btn btn-outline-light col-md-6 mt-md-2" href="index.php" role="button">Voltar</a>
             </div>
 
             <div class="card-body p-5 text-center">
