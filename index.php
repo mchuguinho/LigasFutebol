@@ -1,11 +1,11 @@
 <?php
-  session_start();
-  include ('connection.php');
+session_start();
+include ('connection.php');
 
-  $query = "SELECT * FROM liga";
-  $result = mysqli_query($con, $query);
+$query = "SELECT * FROM liga";
+$result = mysqli_query($con, $query);
 
-  ?>
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,8 +19,11 @@
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
   <link rel="stylesheet" href="css/style.css" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="jquery/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </head>
 
 <body>
@@ -48,10 +51,10 @@
             <li class="nav-item">
               <?php if (isset($_SESSION['user_id'])) {
                 echo '<div class="dropdown">';
-                echo '<button class="nav-link dropbtn" onclick="abrirDrop()">Bem vindo, ' . $_SESSION['username'] . '</button>';
-                echo '<div id="myDropdown" class="dropdown-content">';
-                echo '<a class="nav-link" href="dados.php">Dados de Perfil</a>';                
-                echo '<a class="nav-link" href="logout.php">Logout</a>';
+                echo '<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Bem vindo, ' . $_SESSION['username'] . '</button>';
+                echo '<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="margin-top: 2%;">';
+                echo '<a class="dropdown-item" href="dados.php">Dados de Perfil</a>';
+                echo '<a class="dropdown-item" href="logout.php">Logout</a>';
                 echo '</div>';
                 echo '</div>';
               } else {
@@ -66,7 +69,7 @@
     <h1 class="h1" id="header">Bem-vindo à Ligas de Futebol</h1>
     <div class="container">
       <div class="row" id="leagues">
-      <?php
+        <?php
         if (mysqli_num_rows($result) > 0) {
           while ($row = mysqli_fetch_assoc($result)) {
             $ligas[] = $row;
@@ -76,7 +79,7 @@
             echo '<div class="card-body">';
             echo '<h3 class="card-title">' . $row['nome'] . '</h3>';
             echo '<p class="card-text">Clique no botão abaixo para ver os clubes que estão nesta liga!</p>';
-            echo '<a class="btn btn-dark btn-card" onclick="showTeams(' . $row['nome'] . ')" href="clubes.php?id_liga='.$row['id_liga'].'" role="button" >Ver clubes</a>';
+            echo '<a class="btn btn-dark btn-card" onclick="showTeams(' . $row['nome'] . ')" href="clubes.php?id_liga=' . $row['id_liga'] . '" role="button" >Ver clubes</a>';
             echo '</div>';
             echo '</div>';
             echo '</div>';
@@ -84,10 +87,11 @@
         }
         ?>
       </div>
-      
+
     </div>
   </div>
   </div>
 </body>
 <script src="js/index.js"></script>
+
 </html>
