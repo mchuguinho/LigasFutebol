@@ -49,7 +49,7 @@
               <?php if (isset($_SESSION['user_id'])) {
                 echo '<p class="nav-link">Bem vindo, ' . $_SESSION['username'] . '</p>';
               } else {
-                echo '<a class="nav-link" href="login.html">Login</a>';
+                echo '<a class="nav-link" href="login.php">Login</a>';
               }
               ?>
             </li>

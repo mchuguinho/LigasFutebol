@@ -3,8 +3,6 @@
 session_start();
 
 	include("connection.php");
-	include("functions.php");
-
 
 	if($_SERVER['REQUEST_METHOD'] == "POST")
 	{
@@ -65,14 +63,18 @@ session_start();
   <div class="mask d-flex align-items-center h-100 maskBlack">
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
+
+
         <form class="col-12 col-md-8 col-lg-6 col-xl-5" id="login-form" action="entrar.php" method="POST">
-          <div class="card bg-dark text-white redonda">
+          
+        
+        <div class="card bg-dark text-white redonda">
 
             <!-- Até aqui, levou algumas alterações, para baixo não é template -->
 
             <div class="card-title d-flex justify-content-center mt-2">
 
-              <a class="btn btn-outline-light col-md-6 mt-md-2" href="index.html" role="button">Voltar</a>
+              <a class="btn btn-outline-light col-md-6 mt-md-2" href="index.php" role="button">Voltar</a>
 
             </div>
 
@@ -94,7 +96,7 @@ session_start();
                 </div>
 
                 <button class="btn btn-outline-light btn-lg mb-4" type="submit">Login</button>
-                <p> Não tens conta? <a href="registo.php" class="text-white-50 fw-bold">Efetua o registo!</a></p>
+                <p> Não tens conta? <a href="registo.html" class="text-white-50 fw-bold">Efetua o registo!</a></p>
 
               </div>
             </div>
