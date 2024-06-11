@@ -47,7 +47,13 @@
             ?>
             <li class="nav-item">
               <?php if (isset($_SESSION['user_id'])) {
-                echo '<p class="nav-link">Bem vindo, ' . $_SESSION['username'] . '</p>';
+                echo '<div class="dropdown">';
+                echo '<button class="nav-link dropbtn" onclick="abrirDrop()">Bem vindo, ' . $_SESSION['username'] . '</button>';
+                echo '<div id="myDropdown" class="dropdown-content">';
+                echo '<a class="nav-link" href="dados.php">Dados de Perfil</a>';                
+                echo '<a class="nav-link" href="logout.php">Logout</a>';
+                echo '</div>';
+                echo '</div>';
               } else {
                 echo '<a class="nav-link" href="login.html">Login</a>';
               }
@@ -83,5 +89,5 @@
   </div>
   </div>
 </body>
-
+<script src="js/index.js"></script>
 </html>
