@@ -12,9 +12,12 @@
         
         if(mysqli_num_rows($result) == 1) {
             $row = mysqli_fetch_assoc($result);
+
             $_SESSION['user_id'] = $row['id_user'];
+            $_SESSION['username'] = $row['nome'];
+            $_SESSION['tipo'] = $row['tipo'];
             
-            header("Location: index.html");
+            header("Location: index.php");
             exit();
         } else {
             header("Location: login.html");
