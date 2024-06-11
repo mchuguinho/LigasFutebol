@@ -1,3 +1,13 @@
+<?php
+
+  session_start();
+  include ('connection.php');
+
+  $query = "SELECT * FROM user";
+  $result = mysqli_query($con, $query);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,7 +27,7 @@
 </head>
 
 <body>
-  <div class="maskBlack">
+  <div class="maskBlack" style="height: -webkit-fill-available">
 
     <nav class="navbar navbar-expand-sm bg-info navbar-dark bg-dark ">
 
@@ -28,15 +38,15 @@
         <ul class="navbar-nav mr-auto">
 
           <li class="nav-item">
-            <a class="btn btn-outline-light" href="admin.html" role="button">Ligas</a>
+            <a class="btn btn-outline-light" href="admin.php" role="button">Ligas</a>
           </li>
           <li class="nav-item">
-            <a class="btn btn-outline-light" href="uadmin.html" role="button">Users</a>
+            <a class="btn btn-outline-light" href="uadmin.php" role="button">Users</a>
           </li>
 
         </ul>
         <li class="nav-item">
-          <a class="btn btn-outline-light" href="index.html" role="button">Sair</a>
+          <a class="btn btn-outline-light" href="index.php" role="button">Sair</a>
 
           </ul>
 
@@ -50,12 +60,11 @@
 
           <h3 class="card-title">Gerir Users</h3>
           <div class="table-responsive">
-            <table class="table table-striped align-middle table-responsive">
+            <table class="table table-striped align-middle">
               <thead>
                 <tr>
                   <th scope="col">Id</th>
                   <th scope="col">Nome</th>
-                  <th scope="col">Apelido</th>
                   <th scope="col">Email</th>
                   <th scope="col">Password</th>
                   <th scope="col">Editar</th>
@@ -63,6 +72,22 @@
                 </tr>
               </thead>
               <tbody id="userAdmin">
+
+              <?php
+              if (mysqli_num_rows($result) > 0) {
+                while ($row = mysqli_fetch_assoc($result)) {
+                  $users[] = $row;
+                  echo '<tr>';
+                  echo '<th class="align-middle">' . $row['id_user'] . '</th>';
+                  echo '<td class="align-middle">' . $row['nome'] . '</td>';
+                  echo '<td class="align-middle">' . $row['email'] . '</td>';
+                  echo '<td class="align-middle">' . $row['password'] . '</td>';
+                  echo '<td class="align-middle"><button type="button" class="btn btn-primary btn-outline-light" data-bs-toggle="modal" data-bs-target="#modalUser" data-bs-whatever="${users.nome}">Editar User</button></td>';
+                  echo '<td class="align-middle"><a class="btn btn-danger btn-outline-light" onclick="showAlertEliminado()" role="button">Eliminar</a></td>';
+                  echo '</tr>';
+                }
+              }
+        ?>
               </tbody>
             </table>
           </div>
@@ -109,7 +134,7 @@
     </div>
   </div>
 
-  <script src="js/uadmin.js"></script>
+ <!-- <script src="js/uadmin.js"></script> -->
   <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 </body>
 
