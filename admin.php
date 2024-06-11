@@ -1,3 +1,16 @@
+<?php
+
+  session_start();
+  include ('connection.php');
+
+  $query1 = "SELECT * FROM liga";
+  $result1 = mysqli_query($con, $query1);
+
+  $query2 = "SELECT * FROM clubes";
+  $result2 = mysqli_query($con, $query2);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,15 +41,15 @@
         <ul class="navbar-nav mr-auto">
 
           <li class="nav-item">
-            <a class="btn btn-outline-light" href="admin.html" role="button">Ligas</a>
+            <a class="btn btn-outline-light" href="admin.php" role="button">Ligas</a>
           </li>
           <li class="nav-item">
-            <a class="btn btn-outline-light" href="uadmin.html" role="button">Users</a>
+            <a class="btn btn-outline-light" href="uadmin.php" role="button">Users</a>
           </li>
 
         </ul>
         <li class="nav-item">
-          <a class="btn btn-outline-light" href="index.html" role="button">Sair</a>
+          <a class="btn btn-outline-light" href="index.php" role="button">Sair</a>
 
           </ul>
 
@@ -63,6 +76,24 @@
                 </tr>
               </thead>
               <tbody id="leagues">
+
+              <?php
+                if (mysqli_num_rows($result1) > 0) {
+                  while ($row = mysqli_fetch_assoc($result1)) {
+                    $ligas[] = $row;
+
+                    echo '<tr>';
+                    echo '<th class="align-middle">' . $row['id_liga'] .'</th>';
+                    echo '<td class="align-middle"><img id="imagemAdmin"class="img-fluid logocircular" src="img/leagues/' . $row['logotipo'] . '"></td>';
+                    echo '<td class="align-middle">' . $row['nome'] . '</td>';
+                    echo '<td class="align-middle"><button type="button" class="btn btn-primary btn-outline-light" data-bs-toggle="modal" data-bs-target="#modalLiga" data-bs-whatever="' . $row['nome'] . '">Editar</button></td>';
+                    echo '<td class="align-middle"><button type="button" class="btn btn-primary btn-outline-light" data-bs-toggle="modal" data-bs-target="#modalClub" data-bs-whatever="${league.name}">Editar Clubes</button></td>';
+                    echo '<td class="align-middle"><a class="btn btn-danger btn-outline-light" onclick="showAlertEliminado()" role="button">Eliminar</a></td>';
+                    echo '</tr>';
+                  }
+                }
+        ?>
+
             </tbody>
 
             </table>
@@ -179,7 +210,7 @@
   </div>
   </div>
 
-  <script src="js/admin.js"></script>
+  <!-- <script src="js/admin.js"></script> -->
   <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 </body>
 
