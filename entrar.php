@@ -20,7 +20,7 @@
             header("Location: index.php");
             exit();
         } else {
-            header("Location: login.php");
+            header("Location: login.html");
         }
     }
     mysqli_close($con);

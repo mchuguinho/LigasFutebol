@@ -1,18 +1,21 @@
-<?php
-session_start();
-include ('connection.php');
+<?php 
 
-$query = "SELECT * FROM liga";
-$result = mysqli_query($con, $query);
+  session_start();
+  include ('connection.php');
 
-?>  
+  $idliga = $_GET['id_liga'];
+
+  $query = "SELECT * FROM clubes WHERE liga = $idliga";
+  $result = mysqli_query($con, $query);
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ligas de futebol</title>
   <link rel="icon" type="image/x-icon" href="img/logo.png">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
@@ -23,14 +26,13 @@ $result = mysqli_query($con, $query);
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
 </head>
 
 <body>
   <div class="maskBlack">
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
       <div class="container-fluid">
-        <a class="navbar-brand"><img src="img/logo.png" id="logo" /></a>
+        <a class="navbar-brand" href="index.php"><img src="img/logo.png" id="logo" /></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -61,34 +63,60 @@ $result = mysqli_query($con, $query);
             </li>
           </ul>
         </div>
-      </div>
     </nav>
-    <h1 class="h1" id="header">Bem-vindo à Ligas de Futebol</h1>
+    <a href="index.php"><img src="img/backarrow.png" id="backarrow"></a>
+    <h1 class="h1" id="header"></h1>
     <div class="container">
-      <div class="row" id="leagues">
-        <?php
+      <div class="row" id="clubs">
+      <?php
         if (mysqli_num_rows($result) > 0) {
           while ($row = mysqli_fetch_assoc($result)) {
-            $ligas[] = $row;
+            $clubes[] = $row;
             echo '<div class="col-md-3">';
             echo '<div class="card">';
-            echo '<img src="img/leagues/' . $row['logotipo'] . '" class="card-img-top" alt="' . $row['nome'] . '">';
-            echo '<div class="card-body">';
-            echo '<h3 class="card-title">' . $row['nome'] . '</h3>';
-            echo '<p class="card-text">Clique no botão abaixo para ver os clubes que estão nesta liga!</p>';
-            echo '<a class="btn btn-dark btn-card" onclick="showTeams(' . $row['nome'] . ')" href="clubes.php?id_liga=' . $row['id_liga'] . '" role="button" >Ver clubes</a>';
+              echo '<img src="img/clubs/'.$row['logotipo'].'" class="card-img-top" alt="'.$row['nome'].'">';
+              echo '<div class="card-body">';
+                echo '<h3 class="card-title">'.$row['nome'].'</h3>';
+                echo '<p class="card-text">Clique no botão abaixo para ver mais detalhes sobre este clube!</p>';
+                echo '<button class="btn btn-dark btn-card" data-club="'.$row['id_clube'].'" data-nome="'.$row['nome'].'" data-cidade="'.$row['cidade'].'" onclick="requestMeteoApi("'.$row['cidade'].'");requestFlickrApi("'.$row['nome'].'")" data-toggle="modal" data-target="#modalInfo">Ver mais detalhes</button>';
+              echo '</div>';
             echo '</div>';
-            echo '</div>';
-            echo '</div>';
+          echo '</div>';
           }
         }
         ?>
       </div>
-
+    </div>
+    </nav>
+    <h1 class="h1" id="header"></h1>
+    <div class="container">
+      <div class="row" id="clubs"></div>
+    </div>
+    <div id="modalInfo" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content text-center">
+          <div class="modal-header">
+            <h2 id="nomeClube" class="modal-title text-center"></h2>
+          </div>
+          <div class="modal-body">
+          </div>
+          <div class="modal-footer">
+            <button type="button" data-dismiss="modal" class="btn btn-danger">
+              Fechar
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   </div>
+  <script src="js/clubes.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
 </body>
-<script src="js/index.js"></script>
 
 </html>

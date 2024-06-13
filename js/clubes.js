@@ -1,73 +1,40 @@
-document.getElementById("header").innerHTML = localStorage.getItem("liga")
-  ? `Clubes da <b>${localStorage.getItem("liga")}</b>`
-  : "Sem liga selecionada";
-// Load JSON data from leagues.json
-fetch("js/leagues.json")
-  .then((response) => response.json())
-  .then((data) => {
-    const clubsContainer = document.getElementById("clubs");
+$("#modalInfo").on("show.bs.modal", function (event) {
+  const button = $(event.relatedTarget);
+  const nome = button.data("nome");
+  const cidade = button.data("cidade");
 
-    // Generate HTML for league cards
-    data.leagues
-      .find((league) => league.name === localStorage.getItem("liga"))
-      ?.teams?.forEach((team) => {
-        // Create league card HTML
-        const clubData = JSON.stringify(team);
-        console.log(team);
-        console.log(clubData);
-        const teamCardHTML = `
-          <div class="col-md-3">
-            <div class="card">
-              <img src="${team.image}" class="card-img-top" alt="${team.name}">
-              <div class="card-body">
-                <h3 class="card-title">${team.name}</h3>
-                <p class="card-text">Clique no botão abaixo para ver mais detalhes sobre este clube!</p>
-                <button class="btn btn-dark btn-card" data-club='${clubData}' onclick='requestMeteoApi("${team.city}");requestFlickrApi("${team.name}")' data-toggle="modal" data-target="#modalInfo">Ver mais detalhes</button>
-              </div>
-            </div>
-          </div>
-        `;
-        // Append league card HTML to container
-        clubsContainer.innerHTML += teamCardHTML;
-      });
-  })
-  .catch((error) => console.error("Error loading JSON:", error));
+  console.log(nome);
+  console.log(cidade);
 
-  $("#modalInfo").on("show.bs.modal", function (event) {
-    const button = $(event.relatedTarget);
-    const club = button.data("club");
+  const modal = $(this);
+  modal.find(".modal-title").text(nome);
 
-    const modal = $(this);
-    modal.find(".modal-title").text(club.name);
+  const modalBody = modal.find(".modal-body")[0]; // Get the raw DOM element
+  modalBody.innerHTML = ""; // Clear previous content
 
-    const modalBody = modal.find(".modal-body")[0]; // Get the raw DOM element
+  const clubImage = `<div id="photosContainer"></div>`;
+  const notmyguilt = `<p><b>Imagem Gerada pelo API através do nome do Clube</b></p>`;
+  const cityText = `<p><strong>Cidade:</strong> ${cidade} </p>`;
+  const temp = `<div id="meteoContainer"></div>`;
 
-    modalBody.innerHTML = ""; // Clear previous content
+  modalBody.innerHTML += notmyguilt;
+  modalBody.innerHTML += clubImage;
+  modalBody.innerHTML += cityText;
+  modalBody.innerHTML += temp;
 
-    const clubImage = `<div id="photosContainer"></div>`;
-    const notmyguilt = `<p><b>Imagem Gerada pelo API através do nome do Clube</b></p>`;
-    const foundationText = `<div><b>Data de Fundação:</b> ${club.foundation}</div>`;
-    const cityText = `<p><strong>Cidade:</strong> ${club.city}</p>`;
-    const temp = `<div id="meteoContainer"></div>`
+  // Call the API functions
+  requestMeteoApi(cidade);
+  requestFlickrApi(nome);
+});
 
-    modalBody.innerHTML += notmyguilt;
-    modalBody.innerHTML += clubImage;
-    modalBody.innerHTML += foundationText;
-    modalBody.innerHTML += cityText;
-    modalBody.innerHTML += temp;
-  });
-
-
-function requestMeteoApi(nome) {
-  const cityValue = nome;
-
+function requestMeteoApi(cityValue) {
   $.ajax({
     url: "https://api.openweathermap.org/data/2.5/weather",
     data: {
       q: cityValue,
       appid: "09d5c10574177367ef50322886321bb9",
       units: "metric",
-      lang: "EN",
+      lang: "pt",
     },
     method: "GET",
     success: function (response) {
@@ -87,10 +54,6 @@ function requestMeteoApi(nome) {
 }
 
 function requestFlickrApi(nome) {
-  const nomeC = nome;
-
-  console.log(nomeC);
-
   const requestOptions = {
     method: "GET", // *GET, POST, PUT, DELETE, etc.
   };
@@ -100,7 +63,7 @@ function requestFlickrApi(nome) {
     api_key: "acb0d07ce4123dfe53f12727f137b9a1",
     extras: "url_l",
     per_page: 1,
-    text: nomeC,
+    text: nome,
     format: "json",
     nojsoncallback: 1,
   };
