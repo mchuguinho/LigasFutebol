@@ -6,6 +6,43 @@
   $query = "SELECT * FROM user";
   $result = mysqli_query($con, $query);
 
+
+  if (isset($_GET['id_user'])) {
+    $iduser = $_GET['id_user'];
+
+    $query1 = "DELETE FROM `user` WHERE `id_user` = $iduser";
+    $result1 = mysqli_query($con, $query1);
+
+    if ($result1) {
+
+      header("Location: uadmin.php");
+
+    exit();
+
+        echo "<script>
+            Toastify({
+                text: 'Dados eliminados com sucesso!',
+                duration: 3000,
+                close: true,
+                gravity: 'top',
+                backgroundColor: 'linear-gradient(to right, #ff0000, #ff0000)',
+            }).showToast();
+        </script>";
+
+    } else {
+        echo "<script>
+            Toastify({
+                text: 'Erro ao eliminar dados!',
+                duration: 3000,
+                close: true,
+                gravity: 'top',
+                backgroundColor: 'linear-gradient(to right, #ff0000, #ff0000)',
+            }).showToast();
+        </script>";
+    }
+}
+  
+
 ?>
 
 <!DOCTYPE html>
@@ -83,7 +120,7 @@
                   echo '<td class="align-middle">' . $row['email'] . '</td>';
                   echo '<td class="align-middle">' . $row['password'] . '</td>';
                   echo '<td class="align-middle"><button type="button" class="btn btn-primary btn-outline-light" data-bs-toggle="modal" data-bs-target="#modalUser" data-bs-whatever="${users.nome}">Editar User</button></td>';
-                  echo '<td class="align-middle"><a class="btn btn-danger btn-outline-light" onclick="showAlertEliminado()" role="button">Eliminar</a></td>';
+                  echo '<td class="align-middle"><a class="btn btn-danger btn-outline-light" onclick="showAlertEliminado()" href="uadmin.php?id_user=' . $row['id_user'] . '"  role="button">Eliminar</a></td>';
                   echo '</tr>';
                 }
               }

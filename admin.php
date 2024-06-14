@@ -9,6 +9,41 @@
   $query2 = "SELECT * FROM clubes";
   $result2 = mysqli_query($con, $query2);
 
+  if (isset($_GET['id_liga'])) {
+    $idliga = $_GET['id_liga'];
+
+    $query3 = "DELETE FROM `liga` WHERE `id_liga` = $idliga";
+    $result3 = mysqli_query($con, $query3);
+
+    if ($result1) {
+
+      header("Location: admin.php");
+
+    exit();
+
+        echo "<script>
+            Toastify({
+                text: 'Dados eliminados com sucesso!',
+                duration: 3000,
+                close: true,
+                gravity: 'top',
+                backgroundColor: 'linear-gradient(to right, #ff0000, #ff0000)',
+            }).showToast();
+        </script>";
+
+    } else {
+        echo "<script>
+            Toastify({
+                text: 'Erro ao eliminar dados!',
+                duration: 3000,
+                close: true,
+                gravity: 'top',
+                backgroundColor: 'linear-gradient(to right, #ff0000, #ff0000)',
+            }).showToast();
+        </script>";
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -88,7 +123,7 @@
                     echo '<td class="align-middle">' . $row['nome'] . '</td>';
                     echo '<td class="align-middle"><button type="button" class="btn btn-primary btn-outline-light" data-bs-toggle="modal" data-bs-target="#modalLiga" data-bs-whatever="' . $row['nome'] . '">Editar</button></td>';
                     echo '<td class="align-middle"><button type="button" class="btn btn-primary btn-outline-light" data-bs-toggle="modal" data-bs-target="#modalClub" data-bs-whatever="${league.name}">Editar Clubes</button></td>';
-                    echo '<td class="align-middle"><a class="btn btn-danger btn-outline-light" onclick="showAlertEliminado()" role="button">Eliminar</a></td>';
+                    echo '<td class="align-middle"><a class="btn btn-danger btn-outline-light" onclick="showAlertEliminado()" href="admin.php?id_liga=' . $row['id_liga'] . '" role="button">Eliminar</a></td>';
                     echo '</tr>';
                   }
                 }
