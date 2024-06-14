@@ -30,9 +30,9 @@
 
 <body>
   <div class="maskBlack">
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
       <div class="container-fluid">
-        <a class="navbar-brand" href="index.php"><img src="img/logo.png" id="logo" /></a>
+        <a class="navbar-brand"><img src="img/logo.png" id="logo" /></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -46,6 +46,13 @@
               </li>';
               }
             }
+            ?>
+            <?php if(isset($_SESSION['user_id'])){
+              echo '<li class="nav-item">';
+              echo '<a class="nav-link" href="clubes_fav.php">Clubes Favoritos</a>';
+              echo '</li>';
+            }
+            
             ?>
             <li class="nav-item">
               <?php if (isset($_SESSION['user_id'])) {
@@ -63,6 +70,7 @@
             </li>
           </ul>
         </div>
+      </div>
     </nav>
     <a href="index.php"><img src="img/backarrow.png" id="backarrow"></a>
     <h1 class="h1" id="header"></h1>
@@ -78,7 +86,10 @@
               echo '<div class="card-body">';
                 echo '<h3 class="card-title">'.$row['nome'].'</h3>';
                 echo '<p class="card-text">Clique no botão abaixo para ver mais detalhes sobre este clube!</p>';
+                echo '<div class="container info-fav">';
                 echo '<button class="btn btn-dark btn-card" data-club="'.$row['id_clube'].'" data-nome="'.$row['nome'].'" data-cidade="'.$row['cidade'].'" onclick="requestMeteoApi("'.$row['cidade'].'");requestFlickrApi("'.$row['nome'].'")" data-toggle="modal" data-target="#modalInfo">Ver mais detalhes</button>';
+                echo '<a href="addfav.php?id_clube='.$row['id_clube'].'"><img src="img/heart.png" class="icon-fav"></a>';
+                echo '</div>';
               echo '</div>';
             echo '</div>';
           echo '</div>';
