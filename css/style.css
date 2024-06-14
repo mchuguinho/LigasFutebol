@@ -81,7 +81,7 @@ body {
 }
 
 /*INDEX PAGE*/
-#header {
+.header {
     padding-top: 10px;
     text-align: center;
     color: white;
@@ -146,4 +146,15 @@ a.nav-link:hover {
 .nav-link {
     display: flex;
     align-items: center;
+}
+
+/*CARD ALINHAR BOTÕES*/
+
+.info-fav {
+    display: flex;
+}
+
+.icon-fav {
+    width: 36px;
+    height: 36px;
 }
