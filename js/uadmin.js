@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------------- METER OS USERS NO CARD -------------------------------------------------------------------------------------
-fetch("js/users.json")
+/*fetch("js/users.json")
   .then((response) => response.json())
   .then((data) => {
     // Generate HTML for league cards
@@ -23,25 +23,24 @@ fetch("js/users.json")
     });
   })
   .catch((error) => console.error("Error loading JSON:", error));
-
+*/
 //--------------------------------------------- MODAL DE EDITAR A CHAMAR O NOME DO ADMIN PARA RECONHECIMENTO (FUTURAS EDIÇÔES AINDA PRECISA SER COMPLETADO) ----------------------------------------------------
 
 var exampleModal = document.getElementById("modalUser");
 
 exampleModal.addEventListener("show.bs.modal", function (event) {
-  // Button that triggered the modal
   var button = event.relatedTarget;
-  // Extract info from data-bs-* attributes
   var recipient = button.getAttribute("data-bs-whatever");
-  // If necessary, you could initiate an AJAX request here
-  // and then do the updating in a callback.
-  //
-
-
-  // Update the modal's content.
   var modalTitle = exampleModal.querySelector(".modal-title");
 
   modalTitle.textContent = "Editar user: " + recipient;
+
+  var idInput = exampleModal.querySelector("#id_user");
+  idInput.value = recipient;
+});
+
+document.getElementById("saveChangesButton").addEventListener("click", function() {
+  document.getElementById("updateUserForm").submit();
 });
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -68,7 +67,7 @@ function showAlertGuardado() {
     backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
 
     callback: function() {
-      window.location.href = "uadmin.html";
+      window.location.href = "uadmin.php";
   }
 
   }).showToast();

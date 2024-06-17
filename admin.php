@@ -19,7 +19,6 @@
 
       header("Location: admin.php");
 
-    exit();
 
         echo "<script>
             Toastify({

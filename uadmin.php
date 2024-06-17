@@ -1,47 +1,71 @@
 <?php
+session_start();
+include ('connection.php');
 
-  session_start();
-  include ('connection.php');
+// Obter todos os usuários
+$query = "SELECT * FROM user";
+$result = mysqli_query($con, $query);
 
-  $query = "SELECT * FROM user";
-  $result = mysqli_query($con, $query);
+// Atualizar user
+if (isset($_POST["id_user"]) && isset($_POST["nomeUp"]) && isset($_POST["apelidoUp"]) && isset($_POST["emailUp"]) && isset($_POST["passUp"])) {
 
+    $id_user = $_POST['id_user'];
+    $nome = $_POST['nomeUp'];
+    $apelido = $_POST['apelidoUp'];
+    $email = $_POST['emailUp'];
+    $pass = $_POST['passUp'];
 
-  if (isset($_GET['id_user'])) {
-    $iduser = $_GET['id_user'];
+    $query2 = "UPDATE `user` SET `nome`='$nome $apelido', `email`='$email', `password`='$pass' WHERE `id_user` = $id_user";
 
-    $query1 = "DELETE FROM `user` WHERE `id_user` = $iduser";
-    $result1 = mysqli_query($con, $query1);
-
-    if ($result1) {
-
-      header("Location: uadmin.php");
-
-    exit();
-
-        echo "<script>
-            Toastify({
-                text: 'Dados eliminados com sucesso!',
-                duration: 3000,
-                close: true,
-                gravity: 'top',
-                backgroundColor: 'linear-gradient(to right, #ff0000, #ff0000)',
-            }).showToast();
-        </script>";
-
+    if (mysqli_query($con, $query2)) {
+        header("Location: uadmin.php");
     } else {
-        echo "<script>
-            Toastify({
-                text: 'Erro ao eliminar dados!',
-                duration: 3000,
-                close: true,
-                gravity: 'top',
-                backgroundColor: 'linear-gradient(to right, #ff0000, #ff0000)',
-            }).showToast();
-        </script>";
+        echo "Something went wrong. Please try again later.";
     }
 }
-  
+
+
+// Eliminar user
+if (isset($_GET['id_user'])) {
+  $iduser = $_GET['id_user'];
+
+  $query2 = "DELETE FROM `clubes_favoritos` WHERE `user` = $iduser";
+  $result2 = mysqli_query($con, $query2);
+
+  if ($result2) {
+
+  $query3 = "DELETE FROM `user` WHERE `id_user` = $iduser";
+  $result3 = mysqli_query($con, $query3);
+
+  if ($result2) {
+
+    header("Location: uadmin.php");
+
+  exit();
+
+      echo "<script>
+          Toastify({
+              text: 'Dados eliminados com sucesso!',
+              duration: 3000,
+              close: true,
+              gravity: 'top',
+              backgroundColor: 'linear-gradient(to right, #ff0000, #ff0000)',
+          }).showToast();
+      </script>";
+
+  } else {
+      echo "<script>
+          Toastify({
+              text: 'Erro ao eliminar dados!',
+              duration: 3000,
+              close: true,
+              gravity: 'top',
+              backgroundColor: 'linear-gradient(to right, #ff0000, #ff0000)',
+          }).showToast();
+      </script>";
+  }
+}
+}
 
 ?>
 
@@ -119,7 +143,7 @@
                   echo '<td class="align-middle">' . $row['nome'] . '</td>';
                   echo '<td class="align-middle">' . $row['email'] . '</td>';
                   echo '<td class="align-middle">' . $row['password'] . '</td>';
-                  echo '<td class="align-middle"><button type="button" class="btn btn-primary btn-outline-light" data-bs-toggle="modal" data-bs-target="#modalUser" data-bs-whatever="${users.nome}">Editar User</button></td>';
+                  echo '<td class="align-middle"><button type="button" class="btn btn-primary btn-outline-light" data-bs-toggle="modal" data-bs-target="#modalUser" data-bs-whatever="' . $row['id_user'] . '">Editar User</button></td>';
                   echo '<td class="align-middle"><a class="btn btn-danger btn-outline-light" onclick="showAlertEliminado()" href="uadmin.php?id_user=' . $row['id_user'] . '"  role="button">Eliminar</a></td>';
                   echo '</tr>';
                 }
@@ -144,26 +168,26 @@
           </div>
 
 
-          <div class="modal-body table-responsive">
+          <div class="modal-body table-responsive form-group">
 
-            <table class="table table-striped align-middle table-responsive table-sm">
-              <thead>
-                <tr>
-                  <th scope="col"><input type="nome" class="form-control" id="idUser" placeholder="Nome"></th>
-                  <th scope="col"><input type="nome" class="form-control" id="idUser" placeholder="Apelido"></th>
-                  <th scope="col"><input type="nome" class="form-control" id="idUser" placeholder="Email"></th>
-                  <th scope="col"><input type="nome" class="form-control" id="idUser" placeholder="Password"></th>
-
-                </tr>
-              </thead>
-              <tbody id="mUser">
-              </tbody>
-            </table>
+          <form method="POST" id="updateUserForm">
+              <input type="hidden" id="id_user" name="id_user">
+              <table class="table table-striped align-middle table-responsive table-sm">
+                <thead>
+                  <tr>
+                    <th scope="col"><input type="text" class="form-control" id="nomeUp" name="nomeUp" placeholder="Nome"></th>
+                    <th scope="col"><input type="text" class="form-control" id="apelidoUp" name="apelidoUp" placeholder="Apelido"></th>
+                    <th scope="col"><input type="email" class="form-control" id="emailUp" name="emailUp" placeholder="Email"></th>
+                    <th scope="col"><input type="password" class="form-control" id="passUp" name="passUp" placeholder="Password"></th>
+                  </tr>
+                </thead>
+              </table>
+            </form>
 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-        <button type="button" class="btn btn-success" onclick="showAlertGuardado()">Guardar Alterações</button>
+        <button type="button" class="btn btn-success" id="saveChangesButton">Guardar Alterações</button>
       </div>
     </div>
   </div>
@@ -171,8 +195,8 @@
     </div>
   </div>
 
- <!-- <script src="js/uadmin.js"></script> -->
-  <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<script src="js/uadmin.js"></script>
+
 </body>
 
 </html>
