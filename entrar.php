@@ -17,10 +17,9 @@
             $_SESSION['username'] = $row['nome'];
             $_SESSION['tipo'] = $row['tipo'];
             
-            header("Location: index.php");
-            exit();
+            echo 'success'; 
         } else {
-            header("Location: login.html");
+            echo 'error';
         }
     }
     mysqli_close($con);

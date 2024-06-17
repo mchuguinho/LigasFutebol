@@ -29,7 +29,7 @@
 </head>
 
 <body>
-  <div class="maskBlack">
+  <div class="maskBlack" style="height: -webkit-fill-available;">
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
       <div class="container-fluid">
         <a class="navbar-brand"><img src="img/logo.png" id="logo" /></a>
@@ -64,7 +64,7 @@
                 echo '</div>';
                 echo '</div>';
               } else {
-                echo '<a class="nav-link" href="login.html">Login</a>';
+                echo '<a class="nav-link" href="login.php">Login</a>';
               }
               ?>
             </li>
@@ -88,7 +88,7 @@
                 echo '<p class="card-text">Clique no botão abaixo para ver mais detalhes sobre este clube!</p>';
                 echo '<div class="container info-fav">';
                 echo '<button class="btn btn-dark btn-card" data-club="'.$row['id_clube'].'" data-nome="'.$row['nome'].'" data-cidade="'.$row['cidade'].'" onclick="requestMeteoApi("'.$row['cidade'].'");requestFlickrApi("'.$row['nome'].'")" data-toggle="modal" data-target="#modalInfo">Ver mais detalhes</button>';
-                echo '<a href="addfav.php?id_clube='.$row['id_clube'].'"><img src="img/heart.png" class="icon-fav"></a>';
+                echo '<a href="addfav.php?id_clube='.$row['id_clube'].'" style="align-content: center; padding-left: 10px;"><img src="img/heart.png" class="icon-fav" ></a>';
                 echo '</div>';
               echo '</div>';
             echo '</div>';

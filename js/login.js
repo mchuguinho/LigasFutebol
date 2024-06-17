@@ -38,8 +38,6 @@
         alert("An error occurred. Please try again later.");
     });
 });
-**/
-
 $(document).ready(function() {
     function showToast(options) {
         Toastify({
@@ -47,7 +45,7 @@ $(document).ready(function() {
             duration: options.duration || 3000,
             close: options.close === undefined ? true : options.close,
             position: options.position || 'top-right', // Combinação correta para a posição
-            className: options.className || 'jaexisteemail'
+            className: options.className || 'criada'
         }).showToast();
     }
 
@@ -62,5 +60,10 @@ $(document).ready(function() {
             position: 'top-right', // Certifique-se de que está definido corretamente
             close: true // Mostrar o botão de fechar
         });
+        setTimeout(function(){
+            window.location.href = 'index.php';
+        }, 3000)
     }
 });
+
+**/

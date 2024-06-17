@@ -42,7 +42,7 @@
                   <label for="floatingPassword">Password</label>
                 </div>
                 <button class="btn btn-outline-light btn-lg mb-4" type="submit">Login</button>
-                <p> Não tens conta? <a href="registo.html" class="text-white-50 fw-bold">Efetua o registo!</a></p>
+                <p> Não tens conta? <a href="registo.php" class="text-white-50 fw-bold">Efetua o registo!</a></p>
               </div>
             </div>
           </div>
@@ -51,6 +51,57 @@
     </div>
   </div>
   </div>
+
+  <script>
+    $(document).ready(function () {
+      $('#login-form').submit(function (e) {
+        e.preventDefault(); // Evita a submissão normal do formulário
+
+        // Obtém os dados do formulário
+        var formData = $(this).serialize();
+        function showToast(options) {
+          Toastify({
+            text: options.text,
+            duration: options.duration || 3000,
+            close: options.close === undefined ? true : options.close,
+            position: options.position || 'top-right', // Combinação correta para a posição
+            className: options.className || ''
+          }).showToast();
+        }
+        // Envia a requisição AJAX
+        $.ajax({
+          type: 'POST',
+          url: 'entrar.php', // Arquivo PHP onde o formulário será submetido
+          data: formData,
+          success: function (response) {
+            // Processa a resposta do servidor
+            if (response.trim() === 'success') {
+              showToast({
+                text: 'Login efetuado com sucesso!',
+                className: 'acertou',
+                duration: 3000,
+                position: 'top-right', // Certifique-se de que está definido corretamente
+                close: true // Mostrar o botão de fechar
+              });
+              setTimeout(function () {
+                window.location.href = 'index.php';
+              }, 3000)
+            } else {
+              // Mostra mensagem de erro ou executa ação para login falhou
+              showToast({
+                text: 'Dados incorretos ou conta inexistente!',
+                duration: 3000,
+                className: 'errou',
+                position: 'top-right', // Certifique-se de que está definido corretamente
+                close: true // Mostrar o botão de fechar
+              });
+            }
+          }
+        });
+      });
+    });
+  </script>
+
 </body>
 
 </html>

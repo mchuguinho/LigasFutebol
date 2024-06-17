@@ -34,7 +34,7 @@ session_start();
 
           if(mysqli_num_rows($result) > 0){
             $jaexiste = true;
-            header("Location: registo.html?jaexiste=true");
+            header("Location: registo.php");
             exit();
           }
 
@@ -44,11 +44,10 @@ session_start();
           if(mysqli_query($con,$query)){
       
             $criada = true;
-            header("Location: login.html?criada=true");
-            exit();
+            echo 'success';
           }else{
       
-            echo "burro";
+            echo "error";
           }
 
         }else{

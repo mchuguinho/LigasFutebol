@@ -64,7 +64,7 @@
                 echo '</div>';
                 echo '</div>';
               } else {
-                echo '<a class="nav-link" href="login.html">Login</a>';
+                echo '<a class="nav-link" href="login.php">Login</a>';
               }
               ?>
             </li>

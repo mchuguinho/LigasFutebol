@@ -24,7 +24,7 @@
           <div class="card bg-dark text-white redonda">
             <!-- Até aqui, levou algumas alterações, para baixo não é template -->
             <div class="card-title d-flex justify-content-center mt-2">
-              <a class="btn btn-outline-light col-md-6 mt-md-2 " href="login.html" role="button">Voltar</a>
+              <a class="btn btn-outline-light col-md-6 mt-md-2 " href="login.php" role="button">Voltar</a>
             </div>
             <div class="card-body p-5 text-center">
               <div class="mb-md-5 mt-md-4">
@@ -60,6 +60,76 @@
     </div>
   </div>
   </div>
+  <script>
+    $(document).ready(function () {
+      $('#registo-form').submit(function (e) {
+        e.preventDefault(); // Evita a submissão normal do formulário
+
+        // Obtém os dados do formulário
+        var formData = $(this).serialize();
+
+        function showToast(options) {
+          Toastify({
+            text: options.text,
+            duration: options.duration || 3000,
+            close: options.close === undefined ? true : options.close,
+            position: options.position || 'top-right', // Combinação correta para a posição
+            className: options.className || ''
+          }).showToast();
+        }
+
+        // Envia a requisição AJAX
+        $.ajax({
+          type: 'POST',
+          url: 'register.php', // Arquivo PHP onde o formulário será submetido
+          data: formData,
+          success: function (response) {
+            // Processa a resposta do servidor
+            if (response.trim() === 'success') {
+              showToast({
+                text: 'Conta criada com sucesso!',
+                className: 'acertou',
+                duration: 3000,
+                position: 'top-right', // Certifique-se de que está definido corretamente
+                close: true // Mostrar o botão de fechar
+              });
+              setTimeout(function () {
+                window.location.href = 'login.php';
+              }, 3000);
+            } else if (response.trim() === 'error') {
+              showToast({
+                text: 'Erro ao criar conta!',
+                className: 'errou',
+                duration: 3000,
+                position: 'top-right', // Certifique-se de que está definido corretamente
+                close: true // Mostrar o botão de fechar
+              });
+            } else {
+              showToast({
+                text: 'Erro desconhecido. Tente novamente mais tarde.',
+                className: 'errou',
+                duration: 3000,
+                position: 'top-right', // Certifique-se de que está definido corretamente
+                close: true // Mostrar o botão de fechar
+              });
+            }
+          },
+          error: function () {
+            showToast({
+              text: 'Erro na comunicação com o servidor. Tente novamente mais tarde.',
+              className: 'errou',
+              duration: 3000,
+              position: 'top-right', // Certifique-se de que está definido corretamente
+              close: true // Mostrar o botão de fechar
+            });
+          }
+        });
+      });
+    });
+  </script>
+
+
+</body>
 </body>
 
 </html>
