@@ -158,3 +158,9 @@ a.nav-link:hover {
     width: 36px;
     height: 36px;
 }
+
+.jaexistemail {
+    background-color: red;
+    color: white;
+    border-radius: 8px;
+}

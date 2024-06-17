@@ -1,4 +1,4 @@
-document.getElementById("registo-form").addEventListener("submit", function (event) {
+/**document.getElementById("registo-form").addEventListener("submit", function (event) {
     event.preventDefault(); // Prevent the default form submission
 
     // vou buscar os valores
@@ -66,4 +66,31 @@ document.getElementById("registo-form").addEventListener("submit", function (eve
             })
     }
 
+});
+
+**/
+
+$(document).ready(function() {
+    function showToast(options) {
+        Toastify({
+            text: options.text,
+            duration: options.duration || 3000,
+            close: options.close === undefined ? true : options.close,
+            position: options.position || 'top-right', // Combinação correta para a posição
+            className: options.className || 'jaexisteemail'
+        }).showToast();
+    }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const emailJaExisteParam = urlParams.get('jaexiste');
+    const emailJaExiste = emailJaExisteParam === 'true';
+
+    if (emailJaExiste) {
+        showToast({
+            text: 'Este email já está registado!',
+            duration: 3000,
+            position: 'top-right', // Certifique-se de que está definido corretamente
+            close: true // Mostrar o botão de fechar
+        });
+    }
 });

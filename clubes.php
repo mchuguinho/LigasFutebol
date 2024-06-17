@@ -73,7 +73,7 @@
       </div>
     </nav>
     <a href="index.php"><img src="img/backarrow.png" id="backarrow"></a>
-    <h1 class="h1" id="header"></h1>
+    <h1 class="header"></h1>
     <div class="container">
       <div class="row" id="clubs">
       <?php

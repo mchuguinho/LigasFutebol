@@ -28,14 +28,24 @@ session_start();
 
         if($password === $passwordC){
 
+          $verifica = "SELECT * FROM user WHERE email = '$email'";
+          $result = mysqli_query($con,$verifica);
+          $jaexiste = false;
+
+          if(mysqli_num_rows($result) > 0){
+            $jaexiste = true;
+            header("Location: registo.html?jaexiste=true");
+            exit();
+          }
 
           $query = "INSERT INTO user (nome,email,password,tipo) VALUES ('$nome','$email','$password',1)";
-    
+          $criada = false;
+
           if(mysqli_query($con,$query)){
       
-      
-            header("Location: login.php");
-      
+            $criada = true;
+            header("Location: login.html?criada=true");
+            exit();
           }else{
       
             echo "burro";

@@ -1,4 +1,4 @@
-document.getElementById("login-form").addEventListener("submit", function (event) {
+/**document.getElementById("login-form").addEventListener("submit", function (event) {
     event.preventDefault(); // Prevent the default form submission
 
     // Recebe o email e password do formulário
@@ -37,4 +37,30 @@ document.getElementById("login-form").addEventListener("submit", function (event
         console.error("Error loading user data:", error);
         alert("An error occurred. Please try again later.");
     });
+});
+**/
+
+$(document).ready(function() {
+    function showToast(options) {
+        Toastify({
+            text: options.text,
+            duration: options.duration || 3000,
+            close: options.close === undefined ? true : options.close,
+            position: options.position || 'top-right', // Combinação correta para a posição
+            className: options.className || 'jaexisteemail'
+        }).showToast();
+    }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const contaCriadaParam = urlParams.get('criada');
+    const contaCriada = contaCriadaParam === 'true';
+
+    if (contaCriada) {
+        showToast({
+            text: 'Conta criada com sucesso!',
+            duration: 3000,
+            position: 'top-right', // Certifique-se de que está definido corretamente
+            close: true // Mostrar o botão de fechar
+        });
+    }
 });
