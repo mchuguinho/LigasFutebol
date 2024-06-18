@@ -2,6 +2,7 @@ $("#modalInfo").on("show.bs.modal", function (event) {
   const button = $(event.relatedTarget);
   const nome = button.data("nome");
   const cidade = button.data("cidade");
+  const fundacao = button.data("fundacao");
 
   const modal = $(this);
   modal.find(".modal-title").text(nome);
@@ -12,11 +13,13 @@ $("#modalInfo").on("show.bs.modal", function (event) {
   const clubImage = `<div id="photosContainer"></div>`;
   const notmyguilt = `<p><b>Imagem Gerada pelo API através do nome do Clube</b></p>`;
   const cityText = `<p><strong>Cidade:</strong> ${cidade} </p>`;
+  const fundacaoText= `<p><strong>Fundada em: </strong> ${fundacao} </p>`;
   const temp = `<div id="meteoContainer"></div>`;
 
   modalBody.innerHTML += notmyguilt;
   modalBody.innerHTML += clubImage;
   modalBody.innerHTML += cityText;
+  modalBody.innerHTML += fundacaoText;
   modalBody.innerHTML += temp;
 
   // Call the API functions
