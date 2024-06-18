@@ -33,14 +33,10 @@ exampleModal.addEventListener("show.bs.modal", function (event) {
   var recipient = button.getAttribute("data-bs-whatever");
   var modalTitle = exampleModal.querySelector(".modal-title");
 
+  document.getElementById("id_userInp").value= recipient;
+
   modalTitle.textContent = "Editar user: " + recipient;
 
-  var idInput = exampleModal.querySelector("#id_user");
-  idInput.value = recipient;
-});
-
-document.getElementById("saveChangesButton").addEventListener("click", function() {
-  document.getElementById("updateUserForm").submit();
 });
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

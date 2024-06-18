@@ -1,26 +1,35 @@
 <?php 
-    session_start();
-    include ('connection.php');
-    $user_id = $_SESSION['user_id'];
+session_start();
+include ('connection.php');
 
-    if($_SERVER['REQUEST_METHOD'] == "POST"){
-        $email = mysqli_real_escape_string($con, $_POST['email']);
-        $password = mysqli_real_escape_string($con, $_POST['password']);
-        $nome = mysqli_real_escape_string($con, $_POST['nome']);
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    $id_user = $_POST['id_userInp'];
+    $nome = $_POST['nomeUp'];
+    $apelido = $_POST['apelidoUp'];
+    $email = $_POST['emailUp'];
+    $pass = $_POST['passUp'];
 
-        $query = "UPDATE user SET email = '$email', password = '$password', nome = '$nome' WHERE id_user = '$user_id'";
 
-        $result = mysqli_query($con, $query);
-        
-        if(mysqli_query($con, $query)) {
+    // Juntar os nomes
+    $nomeCompleto = $nome . ' ' . $apelido;
 
-            session_destroy();
-            
-            header("Location: login.php");
-            exit();
-        } else {
-            header("Location: dados.php");
-        }
+    // Prevenir SQL injection
+    $id_user = mysqli_real_escape_string($con, $id_user);
+    $nomeCompleto = mysqli_real_escape_string($con, $nomeCompleto);
+    $email = mysqli_real_escape_string($con, $email);
+    $pass = mysqli_real_escape_string($con, $pass);
+
+    $query2 = "UPDATE `user` SET `nome`='$nomeCompleto', `email`='$email', `password`='$pass' WHERE `id_user` = $id_user";
+
+
+    $result= mysqli_query($con,$query2);
+
+    if ($result) {
+        header("Location: uadmin.php");
+        exit();
+    } else {
+        echo "Deu errado amigo, tente a seguir!!";
     }
-    mysqli_close($con);
+}
+mysqli_close($con);
 ?>

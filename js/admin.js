@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------------- METER AS LIGAS NO CARD -------------------------------------------------------------------------------------
-
+/*
 fetch("js/leagues.json")
   .then((response) => response.json())
   .then((data) => {
@@ -25,7 +25,7 @@ fetch("js/leagues.json")
   })
   .catch((error) => console.error("Error loading JSON:", error));
 
-
+*/
 //----------------------------------------------------------------------------- METER OS CLUBS NA MODAL -------------------------------------------------------------------------------------
 
 var exampleModal = document.getElementById("modalClub");
@@ -101,6 +101,25 @@ exampleModal3.addEventListener("show.bs.modal", function (event) {
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
+var exampleModal = document.getElementById("modalLiga");
+
+exampleModal.addEventListener("show.bs.modal", function (event) {
+  var button = event.relatedTarget;
+  var recipient = button.getAttribute("data-bs-whatever");
+  var modalTitle = exampleModal.querySelector(".modal-title");
+
+  modalTitle.textContent = "Editar Liga: " + recipient;
+
+  var idInput = exampleModal.querySelector("#id_liga");
+  idInput.value = recipient;
+});
+
+document.getElementById("saveChangesButton").addEventListener("click", function() {
+  document.getElementById("updateLigaForm").submit();
+});
+
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 function showAlertEliminado() {
   Toastify({

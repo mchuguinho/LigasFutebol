@@ -244,34 +244,6 @@ document.addEventListener('DOMContentLoaded', function () {
             ligaAction.value = 'createLiga';
         }
     });
-
-    var modalClub = document.getElementById('modalClub');
-    modalClub.addEventListener('show.bs.modal', function (event) {
-        var button = event.relatedTarget;
-        var id = button.getAttribute('data-id');
-        var nome = button.getAttribute('data-nome');
-
-        var modalTitle = modalClub.querySelector('.modal-title');
-        var clubLigaId = modalClub.querySelector('#clubLigaId');
-
-        modalTitle.textContent = 'Gerir Clubes da Liga: ' + nome;
-        clubLigaId.value = id;
-
-        fetchClubes(id);
-    });
-
-    function fetchClubes(ligaId) {
-        var clubesTabela = document.getElementById('clubesTabela');
-        clubesTabela.innerHTML = '';
-        $.ajax({
-            url: 'fetch_clubes.php',
-            type: 'GET',
-            data: { liga_id: ligaId },
-            success: function (data) {
-                clubesTabela.innerHTML = data;
-            }
-        });
-    }
 });
 
 function showAlertGuardado() {
