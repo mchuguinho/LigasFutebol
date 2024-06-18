@@ -59,8 +59,19 @@
 
       <div class="card">
         <div class="card-body">
-
-          <h3 class="card-title">Gerir Clubes da Liga</h3>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-1">
+                <a href="admin.php">
+                  <img src="img/backarrow.png" id="backarrow">
+                </a>
+              </div>
+              <div class="col-md-11 content-yes">
+                <h3 class="card-title">Gerir Clubes da Liga</h3>
+              </div>
+            </div>
+            
+          </div>
           <div class="table-responsive">
             <table class="table table-striped align-middle">
               <thead>
