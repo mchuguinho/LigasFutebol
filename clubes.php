@@ -23,7 +23,7 @@
   <link rel="stylesheet" href="css/style.css" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.js"></script>
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
@@ -95,7 +95,7 @@
                 echo '<h3 class="card-title">'.$row['nome'].'</h3>';
                 echo '<p class="card-text">Clique no botão abaixo para ver mais detalhes sobre este clube!</p>';
                 echo '<div class="container info-fav">';
-                echo '<button class="btn btn-dark btn-card" data-club="'.$row['id_clube'].'" data-nome="'.$row['nome'].'" data-cidade="'.$row['cidade'].'" onclick="requestMeteoApi("'.$row['cidade'].'");requestFlickrApi("'.$row['nome'].'")" data-toggle="modal" data-target="#modalInfo">Ver mais detalhes</button>';
+                echo '<button class="btn btn-dark btn-card" data-club="'.$row['id_clube'].'" data-nome="'.$row['nome'].'" data-cidade="'.$row['cidade'].'" onclick="requestMeteoApi(\''.$row['cidade'].'\');requestFlickrApi(\''.$row['nome'].'\')" data-toggle="modal" data-target="#modalInfo">Ver mais detalhes</button>';
                 echo '<a href="addfav.php?id_clube='.$row['id_clube'].'" style="align-content: center; padding-left: 10px;"><img src="img/heart.png" class="icon-fav" ></a>';
                 echo '</div>';
               echo '</div>';
