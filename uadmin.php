@@ -66,7 +66,8 @@ if (isset($_GET['id_user'])) {
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <link rel="stylesheet" href="css/style.css">
   <script src="jquery/jquery-3.6.0.min.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 </head>
 
 <body>
@@ -176,7 +177,61 @@ if (isset($_GET['id_user'])) {
 
 <script src="js/uadmin.js"></script>
 
+<script>
+    $(document).ready(function () {
+      $('#updateUserForm').submit(function (e) {
+        e.preventDefault(); // Evita a submissão normal do formulário
 
+        // Obtém os dados do formulário
+        var formData = $(this).serialize();
+        function showToast(options) {
+          Toastify({
+            text: options.text,
+            duration: options.duration || 3000,
+            close: options.close === undefined ? true : options.close,
+            position: options.position || 'top-right', // Combinação correta para a posição
+            className: options.className || ''
+          }).showToast();
+        }
+        // Envia a requisição AJAX
+        $.ajax({
+          type: 'POST',
+          url: 'updateuser.php', // Arquivo PHP onde o formulário será submetido
+          data: formData,
+          success: function (response) {
+            // Processa a resposta do servidor
+            if (response.trim() === 'success') {
+              showToast({
+                text: 'Dados atualizados com sucesso!',
+                duration: 3000,
+                position: 'top-right', // Certifique-se de que está definido corretamente
+                close: true // Mostrar o botão de fechar
+              });
+              setTimeout(function () {
+                window.location.href = 'uadmin.php';
+              }, 3000)
+            } else if (response.trim() === 'error') {
+              // Mostra mensagem de erro ou executa ação para login falhou
+              showToast({
+                text: 'Não deu para atualizar os dados!',
+                duration: 3000,
+                position: 'top-right', // Certifique-se de que está definido corretamente
+                close: true // Mostrar o botão de fechar
+              });
+            } else if (response.trim() === 'missing') {
+              showToast({
+                text: 'Todos os campos são de preenchimento obrigatório!',
+                duration: 3000,
+                position: 'top-right', // Certifique-se de que está definido corretamente
+                close: true // Mostrar o botão de fechar
+              });
+            }
+
+          }
+        });
+      });
+    });
+  </script>
 </body>
 
 </html>
