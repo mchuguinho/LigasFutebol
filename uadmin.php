@@ -6,23 +6,7 @@ include ('connection.php');
 $query = "SELECT * FROM user";
 $result = mysqli_query($con, $query);
 
-// Atualizar user
-if (isset($_POST["id_user"]) && isset($_POST["nomeUp"]) && isset($_POST["apelidoUp"]) && isset($_POST["emailUp"]) && isset($_POST["passUp"])) {
 
-    $id_user = $_POST['id_user'];
-    $nome = $_POST['nomeUp'];
-    $apelido = $_POST['apelidoUp'];
-    $email = $_POST['emailUp'];
-    $pass = $_POST['passUp'];
-
-    $query2 = "UPDATE `user` SET `nome`='$nome $apelido', `email`='$email', `password`='$pass' WHERE `id_user` = $id_user";
-
-    if (mysqli_query($con, $query2)) {
-        header("Location: uadmin.php");
-    } else {
-        echo "Something went wrong. Please try again later.";
-    }
-}
 
 
 // Eliminar user
@@ -37,11 +21,9 @@ if (isset($_GET['id_user'])) {
   $query3 = "DELETE FROM `user` WHERE `id_user` = $iduser";
   $result3 = mysqli_query($con, $query3);
 
-  if ($result2) {
+  if ($result3) {
 
     header("Location: uadmin.php");
-
-  exit();
 
       echo "<script>
           Toastify({
@@ -167,11 +149,9 @@ if (isset($_GET['id_user'])) {
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
 
-
-          <div class="modal-body table-responsive form-group">
-
-          <form method="POST" id="updateUserForm">
-              <input type="hidden" id="id_user" name="id_user">
+          <form action="updateuser.php" method="POST" id="updateUserForm">
+            <div class="modal-body table-responsive form-group">
+              <input type="hidden" id="id_userInp" name="id_userInp">
               <table class="table table-striped align-middle table-responsive table-sm">
                 <thead>
                   <tr>
@@ -182,20 +162,20 @@ if (isset($_GET['id_user'])) {
                   </tr>
                 </thead>
               </table>
-            </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+              <button type="submit" class="btn btn-success">Guardar Alterações</button>
+            </div>
+          </form>
 
+        </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-        <button type="button" class="btn btn-success" id="saveChangesButton">Guardar Alterações</button>
-      </div>
-    </div>
-  </div>
-</div>
     </div>
   </div>
 
 <script src="js/uadmin.js"></script>
+
 
 </body>
 

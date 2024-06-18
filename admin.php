@@ -10,6 +10,7 @@
   $result2 = mysqli_query($con, $query2);
 
   if (isset($_GET['id_liga'])) {
+
     $idliga = $_GET['id_liga'];
 
     $query3 = "DELETE FROM `liga` WHERE `id_liga` = $idliga";
@@ -41,6 +42,25 @@
             }).showToast();
         </script>";
     }
+}
+
+// Atualizar liga
+if (isset($_POST["id_liga"]) && isset($_POST["nomeUp"]) && isset($_POST["logoUp"])) {
+
+  $id_liga = $_POST['id_liga'];
+  $nome = $_POST['nomeUp'];
+  $logo = $_POST['logoUp'];
+
+  $query3 = "UPDATE `liga` SET `nome`='$nome', `logotipo`='$logo' WHERE `id_liga` = $id_liga";
+
+  $result3 = mysqli_query($con, $query3);
+
+  if ($result3) {
+      header("Location: uadmin.php");
+      exit();
+  } else {
+      echo "Something went wrong. Please try again later.";
+  }
 }
 
 ?>
@@ -152,21 +172,25 @@
           </div>
           <div class="modal-body table-responsive">
 
+
+          <form method="POST" id="updateLigaForm">
+          <input type="hidden" id="id_liga" name="id_liga">
             <table class="table table-striped align-middle table-responsive table-sm">
               <thead>
                 <tr>
-                  <th scope="col"><input type="nome" class="form-control" id="idUser" placeholder="Nome"></th>
-                  <th scope="col"><input type="nome" class="form-control" id="idUser" placeholder="Logo (??)"></th>
+                  <th scope="col"><input type="nome" class="form-control" id="nomeUp" placeholder="Nome"></th>
+                  <th scope="col"><input type="nome" class="form-control" id="logoUp" placeholder="Caminho do Logo"></th>
                 </tr>
               </thead>
               <tbody id="mLiga">
               </tbody>
             </table>
+          </form>
 
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-              <button type="button" class="btn btn-success btn-outline-light" data-bs-toggle="modal" data-bs-target="#modalV2" onclick="showAlertGuardado()">Guardar Alterações</button>
+              <button type="button" class="btn btn-success btn-outline-light" id="saveChangesButton" data-bs-toggle="modal" data-bs-target="#modalV2" onclick="showAlertGuardado()" id="saveChangesButton">Guardar Alterações</button>
             </div>
           </div>
         </div>
@@ -239,7 +263,7 @@
       </div>
     </div>
   </div>
-</div>
+  </div>
 
   </div>
   </div>
