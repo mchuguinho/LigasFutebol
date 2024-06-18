@@ -3,9 +3,6 @@ $("#modalInfo").on("show.bs.modal", function (event) {
   const nome = button.data("nome");
   const cidade = button.data("cidade");
 
-  console.log(nome);
-  console.log(cidade);
-
   const modal = $(this);
   modal.find(".modal-title").text(nome);
 
