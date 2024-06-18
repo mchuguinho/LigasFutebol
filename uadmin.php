@@ -6,6 +6,9 @@ include ('connection.php');
 $query = "SELECT * FROM user";
 $result = mysqli_query($con, $query);
 
+
+
+
 // Eliminar user
 if (isset($_GET['id_user'])) {
   $iduser = $_GET['id_user'];

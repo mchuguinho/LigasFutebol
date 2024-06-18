@@ -1,6 +1,6 @@
-<?php 
+<?php
 session_start();
-include ('connection.php');
+include('connection.php');
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $id_user = $_POST['id_userInp'];
@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $pass = $_POST['passUp'];
 
     // Check if any of the required fields are empty
-    if (!empty($id_user) && !empty($nome) && !empty($apelido) && !empty($email) && !empty($pass)) {
+    if (!empty($id_user) && !empty($nome) && !empty($email) && !empty($pass)) {
         // Juntar os nomes
         $nomeCompleto = $nome . ' ' . $apelido;
 
@@ -22,16 +22,17 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
         $query2 = "UPDATE `user` SET `nome`='$nomeCompleto', `email`='$email', `password`='$pass' WHERE `id_user` = $id_user";
 
-        $result= mysqli_query($con,$query2);
+        $result = mysqli_query($con, $query2);
 
         if ($result) {
             echo 'success';
         } else {
-            echo "error";
+            echo 'error';
         }
     } else {
-        echo "missing";
+        echo 'missing';
     }
 }
+
 mysqli_close($con);
 ?>
