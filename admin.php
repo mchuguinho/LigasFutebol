@@ -91,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 </head>
 <body>
-<div class="maskBlack">
+<div class="maskBlack" style="height: -webkit-fill-available">
     <nav class="navbar navbar-expand-sm bg-info navbar-dark bg-dark">
         <div class="container-fluid">
             <h4 class="text-white">DASHBOARD</h4>
@@ -244,34 +244,6 @@ document.addEventListener('DOMContentLoaded', function () {
             ligaAction.value = 'createLiga';
         }
     });
-
-    var modalClub = document.getElementById('modalClub');
-    modalClub.addEventListener('show.bs.modal', function (event) {
-        var button = event.relatedTarget;
-        var id = button.getAttribute('data-id');
-        var nome = button.getAttribute('data-nome');
-
-        var modalTitle = modalClub.querySelector('.modal-title');
-        var clubLigaId = modalClub.querySelector('#clubLigaId');
-
-        modalTitle.textContent = 'Gerir Clubes da Liga: ' + nome;
-        clubLigaId.value = id;
-
-        fetchClubes(id);
-    });
-
-    function fetchClubes(ligaId) {
-        var clubesTabela = document.getElementById('clubesTabela');
-        clubesTabela.innerHTML = '';
-        $.ajax({
-            url: 'fetch_clubes.php',
-            type: 'GET',
-            data: { liga_id: ligaId },
-            success: function (data) {
-                clubesTabela.innerHTML = data;
-            }
-        });
-    }
 });
 
 function showAlertGuardado() {
