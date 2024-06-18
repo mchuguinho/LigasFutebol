@@ -91,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 </head>
 <body>
-<div class="maskBlack">
+<div class="maskBlack" style="height: -webkit-fill-available">
     <nav class="navbar navbar-expand-sm bg-info navbar-dark bg-dark">
         <div class="container-fluid">
             <h4 class="text-white">DASHBOARD</h4>

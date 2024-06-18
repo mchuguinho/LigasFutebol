@@ -72,8 +72,16 @@
         </div>
       </div>
     </nav>
-    <a href="index.php"><img src="img/backarrow.png" id="backarrow"></a>
-    <h1 class="header"></h1>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-1">
+          <a href="index.php"><img src="img/backarrow.png" id="backarrow"></a>
+        </div>
+        <div class="col-md-11 content-yes">
+          <h1 id="titulo" class="header"></h1>
+        </div>
+      </div>
+    </div>
     <div class="container">
       <div class="row" id="clubs">
       <?php
@@ -121,6 +129,15 @@
     </div>
   </div>
   </div>
+  <script>
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+
+    const liga = urlParams.get('nome_liga');
+    const titulo = document.getElementById('titulo');
+    titulo.innerHTML = liga;
+
+  </script>
   <script src="js/clubes.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"

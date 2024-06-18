@@ -83,7 +83,7 @@ $result = mysqli_query($con, $query);
             echo '<div class="card-body">';
             echo '<h3 class="card-title">' . $row['nome'] . '</h3>';
             echo '<p class="card-text">Clique no botão abaixo para ver os clubes que estão nesta liga!</p>';
-            echo '<a class="btn btn-dark btn-card" onclick="showTeams(' . $row['nome'] . ')" href="clubes.php?id_liga=' . $row['id_liga'] . '" role="button" >Ver clubes</a>';
+            echo '<a class="btn btn-dark btn-card" onclick="showTeams(' . $row['nome'] . ')" href="clubes.php?id_liga=' . $row['id_liga'] . '&nome_liga='.$row['nome'].'" role="button" >Ver clubes</a>';
             echo '</div>';
             echo '</div>';
             echo '</div>';

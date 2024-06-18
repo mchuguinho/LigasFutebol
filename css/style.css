@@ -134,8 +134,8 @@ a.nav-link:hover {
 }
 
 #backarrow {
-    width: 5%;
-    height: 11%;
+    width: 80px;
+    height: auto;
 }
 
 .nav-item {
@@ -167,4 +167,8 @@ a.nav-link:hover {
 .errou {
     background-color: red !important;
     color: white !important;
+}
+
+.content-yes {
+    place-content: center;
 }

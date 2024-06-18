@@ -72,8 +72,16 @@
         </div>
       </div>
     </nav>
-    <a href="index.php"><img src="img/backarrow.png" id="backarrow"></a>
-    <h1 class="header">Os seus clubes favoritos</h1>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-1">
+          <a href="index.php"><img src="img/backarrow.png" id="backarrow"></a>
+        </div>
+        <div class="col-md-11 content-yes">
+          <h1 id="titulo" class="header">Os seus clubes favoritos</h1>
+        </div>
+      </div>
+    </div>
     <div class="container">
       <div class="row" id="clubs">
       <?php
