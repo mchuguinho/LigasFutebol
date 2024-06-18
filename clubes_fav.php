@@ -29,7 +29,7 @@
 </head>
 
 <body>
-  <div class="maskBlack">
+  <div class="maskBlack" style="height: -webkit-fill-available;">
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
       <div class="container-fluid">
         <a class="navbar-brand"><img src="img/logo.png" id="logo" /></a>
