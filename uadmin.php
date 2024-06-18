@@ -126,7 +126,7 @@ if (isset($_GET['id_user'])) {
                   echo '<td class="align-middle">' . $row['email'] . '</td>';
                   echo '<td class="align-middle">' . $row['password'] . '</td>';
                   echo '<td class="align-middle"><button type="button" class="btn btn-primary btn-outline-light" data-bs-toggle="modal" data-bs-target="#modalUser" data-bs-whatever="' . $row['id_user'] . '">Editar User</button></td>';
-                  echo '<td class="align-middle"><a class="btn btn-danger btn-outline-light" onclick="showAlertEliminado()" href="uadmin.php?id_user=' . $row['id_user'] . '"  role="button">Eliminar</a></td>';
+                  echo '<td class="align-middle"><a class="btn btn-danger btn-outline-light" onclick="return confirm(\'Tem certeza que deseja deletar este User?\')" href="uadmin.php?id_user=' . $row['id_user'] . '"  role="button">Eliminar</a></td>';
                   echo '</tr>';
                 }
               }
