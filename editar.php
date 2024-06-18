@@ -1,14 +1,12 @@
 <?php
 
-    session_start();
-    include ('connection.php');
+  session_start();
+  include ('connection.php');
 
-    $idliga = $_GET['id_liga'] ;
+  $idliga = $_GET['id_liga'] ;
 
-    $query = "SELECT clubes.*, liga.nome AS nome_liga FROM clubes INNER JOIN liga ON clubes.liga = liga.id_liga WHERE clubes.liga = $idliga";
-    $result = mysqli_query($con, $query);
-
-
+  $query = "SELECT clubes.*, liga.nome AS nome_liga FROM clubes INNER JOIN liga ON clubes.liga = liga.id_liga WHERE clubes.liga = $idliga";
+  $result = mysqli_query($con, $query);
 ?>
 
 <!DOCTYPE html>
@@ -25,8 +23,9 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <link rel="stylesheet" href="css/style.css">
-  <script src="jquery/jquery-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 </head>
 
 <body>
@@ -50,8 +49,7 @@
         </ul>
         <li class="nav-item">
           <a class="btn btn-outline-light" href="index.php" role="button">Sair</a>
-
-          </ul>
+        </li>
 
       </div>
     </nav>
@@ -71,7 +69,6 @@
                 <h3 class="card-title">Gerir Clubes da Liga</h3>
               </div>
             </div>
-            
           </div>
           <div class="table-responsive">
             <table class="table table-striped align-middle">
@@ -88,35 +85,33 @@
                 </tr>
               </thead>
               <tbody id="userAdmin">
-
-              <?php
-              if (mysqli_num_rows($result) > 0) {
-                while ($row = mysqli_fetch_assoc($result)) {
-                  $clubes[] = $row;
-                  echo '<tr>';
-                  echo '<th class="align-middle">' . $row['id_clube'] . '</th>';
-                  echo '<td class="align-middle"><img id="imagemAdmin" class="img-fluid logocircular" src="img/clubs/' . $row['logotipo'] . '"></td>';
+                <?php
+                if (mysqli_num_rows($result) > 0) {
+                  while ($row = mysqli_fetch_assoc($result)) {
+                    echo '<tr>';
+                    echo '<th class="align-middle">' . $row['id_clube'] . '</th>';
+                    echo '<td class="align-middle"><img id="imagemAdmin" class="img-fluid logocircular" src="img/clubs/' . $row['logotipo'] . '"></td>';
                   echo '<td class="align-middle">' . $row['nome_liga'] . '</td>';
-                  echo '<td class="align-middle">' . $row['nome'] . '</td>';
-                  echo '<td class="align-middle">' . $row['cidade'] . '</td>';
-                  echo '<td class="align-middle">' . $row['fundacao'] . '</td>';
-                  echo '<td class="align-middle"><button type="button" class="btn btn-primary btn-outline-light" data-bs-toggle="modal" data-bs-target="#modalUser" data-bs-whatever="' . $row['id_clube'] . '">Editar Clube</button></td>';
-                  echo '<td class="align-middle"><a class="btn btn-danger btn-outline-light" href="eliminarClube.php?id_liga=' . $row['liga'] . '&id_clube='. $row['id_clube'] . '" role="button">Eliminar</a></td>';
-                  echo '</tr>';
+                    echo '<td class="align-middle">' . $row['nome'] . '</td>';
+                    echo '<td class="align-middle">' . $row['cidade'] . '</td>';
+                    echo '<td class="align-middle">' . $row['fundacao'] . '</td>';
+                    echo '<td class="align-middle"><button type="button" class="btn btn-primary btn-outline-light" data-bs-toggle="modal" data-logo="' . $row['logotipo'] . '" data-nome="' . $row['nome'] . '" data-cidade="' . $row['cidade'] . '" data-bs-target="#modalClube" data-bs-whatever="' . $row['id_clube'] . '">Editar Clube</button></td>';
+                    echo '<td class="align-middle"><a class="btn btn-danger btn-outline-light" href="eliminarClube.php?id_liga=' . $row['liga'] . '&id_clube='. $row['id_clube'] . '" role="button">Eliminar</a></td>';
+                    echo '</tr>';
+                  }
                 }
-              }
-        ?>
+                ?>
               </tbody>
             </table>
           </div>
         </div>
 
         <div class="card-footer">
-                <button type="button" class="btn btn-dark btn-outline-light" data-bs-toggle="modal" data-bs-target="#modalLiga" data-id="" data-nome="" data-logo="">Adicionar</button>
-            </div>  
+          <button type="button" class="btn btn-dark btn-outline-light" data-bs-toggle="modal"
+            data-bs-target="#modalClube">Adicionar</button>
+        </div>
 
       </div>
-          
 
     </div>
     
@@ -153,25 +148,26 @@
 
 
 
-    <!-- MODAL Clube-->
-    <div class="modal fade" id="modalUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- MODAL Clube -->
+    <div class="modal fade" id="modalClube" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Modal Clube</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-
-          <form action="updateuser.php" method="POST" id="updateUserForm">
+          <form action="updateclube.php" method="POST" id="updateClubForm">
             <div class="modal-body table-responsive form-group">
               <input type="hidden" id="id_clubeInp" name="id_clubeInp">
               <table class="table table-striped align-middle table-responsive table-sm">
                 <thead>
                   <tr>
-                    <th scope="col"><input type="text" class="form-control" id="nomeUp" name="nomeUp" placeholder="Nome"></th>
-                    <th scope="col"><input type="text" class="form-control" id="apelidoUp" name="apelidoUp" placeholder="Apelido"></th>
-                    <th scope="col"><input type="email" class="form-control" id="emailUp" name="emailUp" placeholder="Email"></th>
-                    <th scope="col"><input type="password" class="form-control" id="passUp" name="passUp" placeholder="Password"></th>
+                    <th scope="col"><input type="text" class="form-control" id="clubeNome" name="clubeNome"
+                        placeholder="Nome"></th>
+                    <th scope="col"><input type="text" class="form-control" id="clubeCidade" name="clubeCidade"
+                        placeholder="Cidade"></th>
+                    <th scope="col"><input type="text" class="form-control" id="clubeLogo" name="clubeLogo"
+                        placeholder="Logo"></th>
                   </tr>
                 </thead>
               </table>
@@ -181,7 +177,6 @@
               <button type="submit" class="btn btn-success">Guardar Alterações</button>
             </div>
           </form>
-
           
 
         </div>
@@ -189,6 +184,89 @@
     </div>
   </div>
 
+  <script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var modalClube = document.getElementById('modalClube');
+      modalClube.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget;
+        var id = button.getAttribute('data-bs-whatever');
+        var nome = button.getAttribute('data-nome');
+        var logo = button.getAttribute('data-logo');
+        var cidade = button.getAttribute('data-cidade');
+
+        var modalTitle = modalClube.querySelector('.modal-title');
+        var clubeId = modalClube.querySelector('#id_clubeInp');
+        var clubeNome = modalClube.querySelector('#clubeNome');
+        var clubeLogo = modalClube.querySelector('#clubeLogo');
+        var clubeCidade = modalClube.querySelector('#clubeCidade');
+
+        if (id) {
+          modalTitle.textContent = 'Editar Clube';
+          clubeId.value = id;
+          clubeNome.value = nome;
+          clubeLogo.value = logo;
+          clubeCidade.value = cidade;
+        } else {
+          modalTitle.textContent = 'Adicionar Clube';
+          clubeId.value = '';
+          clubeNome.value = '';
+          clubeLogo.value = '';
+          clubeCidade.value = '';
+        }
+      });
+    });
+
+    $(document).ready(function () {
+      $('#updateClubForm').submit(function (e) {
+        e.preventDefault(); // Evita a submissão normal do formulário
+
+        // Obtém os dados do formulário
+        var formData = $(this).serialize();
+        console.log("Dados do formulário: ", formData);  // Adicione esta linha
+
+        // Função para mostrar notificações
+        function showToast(options) {
+          Toastify({
+            text: options.text,
+            duration: options.duration || 3000,
+            close: options.close === undefined ? true : options.close,
+            position: options.position || 'top-right',
+            className: options.className || ''
+          }).showToast();
+        }
+
+        // Envia a requisição AJAX
+        $.ajax({
+          type: 'POST',
+          url: 'updateclube.php', // Arquivo PHP onde o formulário será submetido
+          data: formData,
+          success: function (response) {
+            // Processa a resposta do servidor
+            if (response.trim() === 'success') {
+              showToast({
+                text: 'Clube atualizado com sucesso!',
+                duration: 3000,
+                position: 'top-right',
+                close: true // Mostrar o botão de fechar
+              });
+              setTimeout(function () {
+                window.location.href = 'admin.php';
+              }, 3000);
+            } else if (response.trim() === 'error') {
+              showToast({
+                text: 'Não deu para atualizar os dados!',
+                duration: 3000,
+                position: 'top-right',
+                close: true // Mostrar o botão de fechar
+              });
+            }
+          }
+        });
+      });
+    });
+
+  </script>
 </body>
 
 </html>
