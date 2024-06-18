@@ -31,6 +31,7 @@ CREATE TABLE clubes (
     nome VARCHAR(255),
     cidade VARCHAR(255),
     logotipo VARCHAR(255),
+    fundacao VARCHAR(255),
     PRIMARY KEY(id_clube),
     FOREIGN KEY (liga) REFERENCES liga(id_liga)
 );
@@ -65,19 +66,20 @@ VALUES
 
 INSERT INTO clubes
 VALUES
-(0, 0, "Sporting CP", "Lisbon", "Sporting.png"),
-(1, 0, "SL Benfica", "Lisbon", "Benfica.png"),
-(2, 0, "FC Porto", "Oporto", "Porto.png"),
-(3, 1, "Real Madrid", "Madrid", "RealMadrid.png"),
-(4, 1, "FC Barcelona", "Barcelona", "Barcelona.png"),
-(5, 1, "Atlético Madrid", "Madrid", "AtleticoMadrid.png"),
-(6, 2, "Manchester City", "Manchester", "City.png"),
-(7, 2, "Liverpool FC", "Liverpool", "Liverpool.png"),
-(8, 2, "Chelsea", "London", "Chelsea.png"),
-(9, 3, "Paris SG", "Paris", "PSG.png"),
-(10, 3, "Olympique de Marseille", "Marseille", "Marseille.png"),
-(11, 3, "AS Monaco", "Monaco", "Monaco.png"),
-(12, 4, "FC Bayern", "Munich", "Bayern.png"),
-(13, 4, "Borussia Dortmund", "Dortmund", "Dortmund.png"),
-(14, 4, "Bayer Leverkusen", "Leverkusen", "Leverkusen.png");
+(0, 0, "Sporting CP", "Lisbon", "Sporting.png", 1906),
+(1, 0, "SL Benfica", "Lisbon", "Benfica.png", 1904),
+(2, 0, "FC Porto", "Oporto", "Porto.png", 1893),
+(3, 1, "Real Madrid", "Madrew", "RealMadrid.png", 1902),
+(4, 1, "FC Barcelona", "Barcelona", "Barcelona.png", 1899),
+(5, 1, "Atlético Madrid", "Madrid", "AtleticoMadrid.png", 1903),
+(6, 2, "Manchester City", "Manchester", "City.png", 1880),
+(7, 2, "Liverpool FC", "Liverpool", "Liverpool.png", 1892),
+(8, 2, "Chelsea", "London", "Chelsea.png", 1905),
+(9, 3, "Paris SG", "Paris", "PSG.png", 1970),
+(10, 3, "Olympique de Marseille", "Marseille", "Marseille.png", 1899),
+(11, 3, "AS Monaco", "Monaco", "Monaco.png", 1924),
+(12, 4, "FC Bayern", "Munich", "Bayern.png", 1900),
+(13, 4, "Borussia Dortmund", "Dortmund", "Dortmund.png", 1909),
+(14, 4, "Bayer Leverkusen", "Leverkusen", "Leverkusen.png", 1904);
+
 

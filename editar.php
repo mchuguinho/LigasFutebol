@@ -1,50 +1,12 @@
 <?php
-session_start();
-include ('connection.php');
+  session_start();
+  include ('connection.php');
 
-// Obter todos os usuários
-$query = "SELECT * FROM user";
-$result = mysqli_query($con, $query);
+  $idliga = $_GET['id_liga'];
 
-// Eliminar user
-if (isset($_GET['id_user'])) {
-  $iduser = $_GET['id_user'];
+  $query = "SELECT clubes.*, liga.nome AS nome_liga FROM clubes INNER JOIN liga ON clubes.liga = liga.id_liga WHERE clubes.liga = $idliga";
+  $result = mysqli_query($con, $query);
 
-  $query2 = "DELETE FROM `clubes_favoritos` WHERE `user` = $iduser";
-  $result2 = mysqli_query($con, $query2);
-
-  if ($result2) {
-
-  $query3 = "DELETE FROM `user` WHERE `id_user` = $iduser";
-  $result3 = mysqli_query($con, $query3);
-
-  if ($result3) {
-
-    header("Location: uadmin.php");
-
-      echo "<script>
-          Toastify({
-              text: 'Dados eliminados com sucesso!',
-              duration: 3000,
-              close: true,
-              gravity: 'top',
-              backgroundColor: 'linear-gradient(to right, #ff0000, #ff0000)',
-          }).showToast();
-      </script>";
-
-  } else {
-      echo "<script>
-          Toastify({
-              text: 'Erro ao eliminar dados!',
-              duration: 3000,
-              close: true,
-              gravity: 'top',
-              backgroundColor: 'linear-gradient(to right, #ff0000, #ff0000)',
-          }).showToast();
-      </script>";
-  }
-}
-}
 
 ?>
 
@@ -98,15 +60,16 @@ if (isset($_GET['id_user'])) {
       <div class="card">
         <div class="card-body">
 
-          <h3 class="card-title">Gerir Users</h3>
+          <h3 class="card-title">Gerir Clubes da Liga</h3>
           <div class="table-responsive">
             <table class="table table-striped align-middle">
               <thead>
                 <tr>
                   <th scope="col">Id</th>
+                  <th scope="col">Logo</th>
                   <th scope="col">Nome</th>
-                  <th scope="col">Email</th>
-                  <th scope="col">Password</th>
+                  <th scope="col">Cidade</th>
+                  <th scope="col">Liga</th>
                   <th scope="col">Editar</th>
                   <th scope="col">Eliminar</th>
                 </tr>
@@ -116,14 +79,15 @@ if (isset($_GET['id_user'])) {
               <?php
               if (mysqli_num_rows($result) > 0) {
                 while ($row = mysqli_fetch_assoc($result)) {
-                  $users[] = $row;
+                  $clubes[] = $row;
                   echo '<tr>';
-                  echo '<th class="align-middle">' . $row['id_user'] . '</th>';
+                  echo '<th class="align-middle">' . $row['id_clube'] . '</th>';
+                  echo '<td class="align-middle"><img id="imagemAdmin" class="img-fluid logocircular" src="img/clubs/' . $row['logotipo'] . '"></td>';
                   echo '<td class="align-middle">' . $row['nome'] . '</td>';
-                  echo '<td class="align-middle">' . $row['email'] . '</td>';
-                  echo '<td class="align-middle">' . $row['password'] . '</td>';
-                  echo '<td class="align-middle"><button type="button" class="btn btn-primary btn-outline-light" data-bs-toggle="modal" data-bs-target="#modalUser" data-bs-whatever="' . $row['id_user'] . '">Editar User</button></td>';
-                  echo '<td class="align-middle"><a class="btn btn-danger btn-outline-light" onclick="return confirm(\'Tem certeza que deseja deletar este User?\')" href="uadmin.php?id_user=' . $row['id_user'] . '"  role="button">Eliminar</a></td>';
+                  echo '<td class="align-middle">' . $row['cidade'] . '</td>';
+                  echo '<td class="align-middle">' . $row['nome_liga'] . '</td>';
+                  echo '<td class="align-middle"><button type="button" class="btn btn-primary btn-outline-light" data-bs-toggle="modal" data-bs-target="#modalUser" data-bs-whatever="' . $row['id_clube'] . '">Editar Clube</button></td>';
+                  echo '<td class="align-middle"><a class="btn btn-danger btn-outline-light"  role="button">Eliminar</a></td>';
                   echo '</tr>';
                 }
               }
@@ -132,23 +96,28 @@ if (isset($_GET['id_user'])) {
             </table>
           </div>
         </div>
-      </div>
 
+        <div class="card-footer">
+                <button type="button" class="btn btn-dark btn-outline-light" data-bs-toggle="modal" data-bs-target="#modalLiga" data-id="" data-nome="" data-logo="">Adicionar</button>
+            </div>  
+
+      </div>
+          
 
     </div>
 
-    <!-- MODAL Users-->
+    <!-- MODAL Clube-->
     <div class="modal fade" id="modalUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal User</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Modal Clube</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
 
           <form action="updateuser.php" method="POST" id="updateUserForm">
             <div class="modal-body table-responsive form-group">
-              <input type="hidden" id="id_userInp" name="id_userInp">
+              <input type="hidden" id="id_clubeInp" name="id_clubeInp">
               <table class="table table-striped align-middle table-responsive table-sm">
                 <thead>
                   <tr>
