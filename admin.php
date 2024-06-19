@@ -15,7 +15,7 @@ if (isset($_GET['id_liga'])) {
         echo "<script>
             Toastify({
                 text: 'Dados eliminados com sucesso!',
-                duration: 3000,
+                duration: 1500,
                 close: true,
                 gravity: 'top',
                 backgroundColor: 'linear-gradient(to right, #ff0000, #ff0000)',
@@ -25,7 +25,7 @@ if (isset($_GET['id_liga'])) {
         echo "<script>
             Toastify({
                 text: 'Erro ao eliminar dados!',
-                duration: 3000,
+                duration: 1500,
                 close: true,
                 gravity: 'top',
                 backgroundColor: 'linear-gradient(to right, #ff0000, #ff0000)',
@@ -249,7 +249,7 @@ document.addEventListener('DOMContentLoaded', function () {
 function showAlertGuardado() {
     Toastify({
         text: 'Alterações guardadas com sucesso!',
-        duration: 3000,
+        duration: 1500,
         close: true,
         gravity: 'top',
         backgroundColor: 'linear-gradient(to right, #00b09b, #96c93d)',

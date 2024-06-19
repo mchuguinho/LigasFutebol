@@ -19,7 +19,7 @@ session_start();
 
       echo "<script>Toastify({
         text: 'Erro de introdução nos dados!!',
-        duration: 3000,
+        duration: 1500,
         close: true,
         gravity: 'top',
         backgroundColor: 'linear-gradient(to right, #ff0000, #ff0000)'
@@ -55,7 +55,7 @@ session_start();
 
           echo "<script>Toastify({
             text: 'Passwords diferentes!!',
-            duration: 3000,
+            duration: 1500,
             close: true,
             gravity: 'top',
             backgroundColor: 'linear-gradient(to right, #ff0000, #ff0000)'

@@ -62,7 +62,7 @@
         function showToast(options) {
           Toastify({
             text: options.text,
-            duration: options.duration || 3000,
+            duration: options.duration || 1500,
             close: options.close === undefined ? true : options.close,
             position: options.position || 'top-right', // Combinação correta para a posição
             className: options.className || ''
@@ -79,18 +79,18 @@
               showToast({
                 text: 'Login efetuado com sucesso!',
                 className: 'acertou',
-                duration: 3000,
+                duration: 1500,
                 position: 'top-right', // Certifique-se de que está definido corretamente
                 close: true // Mostrar o botão de fechar
               });
               setTimeout(function () {
                 window.location.href = 'index.php';
-              }, 3000)
+              }, 1500)
             } else {
               // Mostra mensagem de erro ou executa ação para login falhou
               showToast({
                 text: 'Dados incorretos ou conta inexistente!',
-                duration: 3000,
+                duration: 1500,
                 className: 'errou',
                 position: 'top-right', // Certifique-se de que está definido corretamente
                 close: true // Mostrar o botão de fechar

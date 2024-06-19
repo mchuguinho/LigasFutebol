@@ -153,7 +153,7 @@ $result = mysqli_query($con, $query);
             if (response.trim() === 'success') {
               Toastify({
                 text: "Clube removido dos favoritos com sucesso!",
-                duration: 3000, // 3000 milissegundos = 3 segundos
+                duration: 1500, // 1500 milissegundos = 3 segundos
                 backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
                 className: "info"
               }).showToast();
@@ -162,7 +162,7 @@ $result = mysqli_query($con, $query);
             } else {
               Toastify({
                 text: "Ocorreu um erro ao remover o clube dos favoritos.",
-                duration: 3000,
+                duration: 1500,
                 backgroundColor: "linear-gradient(to right, #ff416c, #ff4b2b)",
                 className: "info"
               }).showToast();
@@ -171,7 +171,7 @@ $result = mysqli_query($con, $query);
           error: function () {
             Toastify({
               text: "Erro de conexão. Por favor, tente novamente.",
-              duration: 3000,
+              duration: 1500,
               backgroundColor: "linear-gradient(to right, #ff416c, #ff4b2b)",
               className: "info"
             }).showToast();

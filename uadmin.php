@@ -28,7 +28,7 @@ if (isset($_GET['id_user'])) {
       echo "<script>
           Toastify({
               text: 'Dados eliminados com sucesso!',
-              duration: 3000,
+              duration: 1500,
               close: true,
               gravity: 'top',
               backgroundColor: 'linear-gradient(to right, #ff0000, #ff0000)',
@@ -39,7 +39,7 @@ if (isset($_GET['id_user'])) {
       echo "<script>
           Toastify({
               text: 'Erro ao eliminar dados!',
-              duration: 3000,
+              duration: 1500,
               close: true,
               gravity: 'top',
               backgroundColor: 'linear-gradient(to right, #ff0000, #ff0000)',
@@ -187,7 +187,7 @@ if (isset($_GET['id_user'])) {
         function showToast(options) {
           Toastify({
             text: options.text,
-            duration: options.duration || 3000,
+            duration: options.duration || 1500,
             close: options.close === undefined ? true : options.close,
             position: options.position || 'top-right', // Combinação correta para a posição
             className: options.className || ''
@@ -203,25 +203,25 @@ if (isset($_GET['id_user'])) {
             if (response.trim() === 'success') {
               showToast({
                 text: 'Dados atualizados com sucesso!',
-                duration: 3000,
+                duration: 1500,
                 position: 'top-right', // Certifique-se de que está definido corretamente
                 close: true // Mostrar o botão de fechar
               });
               setTimeout(function () {
                 window.location.href = 'uadmin.php';
-              }, 3000)
+              }, 1500)
             } else if (response.trim() === 'error') {
               // Mostra mensagem de erro ou executa ação para login falhou
               showToast({
                 text: 'Não deu para atualizar os dados!',
-                duration: 3000,
+                duration: 1500,
                 position: 'top-right', // Certifique-se de que está definido corretamente
                 close: true // Mostrar o botão de fechar
               });
             } else if (response.trim() === 'missing') {
               showToast({
                 text: 'Todos os campos são de preenchimento obrigatório!',
-                duration: 3000,
+                duration: 1500,
                 position: 'top-right', // Certifique-se de que está definido corretamente
                 close: true // Mostrar o botão de fechar
               });

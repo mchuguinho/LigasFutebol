@@ -71,7 +71,7 @@
         function showToast(options) {
           Toastify({
             text: options.text,
-            duration: options.duration || 3000,
+            duration: options.duration || 1500,
             close: options.close === undefined ? true : options.close,
             position: options.position || 'top-right', // Combinação correta para a posição
             className: options.className || ''
@@ -89,18 +89,18 @@
               showToast({
                 text: 'Conta criada com sucesso!',
                 className: 'acertou',
-                duration: 3000,
+                duration: 1500,
                 position: 'top-right', // Certifique-se de que está definido corretamente
                 close: true // Mostrar o botão de fechar
               });
               setTimeout(function () {
                 window.location.href = 'login.php';
-              }, 3000);
+              }, 1500);
             } else if (response.trim() === 'error') {
               showToast({
                 text: 'Erro ao criar conta!',
                 className: 'errou',
-                duration: 3000,
+                duration: 1500,
                 position: 'top-right', // Certifique-se de que está definido corretamente
                 close: true // Mostrar o botão de fechar
               });
@@ -108,7 +108,7 @@
               showToast({
                 text: 'Erro desconhecido. Tente novamente mais tarde.',
                 className: 'errou',
-                duration: 3000,
+                duration: 1500,
                 position: 'top-right', // Certifique-se de que está definido corretamente
                 close: true // Mostrar o botão de fechar
               });
@@ -118,7 +118,7 @@
             showToast({
               text: 'Erro na comunicação com o servidor. Tente novamente mais tarde.',
               className: 'errou',
-              duration: 3000,
+              duration: 1500,
               position: 'top-right', // Certifique-se de que está definido corretamente
               close: true // Mostrar o botão de fechar
             });
