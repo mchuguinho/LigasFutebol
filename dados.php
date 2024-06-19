@@ -21,10 +21,11 @@ $result = mysqli_query($con, $query);
     <link rel="stylesheet" href="css/style.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
 </head>
 
@@ -69,7 +70,7 @@ $result = mysqli_query($con, $query);
 
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
-                <form class="col-12 col-md-8 col-lg-6 col-xl-5" id="login-form" action="updateuser.php" method="POST">
+                <form class="col-12 col-md-8 col-lg-6 col-xl-5" id="login-form" action="datachanges.php" method="POST">
                     <div class="card bg-dark text-white redonda">
 
                         <!-- Até aqui, levou algumas alterações, para baixo não é template -->
@@ -113,7 +114,61 @@ $result = mysqli_query($con, $query);
         </div>
     </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script>
+        $(document).ready(function () {
+    $('#login-form').submit(function (e) {
+      e.preventDefault(); // Evita a submissão normal do formulário
+
+      // Obtém os dados do formulário
+      var formData = $(this).serialize();
+      function showToast(options) {
+        Toastify({
+          text: options.text,
+          duration: options.duration || 3000,
+          close: options.close === undefined ? true : options.close,
+          position: options.position || 'top-right', // Combinação correta para a posição
+          className: options.className || ''
+        }).showToast();
+      }
+      // Envia a requisição AJAX
+      $.ajax({
+        type: 'POST',
+        url: 'datachanges.php', // Arquivo PHP onde o formulário será submetido
+        data: formData,
+        success: function (response) {
+          // Processa a resposta do servidor
+          if (response.trim() === 'success') {
+            showToast({
+              text: 'Dados atualizados com sucesso!',
+              duration: 3000,
+              position: 'top-right', // Certifique-se de que está definido corretamente
+              close: true // Mostrar o botão de fechar
+            });
+            setTimeout(function () {
+              window.location.href = 'login.php';
+            }, 3000)
+          } else if (response.trim() === 'error') {
+            // Mostra mensagem de erro ou executa ação para login falhou
+            showToast({
+              text: 'Não deu para atualizar os dados!',
+              duration: 3000,
+              position: 'top-right', // Certifique-se de que está definido corretamente
+              close: true // Mostrar o botão de fechar
+            });
+          } else if (response.trim() === 'missing') {
+            showToast({
+              text: 'Todos os campos são de preenchimento obrigatório!',
+              duration: 3000,
+              position: 'top-right', // Certifique-se de que está definido corretamente
+              close: true // Mostrar o botão de fechar
+            });
+          }
+
+        }
+      });
+    });
+  });
+    </script>
 </body>
 
 </html>

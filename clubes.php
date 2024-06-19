@@ -1,13 +1,16 @@
-<?php 
+<?php
 
-  session_start();
-  include ('connection.php');
+session_start();
+include ('connection.php');
 
-  $idliga = $_GET['id_liga'];
+$idliga = $_GET['id_liga'];
+$userid = $_SESSION['user_id'];
 
-  $query = "SELECT * FROM clubes WHERE liga = $idliga";
-  $result = mysqli_query($con, $query);
+$query = "SELECT * FROM clubes WHERE liga = $idliga";
+$queryTeste = "SELECT clubes_favoritos.user, clubes_favoritos.clube, clubes.* FROM clubes JOIN clubes_favoritos ON clubes.id_clube = clubes_favoritos.clube WHERE user = $userid";
 
+$result = mysqli_query($con, $query);
+$resultTeste = mysqli_query($con, $queryTeste);
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +33,7 @@
 
 <body>
   <div class="maskBlack" style="height: -webkit-fill-available;">
-  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
       <div class="container-fluid">
         <a class="navbar-brand"><img src="img/logo.png" id="logo" /></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
@@ -47,12 +50,12 @@
               }
             }
             ?>
-            <?php if(isset($_SESSION['user_id'])){
+            <?php if (isset($_SESSION['user_id'])) {
               echo '<li class="nav-item">';
               echo '<a class="nav-link" href="clubes_fav.php">Clubes Favoritos</a>';
               echo '</li>';
             }
-            
+
             ?>
             <li class="nav-item">
               <?php if (isset($_SESSION['user_id'])) {
@@ -84,23 +87,36 @@
     </div>
     <div class="container">
       <div class="row" id="clubs">
-      <?php
+        <?php
+        $clubes_fav_ids = array();
+        if (mysqli_num_rows($resultTeste) > 0) {
+          while ($fav_row = mysqli_fetch_assoc($resultTeste)) {
+            $clubes_fav_ids[] = $fav_row['clube'];
+          }
+        }
+
         if (mysqli_num_rows($result) > 0) {
           while ($row = mysqli_fetch_assoc($result)) {
             $clubes[] = $row;
             echo '<div class="col-md-3">';
             echo '<div class="card">';
-              echo '<img src="img/clubs/'.$row['logotipo'].'" class="card-img-top" alt="'.$row['nome'].'">';
-              echo '<div class="card-body">';
-                echo '<h3 class="card-title">'.$row['nome'].'</h3>';
-                echo '<p class="card-text">Clique no botão abaixo para ver mais detalhes sobre este clube!</p>';
-                echo '<div class="container info-fav">';
-                echo '<button class="btn btn-dark btn-card" data-club="'.$row['id_clube'].'" data-nome="'.$row['nome'].'" data-cidade="'.$row['cidade'].'" onclick="requestMeteoApi(\''.$row['cidade'].'\');requestFlickrApi(\''.$row['nome'].'\')" data-toggle="modal" data-target="#modalInfo">Ver mais detalhes</button>';
-                echo '<a href="addfav.php?id_clube='.$row['id_clube'].'" style="align-content: center; padding-left: 10px;"><img src="img/heart.png" class="icon-fav" ></a>';
-                echo '</div>';
-              echo '</div>';
+            echo '<img src="img/clubs/' . $row['logotipo'] . '" class="card-img-top" alt="' . $row['nome'] . '">';
+            echo '<div class="card-body">';
+            echo '<h3 class="card-title">' . $row['nome'] . '</h3>';
+            echo '<p class="card-text">Clique no botão abaixo para ver mais detalhes sobre este clube!</p>';
+            echo '<div class="container info-fav">';
+            echo '<button class="btn btn-dark btn-card" data-club="' . $row['id_clube'] . '" data-nome="' . $row['nome'] . '" data-cidade="' . $row['cidade'] . '" onclick="requestMeteoApi(\'' . $row['cidade'] . '\');requestFlickrApi(\'' . $row['nome'] . '\')" data-toggle="modal" data-target="#modalInfo">Ver mais detalhes</button>';
+            echo '<a href="addfav.php?id_clube=' . $row['id_clube'] . '" style="align-content: center; padding-left: 10px;">';
+            if (in_array($row['id_clube'], $clubes_fav_ids)) {
+              echo '<img src="img/heart_add.png" class="icon-fav"></img>';
+            } else {
+              echo '<img src="img/heart.png" class="icon-fav"></img>';
+            }
+            echo '</a>';
             echo '</div>';
-          echo '</div>';
+            echo '</div>';
+            echo '</div>';
+            echo '</div>';
           }
         }
         ?>

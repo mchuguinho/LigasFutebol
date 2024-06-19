@@ -25,7 +25,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             echo 'error';
         }
     } else {
-        // Debugging message
         error_log("Campos vazios: id_clube=$id_clube, nome=$nome, cidade=$cidade, logo=$logo");
         echo 'missing';
     }
