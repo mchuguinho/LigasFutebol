@@ -9,6 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $logo = $_POST['clubeLogo'];
     $fundacao = $_POST['clubeFoundation'];
 
+
     // Verificar se algum dos campos obrigatórios está vazio
     if (!empty($nome) && !empty($cidade) && !empty($logo) && !empty($fundacao)) {
         // Prevenir SQL injection
@@ -18,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $logo = mysqli_real_escape_string($con, $logo);
         $fundacao = mysqli_real_escape_string($con, $fundacao);
 
-        $query = "UPDATE `clubes` SET `nome`='$nome', `cidade`='$cidade', `logotipo`='$logo', fundacao=$fundacao WHERE `id_clube` = $id_clube";
+        $query = "UPDATE `clubes` SET `nome`='$nome', `cidade`='$cidade', `logotipo`='$logo', fundacao='$fundacao' WHERE `id_clube` = '$id_clube'";
         $result = mysqli_query($con, $query);
 
         if ($result) {

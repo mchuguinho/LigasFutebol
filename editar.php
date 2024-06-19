@@ -108,45 +108,12 @@
 
         <div class="card-footer">
           <button type="button" class="btn btn-dark btn-outline-light" data-bs-toggle="modal"
-            data-bs-target="#modalClube">Adicionar</button>
+            data-bs-target="#modalClubeA">Adicionar</button>
         </div>
 
       </div>
 
     </div>
-    
-        <!-- MODAL LIGAS-->
-        <div class="modal fade modal-dialog-scrollable" id="modalLiga" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Gerir Liga</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body table-responsive">
-                    <form action="admin.php" method="post">
-                        <input type="hidden" name="action" id="ligaAction">
-                        <input type="hidden" name="id" id="ligaId">
-                        <table class="table table-striped align-middle table-responsive table-sm">
-                            <thead>
-                                <tr>
-                                    <th scope="col"><input type="text" class="form-control" name="nome" id="ligaNome" placeholder="Nome"></th>
-                                    <th scope="col"><input type="text" class="form-control" name="logo" id="ligaLogo" placeholder="Cidade"></th>
-                                    <th scope="col"><input type="text" class="form-control" name="logo" id="ligaLogo" placeholder="Logo"></th>
-                                </tr>
-                            </thead>
-                        </table>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                            <button type="submit" class="btn btn-success" onclick="showAlertGuardado()">Guardar Alterações</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
 
     <!-- MODAL Clube -->
     <div class="modal fade" id="modalClube" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -156,27 +123,27 @@
             <h5 class="modal-title" id="exampleModalLabel">Modal Clube</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <form action="updateclube.php" method="POST" id="updateClubForm">
+          <form>
             <div class="modal-body table-responsive form-group">
               <input type="hidden" id="id_clubeInp" name="id_clubeInp">
               <table class="table table-striped align-middle table-responsive table-sm">
                 <thead>
                   <tr>
                     <th scope="col"><input type="text" class="form-control" id="clubeNome" name="clubeNome"
-                        placeholder="Nome"></th>
+                        placeholder="NomeA"></th>
                     <th scope="col"><input type="text" class="form-control" id="clubeCidade" name="clubeCidade"
-                        placeholder="Cidade"></th>
+                        placeholder="CidadeA"></th>
                     <th scope="col"><input type="text" class="form-control" id="clubeLogo" name="clubeLogo"
-                        placeholder="Logo"></th>
+                        placeholder="LogoA"></th>
                     <th scope="col"><input type="text" class="form-control" id="clubeFoundation" name="clubeFoundation"
-                        placeholder="Nome"></th>
+                        placeholder="NomeA"></th>
                   </tr>
                 </thead>
               </table>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-              <button type="submit" class="btn btn-success">Guardar Alterações</button>
+              <button type="submit" class="btn btn-success" >Guardar Alterações</button>
             </div>
           </form>
           
@@ -184,9 +151,104 @@
         </div>
       </div>
     </div>
+
+<!-- ---------------------------------------------------------------- MODAL CLUBE ADICIONAR ----------------------------------------------------------------------------------->
+
+ <div class="modal fade" id="modalClubeA" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal Clube</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form id="adicionarClubeForm">
+            <div class="modal-body table-responsive form-group">
+            <input type="hidden" id="id_ligaInp" name="id_ligaInp" value="<?php echo $idliga; ?>">
+              <table class="table table-striped align-middle table-responsive table-sm">
+                <thead>
+                  <tr>
+                    <th scope="col"><input type="text" class="form-control" id="clubeNomeA" name="clubeNomeA"
+                        placeholder="Nome"></th>
+                    <th scope="col"><input type="text" class="form-control" id="clubeCidadeA" name="clubeCidadeA"
+                        placeholder="Cidade"></th>
+                    <th scope="col"><input type="text" class="form-control" id="clubeLogoA" name="clubeLogoA"
+                        placeholder="Logo"></th>
+                    <th scope="col"><input type="text" class="form-control" id="clubeFundacaoA" name="clubeFundacaoA"
+                        placeholder="Fundação"></th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+              <button type="submit" class="btn btn-success" onclick="criar()">Guardar Alterações</button>
+            </div>
+          </form>
+          
+
+        </div>
+      </div>
+    </div>
+
+
+<!----------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+
   </div>
 
   <script>
+
+  $('#adicionarClubeForm').submit(function (e) {
+        e.preventDefault(); // Evita a submissão normal do formulário
+
+        // Obtém os dados do formulário
+        var formData = $(this).serialize();
+        console.log("Dados do formulário adicionar: ", formData);  // Adicione esta linha
+
+        // Função para mostrar notificações
+        function showToast(options) {
+          Toastify({
+            text: options.text,
+            duration: options.duration || 1500,
+            close: options.close === undefined ? true : options.close,
+            position: options.position || 'top-right',
+            className: options.className || ''
+          }).showToast();
+        }
+
+        // Envia a requisição AJAX
+        $.ajax({
+          type: 'POST',
+          url: 'criarClube.php', // Arquivo PHP onde o formulário será submetido
+          data: formData,
+          success: function (response) {
+            // Processa a resposta do servidor
+            if (response.trim() === 'success') {
+              showToast({
+                text: 'Clube adicionado com sucesso!',
+                duration: 1500,
+                position: 'top-right',
+                close: true // Mostrar o botão de fechar
+              });
+
+              var idLiga = <?php echo $_GET['id_liga']; ?>;
+              var redirectUrl = 'editar.php?id_liga=' + idLiga;
+
+              setTimeout(function () {
+                window.location.href = redirectUrl;
+              }, 1500);
+            } else if (response.trim() === 'error') {
+              showToast({
+                text: 'Não deu para adicionar o clube!',
+                duration: 1500,
+                position: 'top-right',
+                close: true // Mostrar o botão de fechar
+              });
+            }
+          }
+        });
+      });
+
+
 
     document.addEventListener('DOMContentLoaded', function () {
       var modalClube = document.getElementById('modalClube');
@@ -235,7 +297,7 @@
         function showToast(options) {
           Toastify({
             text: options.text,
-            duration: options.duration || 3000,
+            duration: options.duration || 1500,
             close: options.close === undefined ? true : options.close,
             position: options.position || 'top-right',
             className: options.className || ''
@@ -252,7 +314,7 @@
             if (response.trim() === 'success') {
               showToast({
                 text: 'Clube atualizado com sucesso!',
-                duration: 3000,
+                duration: 1500,
                 position: 'top-right',
                 close: true // Mostrar o botão de fechar
               });
@@ -262,11 +324,11 @@
 
               setTimeout(function () {
                 window.location.href = redirectUrl;
-              }, 3000);
+              }, 1500);
             } else if (response.trim() === 'error') {
               showToast({
                 text: 'Não deu para atualizar os dados!',
-                duration: 3000,
+                duration: 1500,
                 position: 'top-right',
                 close: true // Mostrar o botão de fechar
               });
