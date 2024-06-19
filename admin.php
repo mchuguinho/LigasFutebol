@@ -133,7 +133,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 echo '<td class="align-middle"><img id="imagemAdmin" class="img-fluid logocircular" src="img/leagues/' . $row['logotipo'] . '"></td>';
                                 echo '<td class="align-middle">' . $row['nome'] . '</td>';
                                 echo '<td class="align-middle"><button type="button" class="btn btn-primary btn-outline-light" data-bs-toggle="modal" data-bs-target="#modalLiga" data-id="' . $row['id_liga'] . '" data-nome="' . $row['nome'] . '" data-logo="' . $row['logotipo'] . '">Editar</button></td>';
-                                echo '<td class="align-middle"><a role="button" class="btn btn-primary btn-outline-light" href="editar.php?id_liga=' . $row['id_liga'] .'">Editar Clubes</a></td>';
+                                echo '<td class="align-middle"><a role="button" class="btn btn-primary btn-outline-light" href="editar.php?id_liga=' . $row['id_liga'] . '">Editar Clubes</button></td>';
                                 echo '<td class="align-middle"><a class="btn btn-danger btn-outline-light" onclick="return confirm(\'Tem certeza que deseja deletar esta liga?\')" href="admin.php?id_liga=' . $row['id_liga'] . '" role="button">Eliminar</a></td>';
                                 echo '</tr>';
                             }

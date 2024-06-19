@@ -7,6 +7,8 @@
 
   $query = "SELECT clubes.*, liga.nome AS nome_liga FROM clubes INNER JOIN liga ON clubes.liga = liga.id_liga WHERE clubes.liga = $idliga";
   $result = mysqli_query($con, $query);
+
+  
 ?>
 
 <!DOCTYPE html>
@@ -95,7 +97,7 @@
                     echo '<td class="align-middle">' . $row['nome'] . '</td>';
                     echo '<td class="align-middle">' . $row['cidade'] . '</td>';
                     echo '<td class="align-middle">' . $row['fundacao'] . '</td>';
-                    echo '<td class="align-middle"><button type="button" class="btn btn-primary btn-outline-light" data-bs-toggle="modal" data-logo="' . $row['logotipo'] . '" data-nome="' . $row['nome'] . '" data-cidade="' . $row['cidade'] . '" data-bs-target="#modalClube" data-bs-whatever="' . $row['id_clube'] . '">Editar Clube</button></td>';
+                    echo '<td class="align-middle"><button type="button" class="btn btn-primary btn-outline-light" data-bs-toggle="modal" data-logo="' . $row['logotipo'] . '" data-nome="' . $row['nome'] . '" data-cidade="' . $row['cidade'] . '" data-fundacao="' . $row['fundacao'] .'" data-bs-target="#modalClube" data-bs-whatever="' . $row['id_clube'] . '">Editar Clube</button></td>';
                     echo '<td class="align-middle"><a class="btn btn-danger btn-outline-light" href="eliminarClube.php?id_liga=' . $row['liga'] . '&id_clube='. $row['id_clube'] . '" role="button">Eliminar</a></td>';
                     echo '</tr>';
                   }
@@ -107,49 +109,15 @@
         </div>
 
         <div class="card-footer">
-          <button type="button" class="btn btn-dark btn-outline-light" data-bs-toggle="modal"
-            data-bs-target="#modalClube">Adicionar</button>
+        <button type="button" class="btn btn-dark btn-outline-light" data-bs-toggle="modal" data-bs-target="#modalClube" data-id="" data-nome="" data-logo="">Adicionar</button>
         </div>
 
       </div>
 
     </div>
     
-        <!-- MODAL LIGAS-->
-        <div class="modal fade modal-dialog-scrollable" id="modalLiga" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Gerir Liga</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body table-responsive">
-                    <form action="admin.php" method="post">
-                        <input type="hidden" name="action" id="ligaAction">
-                        <input type="hidden" name="id" id="ligaId">
-                        <table class="table table-striped align-middle table-responsive table-sm">
-                            <thead>
-                                <tr>
-                                    <th scope="col"><input type="text" class="form-control" name="nome" id="ligaNome" placeholder="Nome"></th>
-                                    <th scope="col"><input type="text" class="form-control" name="logo" id="ligaLogo" placeholder="Cidade"></th>
-                                    <th scope="col"><input type="text" class="form-control" name="logo" id="ligaLogo" placeholder="Logo"></th>
-                                </tr>
-                            </thead>
-                        </table>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                            <button type="submit" class="btn btn-success" onclick="showAlertGuardado()">Guardar Alterações</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-    <!-- MODAL Clube -->
-    <div class="modal fade" id="modalClube" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <!-- MODAL Clube -->
+      <div class="modal fade" id="modalClube" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -168,6 +136,8 @@
                         placeholder="Cidade"></th>
                     <th scope="col"><input type="text" class="form-control" id="clubeLogo" name="clubeLogo"
                         placeholder="Logo"></th>
+                    <th scope="col"><input type="text" class="form-control" id="clubeFund" name="clubeFund"
+                        placeholder="Fundação"></th> 
                   </tr>
                 </thead>
               </table>
@@ -180,93 +150,13 @@
           
 
         </div>
-      </div>
-    </div>
+       </div>
+       </div>
+
   </div>
 
-  <script>
+  <script src="js/editar.js"></script>
 
-    document.addEventListener('DOMContentLoaded', function () {
-      var modalClube = document.getElementById('modalClube');
-      modalClube.addEventListener('show.bs.modal', function (event) {
-        var button = event.relatedTarget;
-        var id = button.getAttribute('data-bs-whatever');
-        var nome = button.getAttribute('data-nome');
-        var logo = button.getAttribute('data-logo');
-        var cidade = button.getAttribute('data-cidade');
-
-        var modalTitle = modalClube.querySelector('.modal-title');
-        var clubeId = modalClube.querySelector('#id_clubeInp');
-        var clubeNome = modalClube.querySelector('#clubeNome');
-        var clubeLogo = modalClube.querySelector('#clubeLogo');
-        var clubeCidade = modalClube.querySelector('#clubeCidade');
-
-        if (id) {
-          modalTitle.textContent = 'Editar Clube';
-          clubeId.value = id;
-          clubeNome.value = nome;
-          clubeLogo.value = logo;
-          clubeCidade.value = cidade;
-        } else {
-          modalTitle.textContent = 'Adicionar Clube';
-          clubeId.value = '';
-          clubeNome.value = '';
-          clubeLogo.value = '';
-          clubeCidade.value = '';
-        }
-      });
-    });
-
-    $(document).ready(function () {
-      $('#updateClubForm').submit(function (e) {
-        e.preventDefault(); // Evita a submissão normal do formulário
-
-        // Obtém os dados do formulário
-        var formData = $(this).serialize();
-        console.log("Dados do formulário: ", formData);  // Adicione esta linha
-
-        // Função para mostrar notificações
-        function showToast(options) {
-          Toastify({
-            text: options.text,
-            duration: options.duration || 3000,
-            close: options.close === undefined ? true : options.close,
-            position: options.position || 'top-right',
-            className: options.className || ''
-          }).showToast();
-        }
-
-        // Envia a requisição AJAX
-        $.ajax({
-          type: 'POST',
-          url: 'updateclube.php', // Arquivo PHP onde o formulário será submetido
-          data: formData,
-          success: function (response) {
-            // Processa a resposta do servidor
-            if (response.trim() === 'success') {
-              showToast({
-                text: 'Clube atualizado com sucesso!',
-                duration: 3000,
-                position: 'top-right',
-                close: true // Mostrar o botão de fechar
-              });
-              setTimeout(function () {
-                window.location.href = 'admin.php';
-              }, 3000);
-            } else if (response.trim() === 'error') {
-              showToast({
-                text: 'Não deu para atualizar os dados!',
-                duration: 3000,
-                position: 'top-right',
-                close: true // Mostrar o botão de fechar
-              });
-            }
-          }
-        });
-      });
-    });
-
-  </script>
 </body>
 
 </html>
