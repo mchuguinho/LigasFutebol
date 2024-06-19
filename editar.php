@@ -95,7 +95,7 @@
                     echo '<td class="align-middle">' . $row['nome'] . '</td>';
                     echo '<td class="align-middle">' . $row['cidade'] . '</td>';
                     echo '<td class="align-middle">' . $row['fundacao'] . '</td>';
-                    echo '<td class="align-middle"><button type="button" class="btn btn-primary btn-outline-light" data-bs-toggle="modal" data-logo="' . $row['logotipo'] . '" data-nome="' . $row['nome'] . '" data-cidade="' . $row['cidade'] . '" data-bs-target="#modalClube" data-bs-whatever="' . $row['id_clube'] . '">Editar Clube</button></td>';
+                    echo '<td class="align-middle"><button type="button" class="btn btn-primary btn-outline-light" data-bs-toggle="modal" data-logo="' . $row['logotipo'] . '" data-nome="' . $row['nome'] . '" data-cidade="' . $row['cidade'] . '" data-foundation="'.$row['fundacao'].'" data-bs-target="#modalClube" data-bs-whatever="' . $row['id_clube'] . '">Editar Clube</button></td>';
                     echo '<td class="align-middle"><a class="btn btn-danger btn-outline-light" href="eliminarClube.php?id_liga=' . $row['liga'] . '&id_clube='. $row['id_clube'] . '" role="button">Eliminar</a></td>';
                     echo '</tr>';
                   }
@@ -168,6 +168,8 @@
                         placeholder="Cidade"></th>
                     <th scope="col"><input type="text" class="form-control" id="clubeLogo" name="clubeLogo"
                         placeholder="Logo"></th>
+                    <th scope="col"><input type="text" class="form-control" id="clubeFoundation" name="clubeFoundation"
+                        placeholder="Nome"></th>
                   </tr>
                 </thead>
               </table>
@@ -191,6 +193,7 @@
       modalClube.addEventListener('show.bs.modal', function (event) {
         var button = event.relatedTarget;
         var id = button.getAttribute('data-bs-whatever');
+        var fundacao = button.getAttribute('data-foundation');
         var nome = button.getAttribute('data-nome');
         var logo = button.getAttribute('data-logo');
         var cidade = button.getAttribute('data-cidade');
@@ -200,6 +203,7 @@
         var clubeNome = modalClube.querySelector('#clubeNome');
         var clubeLogo = modalClube.querySelector('#clubeLogo');
         var clubeCidade = modalClube.querySelector('#clubeCidade');
+        var clubeFoundation = modalClube.querySelector('#clubeFoundation');
 
         if (id) {
           modalTitle.textContent = 'Editar Clube';
@@ -207,12 +211,14 @@
           clubeNome.value = nome;
           clubeLogo.value = logo;
           clubeCidade.value = cidade;
+          clubeFoundation.value = fundacao;
         } else {
           modalTitle.textContent = 'Adicionar Clube';
           clubeId.value = '';
           clubeNome.value = '';
           clubeLogo.value = '';
           clubeCidade.value = '';
+          clubeFoundation.value = '';
         }
       });
     });
@@ -250,8 +256,12 @@
                 position: 'top-right',
                 close: true // Mostrar o botão de fechar
               });
+
+              var idLiga = <?php echo $_GET['id_liga']; ?>;
+              var redirectUrl = 'editar.php?id_liga=' + idLiga;
+
               setTimeout(function () {
-                window.location.href = 'admin.php';
+                window.location.href = redirectUrl;
               }, 3000);
             } else if (response.trim() === 'error') {
               showToast({
