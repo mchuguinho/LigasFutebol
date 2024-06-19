@@ -123,7 +123,7 @@
             <h5 class="modal-title" id="exampleModalLabel">Modal Clube</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <form>
+          <form id="updateClubForm" action="updateclube.php" method="POST">
             <div class="modal-body table-responsive form-group">
               <input type="hidden" id="id_clubeInp" name="id_clubeInp">
               <table class="table table-striped align-middle table-responsive table-sm">
@@ -161,7 +161,7 @@
             <h5 class="modal-title" id="exampleModalLabel">Modal Clube</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <form id="adicionarClubeForm">
+          <form id="adicionarClubeForm" action="criarClube.php" method="POST">
             <div class="modal-body table-responsive form-group">
             <input type="hidden" id="id_ligaInp" name="id_ligaInp" value="<?php echo $idliga; ?>">
               <table class="table table-striped align-middle table-responsive table-sm">
