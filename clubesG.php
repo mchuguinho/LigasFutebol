@@ -4,20 +4,6 @@ session_start();
 include ('connection.php');
 
 $idliga = $_GET['id_liga'];
-$ligaNome = $_GET['nome_liga'];
-
-
-if (isset($_SESSION['user_id'])) {
-  $userid = $_SESSION['user_id'];
-
-  $queryTeste = "SELECT clubes_favoritos.user, clubes_favoritos.clube, clubes.* FROM clubes JOIN clubes_favoritos ON clubes.id_clube = clubes_favoritos.clube WHERE user = $userid";
-  $resultTeste = mysqli_query($con, $queryTeste);
-
-} else {
-
-  header("Location: clubesG.php?id_liga=$idliga&nome_liga=$ligaNome");
-
-}
 
 $query = "SELECT * FROM clubes WHERE liga = $idliga";
 
@@ -100,13 +86,6 @@ $result = mysqli_query($con, $query);
     <div class="container">
       <div class="row" id="clubs">
         <?php
-        $clubes_fav_ids = array();
-        if (mysqli_num_rows($resultTeste) > 0) {
-          while ($fav_row = mysqli_fetch_assoc($resultTeste)) {
-            $clubes_fav_ids[] = $fav_row['clube'];
-          }
-        }
-
         if (mysqli_num_rows($result) > 0) {
           while ($row = mysqli_fetch_assoc($result)) {
             $clubes[] = $row;
@@ -117,14 +96,7 @@ $result = mysqli_query($con, $query);
             echo '<h3 class="card-title">' . $row['nome'] . '</h3>';
             echo '<p class="card-text">Clique no botão abaixo para ver mais detalhes sobre este clube!</p>';
             echo '<div class="container info-fav">';
-            echo '<button class="btn btn-dark btn-card" data-club="' . $row['id_clube'] . '" data-nome="' . $row['nome'] . '" data-cidade="' . $row['cidade'] . '" onclick="requestMeteoApi(\'' . $row['cidade'] . '\');requestFlickrApi(\'' . $row['nome'] . '\')" data-toggle="modal" data-target="#modalInfo">Ver mais detalhes</button>';
-            if (in_array($row['id_clube'], $clubes_fav_ids)) {
-              echo '<img src="img/heart_add.png" class="icon-fav"></img>';
-            } else {
-              echo '<a href="addfav.php?id_clube=' . $row['id_clube'] . '" style="align-content: center; padding-left: 10px;">';
-              echo '<img src="img/heart.png" class="icon-fav"></img>';
-              echo '</a>';
-            }
+            echo '<button class="btn btn-dark btn-card" data-club="' . $row['id_clube'] . '" data-nome="' . $row['nome'] . '" data-fundacao="'. $row['fundacao'].'" data-cidade="' . $row['cidade'] . '" onclick="requestMeteoApi(\'' . $row['cidade'] . '\');requestFlickrApi(\'' . $row['nome'] . '\')" data-toggle="modal" data-target="#modalInfo">Ver mais detalhes</button>';
             echo '</div>';
             echo '</div>';
             echo '</div>';
