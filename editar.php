@@ -1,11 +1,12 @@
 <?php
-session_start();
-include ('connection.php');
 
-$idliga = $_GET['id_liga'];
+  session_start();
+  include ('connection.php');
 
-$query = "SELECT clubes.*, liga.nome AS nome_liga FROM clubes INNER JOIN liga ON clubes.liga = liga.id_liga WHERE clubes.liga = $idliga";
-$result = mysqli_query($con, $query);
+  $idliga = $_GET['id_liga'] ;
+
+  $query = "SELECT clubes.*, liga.nome AS nome_liga FROM clubes INNER JOIN liga ON clubes.liga = liga.id_liga WHERE clubes.liga = $idliga";
+  $result = mysqli_query($con, $query);
 ?>
 
 <!DOCTYPE html>
@@ -75,9 +76,10 @@ $result = mysqli_query($con, $query);
                 <tr>
                   <th scope="col">Id</th>
                   <th scope="col">Logo</th>
+                  <th scope="col">Liga</th>
                   <th scope="col">Nome</th>
                   <th scope="col">Cidade</th>
-                  <th scope="col">Liga</th>
+                  <th scope="col">Fundação</th>
                   <th scope="col">Editar</th>
                   <th scope="col">Eliminar</th>
                 </tr>
@@ -89,11 +91,12 @@ $result = mysqli_query($con, $query);
                     echo '<tr>';
                     echo '<th class="align-middle">' . $row['id_clube'] . '</th>';
                     echo '<td class="align-middle"><img id="imagemAdmin" class="img-fluid logocircular" src="img/clubs/' . $row['logotipo'] . '"></td>';
+                  echo '<td class="align-middle">' . $row['nome_liga'] . '</td>';
                     echo '<td class="align-middle">' . $row['nome'] . '</td>';
                     echo '<td class="align-middle">' . $row['cidade'] . '</td>';
-                    echo '<td class="align-middle">' . $row['nome_liga'] . '</td>';
+                    echo '<td class="align-middle">' . $row['fundacao'] . '</td>';
                     echo '<td class="align-middle"><button type="button" class="btn btn-primary btn-outline-light" data-bs-toggle="modal" data-logo="' . $row['logotipo'] . '" data-nome="' . $row['nome'] . '" data-cidade="' . $row['cidade'] . '" data-bs-target="#modalClube" data-bs-whatever="' . $row['id_clube'] . '">Editar Clube</button></td>';
-                    echo '<td class="align-middle"><a class="btn btn-danger btn-outline-light"  role="button">Eliminar</a></td>';
+                    echo '<td class="align-middle"><a class="btn btn-danger btn-outline-light" href="eliminarClube.php?id_liga=' . $row['liga'] . '&id_clube='. $row['id_clube'] . '" role="button">Eliminar</a></td>';
                     echo '</tr>';
                   }
                 }
@@ -111,6 +114,39 @@ $result = mysqli_query($con, $query);
       </div>
 
     </div>
+    
+        <!-- MODAL LIGAS-->
+        <div class="modal fade modal-dialog-scrollable" id="modalLiga" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Gerir Liga</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body table-responsive">
+                    <form action="admin.php" method="post">
+                        <input type="hidden" name="action" id="ligaAction">
+                        <input type="hidden" name="id" id="ligaId">
+                        <table class="table table-striped align-middle table-responsive table-sm">
+                            <thead>
+                                <tr>
+                                    <th scope="col"><input type="text" class="form-control" name="nome" id="ligaNome" placeholder="Nome"></th>
+                                    <th scope="col"><input type="text" class="form-control" name="logo" id="ligaLogo" placeholder="Cidade"></th>
+                                    <th scope="col"><input type="text" class="form-control" name="logo" id="ligaLogo" placeholder="Logo"></th>
+                                </tr>
+                            </thead>
+                        </table>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                            <button type="submit" class="btn btn-success" onclick="showAlertGuardado()">Guardar Alterações</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
     <!-- MODAL Clube -->
     <div class="modal fade" id="modalClube" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -141,6 +177,8 @@ $result = mysqli_query($con, $query);
               <button type="submit" class="btn btn-success">Guardar Alterações</button>
             </div>
           </form>
+          
+
         </div>
       </div>
     </div>
