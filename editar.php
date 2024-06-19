@@ -3,6 +3,12 @@
   session_start();
   include ('connection.php');
 
+  if (!isset($_SESSION['tipo']) || $_SESSION['tipo'] != 0) {
+    header("Location: index.php");
+    exit();
+}
+
+
   $idliga = $_GET['id_liga'] ;
 
   $query = "SELECT clubes.*, liga.nome AS nome_liga FROM clubes INNER JOIN liga ON clubes.liga = liga.id_liga WHERE clubes.liga = $idliga";

@@ -2,6 +2,11 @@
 session_start();
 include('connection.php');
 
+if (!isset($_SESSION['tipo']) || $_SESSION['tipo'] != 0) {
+    header("Location: index.php");
+    exit();
+}
+
 $query1 = "SELECT * FROM liga";
 $result1 = mysqli_query($con, $query1);
 

@@ -2,12 +2,14 @@
 session_start();
 include ('connection.php');
 
+if (!isset($_SESSION['tipo']) || $_SESSION['tipo'] != 0) {
+  header("Location: index.php");
+  exit();
+}
+
 // Obter todos os usuários
 $query = "SELECT * FROM user";
 $result = mysqli_query($con, $query);
-
-
-
 
 // Eliminar user
 if (isset($_GET['id_user'])) {
