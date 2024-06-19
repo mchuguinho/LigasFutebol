@@ -91,7 +91,7 @@ $result = mysqli_query($con, $query);
         if (mysqli_num_rows($result) > 0) {
           while ($row = mysqli_fetch_assoc($result)) {
             $clubes[] = $row;
-            echo '<div class="col-md-3">';
+            echo '<div class="col-md-3" id="clube-' . $row['id_clube'] . '">';
             echo '<div class="card">';
             echo '<img src="img/clubs/' . $row['logotipo'] . '" class="card-img-top" alt="' . $row['nome'] . '">';
             echo '<div class="card-body">';
@@ -134,12 +134,13 @@ $result = mysqli_query($con, $query);
     </div>
   </div>
   </div>
+  <script src="js/clubes.js"></script>
   <script>
     $(document).ready(function () {
       $('.remove-fav').click(function (e) {
         e.preventDefault(); // Evita o comportamento padrão do link
 
-        var idClube = $(this).data('id-clube'); // Obtém o ID do clube a ser removido
+        var idClube = $(this).attr('href').split('=')[1]; // Obtém o ID do clube a ser removido
 
         // Envia a requisição Ajax para remover o clube favorito
         $.ajax({
@@ -149,7 +150,7 @@ $result = mysqli_query($con, $query);
             id_clube: idClube
           },
           success: function (response) {
-            if (response === 'success') {
+            if (response.trim() === 'success') {
               Toastify({
                 text: "Clube removido dos favoritos com sucesso!",
                 duration: 3000, // 3000 milissegundos = 3 segundos
@@ -178,6 +179,7 @@ $result = mysqli_query($con, $query);
         });
       });
     });
+
   </script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"

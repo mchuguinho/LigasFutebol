@@ -106,13 +106,13 @@ $resultTeste = mysqli_query($con, $queryTeste);
             echo '<p class="card-text">Clique no botão abaixo para ver mais detalhes sobre este clube!</p>';
             echo '<div class="container info-fav">';
             echo '<button class="btn btn-dark btn-card" data-club="' . $row['id_clube'] . '" data-nome="' . $row['nome'] . '" data-cidade="' . $row['cidade'] . '" onclick="requestMeteoApi(\'' . $row['cidade'] . '\');requestFlickrApi(\'' . $row['nome'] . '\')" data-toggle="modal" data-target="#modalInfo">Ver mais detalhes</button>';
-            echo '<a href="addfav.php?id_clube=' . $row['id_clube'] . '" style="align-content: center; padding-left: 10px;">';
             if (in_array($row['id_clube'], $clubes_fav_ids)) {
               echo '<img src="img/heart_add.png" class="icon-fav"></img>';
             } else {
+              echo '<a href="addfav.php?id_clube=' . $row['id_clube'] . '" style="align-content: center; padding-left: 10px;">';
               echo '<img src="img/heart.png" class="icon-fav"></img>';
+              echo '</a>';
             }
-            echo '</a>';
             echo '</div>';
             echo '</div>';
             echo '</div>';
