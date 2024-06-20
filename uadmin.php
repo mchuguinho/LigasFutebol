@@ -20,12 +20,12 @@ if (isset($_GET['id_user'])) {
 
   if ($result2) {
 
-  $query3 = "DELETE FROM `user` WHERE `id_user` = $iduser";
-  $result3 = mysqli_query($con, $query3);
+    $query3 = "DELETE FROM `user` WHERE `id_user` = $iduser";
+    $result3 = mysqli_query($con, $query3);
 
-  if ($result3) {
+    if ($result3) {
 
-    header("Location: uadmin.php");
+      header("Location: uadmin.php");
 
       echo "<script>
           Toastify({
@@ -37,7 +37,7 @@ if (isset($_GET['id_user'])) {
           }).showToast();
       </script>";
 
-  } else {
+    } else {
       echo "<script>
           Toastify({
               text: 'Erro ao eliminar dados!',
@@ -47,8 +47,8 @@ if (isset($_GET['id_user'])) {
               backgroundColor: 'linear-gradient(to right, #ff0000, #ff0000)',
           }).showToast();
       </script>";
+    }
   }
-}
 }
 
 ?>
@@ -119,21 +119,21 @@ if (isset($_GET['id_user'])) {
               </thead>
               <tbody id="userAdmin">
 
-              <?php
-              if (mysqli_num_rows($result) > 0) {
-                while ($row = mysqli_fetch_assoc($result)) {
-                  $users[] = $row;
-                  echo '<tr>';
-                  echo '<th class="align-middle">' . $row['id_user'] . '</th>';
-                  echo '<td class="align-middle">' . $row['nome'] . '</td>';
-                  echo '<td class="align-middle">' . $row['email'] . '</td>';
-                  echo '<td class="align-middle">' . $row['password'] . '</td>';
-                  echo '<td class="align-middle"><button type="button" class="btn btn-primary btn-outline-light" data-bs-toggle="modal" data-bs-target="#modalUser" data-bs-whatever="' . $row['id_user'] . '">Editar User</button></td>';
-                  echo '<td class="align-middle"><a class="btn btn-danger btn-outline-light" onclick="return confirm(\'Tem certeza que deseja deletar este User?\')" href="uadmin.php?id_user=' . $row['id_user'] . '"  role="button">Eliminar</a></td>';
-                  echo '</tr>';
+                <?php
+                if (mysqli_num_rows($result) > 0) {
+                  while ($row = mysqli_fetch_assoc($result)) {
+                    $users[] = $row;
+                    echo '<tr>';
+                    echo '<th class="align-middle">' . $row['id_user'] . '</th>';
+                    echo '<td class="align-middle">' . $row['nome'] . '</td>';
+                    echo '<td class="align-middle">' . $row['email'] . '</td>';
+                    echo '<td class="align-middle">' . $row['password'] . '</td>';
+                    echo '<td class="align-middle"><button type="button" class="btn btn-primary btn-outline-light" data-bs-toggle="modal" data-bs-target="#modalUser" data-bs-whatever="' . $row['id_user'] . '">Editar User</button></td>';
+                    echo '<td class="align-middle"><a class="btn btn-danger btn-outline-light" onclick="return confirm(\'Tem certeza que deseja deletar este User?\')" href="uadmin.php?id_user=' . $row['id_user'] . '"  role="button">Eliminar</a></td>';
+                    echo '</tr>';
+                  }
                 }
-              }
-        ?>
+                ?>
               </tbody>
             </table>
           </div>
@@ -158,10 +158,31 @@ if (isset($_GET['id_user'])) {
               <table class="table table-striped align-middle table-responsive table-sm">
                 <thead>
                   <tr>
-                    <th scope="col"><input type="text" class="form-control" id="nomeUp" name="nomeUp" placeholder="Nome"></th>
-                    <th scope="col"><input type="text" class="form-control" id="apelidoUp" name="apelidoUp" placeholder="Apelido"></th>
-                    <th scope="col"><input type="email" class="form-control" id="emailUp" name="emailUp" placeholder="Email"></th>
-                    <th scope="col"><input type="password" class="form-control" id="passUp" name="passUp" placeholder="Password"></th>
+                    <th scope="col"><input type="text" class="form-control" id="nomeUp" name="nomeUp"
+                        placeholder="Nome"></th>
+                    <th scope="col"><input type="text" class="form-control" id="apelidoUp" name="apelidoUp"
+                        placeholder="Apelido"></th>
+                    <th scope="col"><input type="email" class="form-control" id="emailUp" name="emailUp"
+                        placeholder="Email"></th>
+                    <th scope="col"><input type="password" class="form-control" id="passUp" name="passUp"
+                        placeholder="Password"></th>
+                  </tr>
+                  <tr>
+                    <th scope="col">
+                      <p>Tipo de utilizador:</p>
+                      <select name="tipouser" id="tipouser">
+                        <?php
+                        $query2 = "SELECT * FROM tipo_user";
+                        $result2 = mysqli_query($con, $query2);
+
+                        if (mysqli_num_rows($result2) > 0) {
+                          while ($tipo = mysqli_fetch_assoc($result2)) {
+                            echo '<option value="' . $tipo['id_tipo'] . '">' . $tipo['descritivo'] . '</option>';
+                          }
+                        }
+                        ?>
+                      </select>
+                    </th>
                   </tr>
                 </thead>
               </table>
@@ -171,15 +192,15 @@ if (isset($_GET['id_user'])) {
               <button type="submit" class="btn btn-success">Guardar Alterações</button>
             </div>
           </form>
-
         </div>
       </div>
     </div>
+
   </div>
 
-<script src="js/uadmin.js"></script>
+  <script src="js/uadmin.js"></script>
 
-<script>
+  <script>
     $(document).ready(function () {
       $('#updateUserForm').submit(function (e) {
         e.preventDefault(); // Evita a submissão normal do formulário
