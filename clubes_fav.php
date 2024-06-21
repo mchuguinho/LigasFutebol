@@ -98,7 +98,7 @@ $result = mysqli_query($con, $query);
             echo '<h3 class="card-title">' . $row['nome'] . '</h3>';
             echo '<p class="card-text">Clique no botão abaixo para ver jogos deste clube!</p>';
             echo '<div class="container info-fav">';
-            echo '<button class="btn btn-dark btn-card" data-club="' . $row['id_clube'] . '" data-nome="' . $row['nome'] . '" data-cidade="' . $row['cidade'] . '" onclick="requestMeteoApi(\'' . $row['cidade'] . '\');requestFlickrApi(\'' . $row['nome'] . '\')" data-toggle="modal" data-target="#modalInfo">Mais detalhes</button>';
+            echo '<button class="btn btn-dark btn-card" data-club="' . $row['id_clube'] . '" data-nome="' . $row['nome'] . '"  data-fundacao="'. $row['fundacao'] .'"  data-cidade="' . $row['cidade'] . '" onclick="requestMeteoApi(\'' . $row['cidade'] . '\');requestFlickrApi(\'' . $row['nome'] . '\')" data-toggle="modal" data-target="#modalInfo">Mais detalhes</button>';
             echo '<a class="remove-fav" href="removefav.php?id_clube=' . $row['id_clube'] . '">';
             echo '<button class="btn btn-danger">Remover</button>';
             echo '</a>';
