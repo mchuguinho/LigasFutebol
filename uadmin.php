@@ -113,6 +113,7 @@ if (isset($_GET['id_user'])) {
                   <th scope="col">Nome</th>
                   <th scope="col">Email</th>
                   <th scope="col">Password</th>
+                  <th scope="col">Tipo de utilizador</th>
                   <th scope="col">Editar</th>
                   <th scope="col">Eliminar</th>
                 </tr>
@@ -128,7 +129,12 @@ if (isset($_GET['id_user'])) {
                     echo '<td class="align-middle">' . $row['nome'] . '</td>';
                     echo '<td class="align-middle">' . $row['email'] . '</td>';
                     echo '<td class="align-middle">' . $row['password'] . '</td>';
-                    echo '<td class="align-middle"><button type="button" class="btn btn-primary btn-outline-light" data-bs-toggle="modal" data-bs-target="#modalUser" data-bs-whatever="' . $row['id_user'] . '">Editar User</button></td>';
+                    if($row['tipo'] == 0) {
+                      echo '<td class="align-middle">Administrador</td>';
+                    }elseif($row['tipo'] == 1) {
+                      echo '<td class="align-middle">Utilizador</td>';
+                    }
+                    echo '<td class="align-middle"><button type="button" class="btn btn-primary btn-outline-light" data-bs-toggle="modal" data-bs-target="#modalUser" data-bs-whatever="' . $row['id_user'] . '" data-nome="'. $row['nome'].'" data-email="'. $row['email'].'" data-password="'. $row['password'].'">Editar User</button></td>';
                     echo '<td class="align-middle"><a class="btn btn-danger btn-outline-light" onclick="return confirm(\'Tem certeza que deseja deletar este User?\')" href="uadmin.php?id_user=' . $row['id_user'] . '"  role="button">Eliminar</a></td>';
                     echo '</tr>';
                   }
@@ -254,6 +260,44 @@ if (isset($_GET['id_user'])) {
         });
       });
     });
+
+    document.addEventListener('DOMContentLoaded', function () {
+
+        var modalUser = document.getElementById('modalUser');
+        modalUser.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget;
+        var id = button.getAttribute('data-bs-whatever');
+
+        var nome = button.getAttribute('data-nome');
+        var email = button.getAttribute('data-email');
+        var password = button.getAttribute('data-password');
+        var apelido;
+
+        var modalTitle = modalUser.querySelector('.modal-title');
+        var userNome = modalUser.querySelector('#nomeUp');
+        var userApelido = modalUser.querySelector('#apelidoUp')
+        var userEmail = modalUser.querySelector('#emailUp');
+        var userPass = modalUser.querySelector('#passUp');
+
+        const arrayNome = nome.split(" ");
+
+        if(id){
+
+          nome = arrayNome[0];
+          apelido = arrayNome[1];
+
+
+          modalTitle.textContent = 'Editar User';
+          userNome.value = nome;
+          userApelido.value = apelido;
+          userEmail.value = email;
+          userPass.value = password;
+
+        }
+
+      });
+    });
+
   </script>
 </body>
 
