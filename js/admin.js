@@ -1,3 +1,45 @@
+document.addEventListener('DOMContentLoaded', function () {
+  var modalLiga = document.getElementById('modalLiga');
+  modalLiga.addEventListener('show.bs.modal', function (event) {
+      var button = event.relatedTarget;
+      var id = button.getAttribute('data-id');
+      var nome = button.getAttribute('data-nome');
+      var logo = button.getAttribute('data-logo');
+
+      var modalTitle = modalLiga.querySelector('.modal-title');
+      var ligaId = modalLiga.querySelector('#ligaId');
+      var ligaNome = modalLiga.querySelector('#ligaNome');
+      var ligaLogo = modalLiga.querySelector('#ligaLogo');
+      var ligaAction = modalLiga.querySelector('#ligaAction');
+
+      if (id) {
+          modalTitle.textContent = 'Editar Liga';
+          ligaId.value = id;
+          ligaNome.value = nome;
+          ligaLogo.value = logo;
+          ligaAction.value = 'updateLiga';
+
+
+      } else {
+          modalTitle.textContent = 'Adicionar Liga';
+          ligaId.value = '';
+          ligaNome.value = '';
+          ligaLogo.value = '';
+          ligaAction.value = 'createLiga';
+      }
+  });
+});
+
+function showAlertGuardado() {
+  Toastify({
+      text: 'Alterações guardadas com sucesso!',
+      duration: 1500,
+      close: true,
+      gravity: 'top',
+      backgroundColor: 'linear-gradient(to right, #00b09b, #96c93d)',
+  }).showToast();
+}
+
 //----------------------------------------------------------------------------- METER AS LIGAS NO CARD -------------------------------------------------------------------------------------
 /*
 fetch("js/leagues.json")
@@ -25,7 +67,7 @@ fetch("js/leagues.json")
   })
   .catch((error) => console.error("Error loading JSON:", error));
 
-*/
+
 //----------------------------------------------------------------------------- METER OS CLUBS NA MODAL -------------------------------------------------------------------------------------
 
 var exampleModal = document.getElementById("modalClub");
@@ -146,4 +188,4 @@ function showAlertGuardado() {
 
   }).showToast();
   
-}
+}*/

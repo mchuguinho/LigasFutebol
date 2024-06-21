@@ -55,27 +55,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $logo = $_POST['logo'];
         $query = "UPDATE liga SET nome='$nome', logotipo='$logo' WHERE id_liga=$id";
         mysqli_query($con, $query);
-    } elseif ($action == 'createClube') {
-        $nome = $_POST['nome'];
-        $logo = $_POST['logo'];
-        $cidade = $_POST['cidade'];
-        $fundacao = $_POST['fundacao'];
-        $liga_id = $_POST['liga_id'];
-        $query = "INSERT INTO clubes (nome, logotipo, cidade, fundacao, liga_id) VALUES ('$nome', '$logo', '$cidade', '$fundacao', '$liga_id')";
-        mysqli_query($con, $query);
-    } elseif ($action == 'updateClube') {
-        $id = $_POST['id'];
-        $nome = $_POST['nome'];
-        $logo = $_POST['logo'];
-        $cidade = $_POST['cidade'];
-        $fundacao = $_POST['fundacao'];
-        $liga_id = $_POST['liga_id'];
-        $query = "UPDATE clubes SET nome='$nome', logotipo='$logo', cidade='$cidade', fundacao='$fundacao', liga_id='$liga_id' WHERE id_clube=$id";
-        mysqli_query($con, $query);
-    } elseif ($action == 'deleteClube') {
-        $id = $_POST['id'];
-        $query = "DELETE FROM clubes WHERE id_clube=$id";
-        mysqli_query($con, $query);
     }
     header("Location: admin.php");
     exit;
@@ -220,47 +199,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    var modalLiga = document.getElementById('modalLiga');
-    modalLiga.addEventListener('show.bs.modal', function (event) {
-        var button = event.relatedTarget;
-        var id = button.getAttribute('data-id');
-        var nome = button.getAttribute('data-nome');
-        var logo = button.getAttribute('data-logo');
+<script src="js/admin.js"></script>
 
-        var modalTitle = modalLiga.querySelector('.modal-title');
-        var ligaId = modalLiga.querySelector('#ligaId');
-        var ligaNome = modalLiga.querySelector('#ligaNome');
-        var ligaLogo = modalLiga.querySelector('#ligaLogo');
-        var ligaAction = modalLiga.querySelector('#ligaAction');
-
-        if (id) {
-            modalTitle.textContent = 'Editar Liga';
-            ligaId.value = id;
-            ligaNome.value = nome;
-            ligaLogo.value = logo;
-            ligaAction.value = 'updateLiga';
-        } else {
-            modalTitle.textContent = 'Adicionar Liga';
-            ligaId.value = '';
-            ligaNome.value = '';
-            ligaLogo.value = '';
-            ligaAction.value = 'createLiga';
-        }
-    });
-});
-
-function showAlertGuardado() {
-    Toastify({
-        text: 'Alterações guardadas com sucesso!',
-        duration: 1500,
-        close: true,
-        gravity: 'top',
-        backgroundColor: 'linear-gradient(to right, #00b09b, #96c93d)',
-    }).showToast();
-}
-</script>
 </body>
 </html>
 
